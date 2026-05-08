@@ -40,3 +40,42 @@ export const services: Service[] = [
     icon: Laptop,
   },
 ];
+
+export interface CaseStory {
+  id: string;
+  quote: string;
+  name: string;
+  age: number;
+  situation: string;
+  duration: string;
+}
+
+export const caseStories: CaseStory[] = [
+  {
+    id: 'marta',
+    quote:
+      'Ero arrivata da Alessia con un mal di schiena cronico dopo il secondo parto. Sei mesi di lavoro mirato sul core e sulla postura, e oggi gioco a tennis con i miei figli senza pensarci.',
+    name: 'Marta R.',
+    age: 38,
+    situation: 'mal di schiena cronico post-parto',
+    duration: '6 mesi',
+  },
+  {
+    id: 'paolo',
+    quote:
+      'Avevo smesso di correre dopo un infortunio al ginocchio. Alessia ha rimesso insieme il movimento partendo dalle basi: anca, caviglia, controllo. Ora corro 10 km a settimana senza dolore.',
+    name: 'Paolo M.',
+    age: 45,
+    situation: 'recupero post-infortunio (ginocchio)',
+    duration: '4 mesi',
+  },
+  {
+    id: 'sofia',
+    quote:
+      'Lavoro otto ore davanti al computer e avevo cervicale e mal di testa quasi ogni giorno. Tre mesi di lavoro su postura e mobilità della colonna, e i mal di testa sono praticamente spariti.',
+    name: 'Sofia D.',
+    age: 32,
+    situation: 'cervicalgia da postura sedentaria',
+    duration: '3 mesi',
+  },
+];

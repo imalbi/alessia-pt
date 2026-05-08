@@ -40,3 +40,42 @@ export const services: Service[] = [
     icon: Laptop,
   },
 ];
+
+export interface CaseStory {
+  id: string;
+  quote: string;
+  name: string;
+  age: number;
+  situation: string;
+  duration: string;
+}
+
+export const caseStories: CaseStory[] = [
+  {
+    id: 'marta',
+    quote:
+      'I came to Alessia with chronic back pain after my second pregnancy. Six months of focused work on core and posture, and today I play tennis with my kids without thinking about it.',
+    name: 'Marta R.',
+    age: 38,
+    situation: 'chronic post-partum back pain',
+    duration: '6 months',
+  },
+  {
+    id: 'paolo',
+    quote:
+      'I had stopped running after a knee injury. Alessia rebuilt the movement starting from the basics: hip, ankle, control. Now I run 10 km a week without pain.',
+    name: 'Paolo M.',
+    age: 45,
+    situation: 'post-injury recovery (knee)',
+    duration: '4 months',
+  },
+  {
+    id: 'sofia',
+    quote:
+      'I work eight hours at a computer and had neck pain and headaches almost every day. Three months of work on posture and spinal mobility, and the headaches have practically disappeared.',
+    name: 'Sofia D.',
+    age: 32,
+    situation: 'neck pain from sedentary posture',
+    duration: '3 months',
+  },
+];

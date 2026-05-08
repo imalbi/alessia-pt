@@ -52,6 +52,10 @@
     "error": "Qualcosa è andato storto. Riprova o scrivi a {email}.",
     "retry": "Riprova"
   },
+  "Stories": {
+    "heading": "Percorsi",
+    "lead": "Tre situazioni reali, tre punti di partenza diversi. Niente before/after del corpo: il valore è nel ritorno alla vita normale."
+  },
   "Footer": {
     "tagline": "Personal Trainer & Chinesiologa",
     "rights": "Tutti i diritti riservati.",

@@ -52,6 +52,10 @@
     "error": "Something went wrong. Please try again or email {email}.",
     "retry": "Retry"
   },
+  "Stories": {
+    "heading": "Stories",
+    "lead": "Three real situations, three different starting points. No body before/after: the value is in the return to normal life."
+  },
   "Footer": {
     "tagline": "Personal Trainer & Kinesiologist",
     "rights": "All rights reserved.",
