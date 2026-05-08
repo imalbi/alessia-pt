@@ -12,5 +12,12 @@
     "openMenu": "Apri menu",
     "closeMenu": "Chiudi menu",
     "language": "Lingua"
+  },
+  "Hero": {
+    "name": "Alessia",
+    "role": "Personal Trainer & Chinesiologa",
+    "tagline": "Lavoro su postura, recupero e forza con un metodo costruito sulla persona, non sul programma.",
+    "cta": "Scrivimi",
+    "photoLabel": "Alessia · ritratto"
   }
 }

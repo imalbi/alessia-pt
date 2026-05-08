@@ -12,5 +12,12 @@
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "language": "Language"
+  },
+  "Hero": {
+    "name": "Alessia",
+    "role": "Personal Trainer & Kinesiologist",
+    "tagline": "I work on posture, recovery and strength with a method built on the person, not on the programme.",
+    "cta": "Get in touch",
+    "photoLabel": "Alessia · portrait"
   }
 }
