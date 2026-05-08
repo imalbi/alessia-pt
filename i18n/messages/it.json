@@ -3,5 +3,14 @@
     "title": "Alessia",
     "subtitle": "Personal Trainer & Chinesiologa",
     "tagline": "Sito in costruzione."
+  },
+  "Nav": {
+    "about": "Chi sono",
+    "services": "Servizi",
+    "stories": "Percorsi",
+    "contact": "Contatti",
+    "openMenu": "Apri menu",
+    "closeMenu": "Chiudi menu",
+    "language": "Lingua"
   }
 }

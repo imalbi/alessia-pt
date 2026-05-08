@@ -1,10 +1,16 @@
 import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
+import { Nav } from '@/components/nav';
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <HomeContent />;
+  return (
+    <>
+      <Nav />
+      <HomeContent />
+    </>
+  );
 }
 
 function HomeContent() {
