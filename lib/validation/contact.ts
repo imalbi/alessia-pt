@@ -13,7 +13,7 @@ export const contactSchema = z.object({
     .or(z.literal('')),
   goal: z.enum(GOALS).optional(),
   message: z.string().min(10, 'message_too_short').max(2000, 'message_too_long'),
-  consent: z.literal(true, { errorMap: () => ({ message: 'consent_required' }) }),
+  consent: z.literal(true, { error: () => 'consent_required' }),
   honeypot: z.string().max(0, 'honeypot_filled'),
 });
 
