@@ -1,6 +1,10 @@
 import type { Metadata } from 'next';
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages, setRequestLocale } from 'next-intl/server';
+import { notFound } from 'next/navigation';
 import { Bricolage_Grotesque, Newsreader, Caveat } from 'next/font/google';
-import './globals.css';
+import { routing } from '@/i18n/routing';
+import '../globals.css';
 
 const bricolage = Bricolage_Grotesque({
   subsets: ['latin'],
@@ -24,6 +28,10 @@ const caveat = Caveat({
   display: 'swap',
 });
 
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
 export const metadata: Metadata = {
   title: {
     default: 'Alessia · Personal Trainer & Chinesiologa',
@@ -32,18 +40,29 @@ export const metadata: Metadata = {
   description: 'Personal training e chinesiologia. Postura, recupero, percorsi su misura.',
 };
 
-export default function RootLayout({
+export default async function LocaleLayout({
   children,
-}: Readonly<{
+  params,
+}: {
   children: React.ReactNode;
-}>) {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
+    notFound();
+  }
+  setRequestLocale(locale);
+  const messages = await getMessages();
+
   return (
     <html
-      lang="it"
+      lang={locale}
       data-theme="caldo"
       className={`${bricolage.variable} ${newsreader.variable} ${caveat.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+      </body>
     </html>
   );
 }
