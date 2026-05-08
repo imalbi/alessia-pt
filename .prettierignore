@@ -1,0 +1,9 @@
+.next
+.open-next
+.yarn
+node_modules
+public
+*.lock
+yarn.lock
+.env*
+docs
