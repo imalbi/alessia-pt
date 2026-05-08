@@ -2,6 +2,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { Nav } from '@/components/nav';
 import { Hero } from '@/components/sections/hero';
 import { About } from '@/components/sections/about';
+import { Services } from '@/components/sections/services';
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -12,6 +13,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <main>
         <Hero />
         <About />
+        <Services />
       </main>
     </>
   );
