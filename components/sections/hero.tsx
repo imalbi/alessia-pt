@@ -64,7 +64,7 @@ export function Hero() {
           transition={transition(0)}
           className="relative"
         >
-          <Photo ratio="4/5" tone="warm" label={t('photoLabel')} taped rotate={-1} priority />
+          <Photo ratio="4/5" label={t('photoLabel')} priority />
         </motion.div>
       </div>
     </section>
