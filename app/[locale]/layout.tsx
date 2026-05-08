@@ -105,6 +105,13 @@ export default async function LocaleLayout({
         </NextIntlClientProvider>
         <Toaster position="bottom-center" richColors />
         <TweaksPanel />
+        {process.env.NEXT_PUBLIC_CF_BEACON && (
+          <script
+            defer
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon={JSON.stringify({ token: process.env.NEXT_PUBLIC_CF_BEACON })}
+          />
+        )}
       </body>
     </html>
   );
