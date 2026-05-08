@@ -45,3 +45,6 @@ next-env.d.ts
 /playwright-report/
 /test-results/
 /playwright/.cache/
+
+# open-next (cloudflare adapter build output)
+/.open-next/
