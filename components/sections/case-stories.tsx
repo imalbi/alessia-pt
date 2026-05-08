@@ -59,7 +59,7 @@ export function CaseStories() {
                 </blockquote>
                 <footer
                   className="text-sm"
-                  style={{ fontFamily: 'var(--font-body)', color: 'var(--ink-55)' }}
+                  style={{ fontFamily: 'var(--font-body)', color: 'var(--ink-70)' }}
                 >
                   — <span style={{ color: 'var(--ink)' }}>{s.name}</span>, {s.age} ·{' '}
                   {s.situation} · {s.duration}
