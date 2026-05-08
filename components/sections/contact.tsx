@@ -157,7 +157,13 @@ export function Contact() {
               >
                 {t('goal')}
               </label>
-              <select id="goal" {...register('goal')} style={fieldStyle}>
+              <select
+                id="goal"
+                {...register('goal', {
+                  setValueAs: (v: string) => (v === '' ? undefined : v),
+                })}
+                style={fieldStyle}
+              >
                 <option value="">{t('goalSelect')}</option>
                 {GOALS.map((g) => (
                   <option key={g} value={g}>

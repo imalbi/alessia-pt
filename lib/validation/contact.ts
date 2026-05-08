@@ -11,9 +11,7 @@ export const contactSchema = z.object({
     .regex(/^[+0-9\s\-()]{6,20}$/, 'phone_invalid')
     .optional()
     .or(z.literal('')),
-  // Empty string from an unselected <select> is normalized to undefined
-  // so the optional enum accepts it.
-  goal: z.preprocess((v) => (v === '' ? undefined : v), z.enum(GOALS).optional()),
+  goal: z.enum(GOALS).optional(),
   message: z.string().min(10, 'message_too_short').max(2000, 'message_too_long'),
   consent: z.literal(true, { error: () => 'consent_required' }),
   honeypot: z.string().max(0, 'honeypot_filled'),

@@ -49,9 +49,4 @@ describe('contactSchema', () => {
   it('rejects unknown goal value', () => {
     expect(() => contactSchema.parse({ ...valid, goal: 'unknown' })).toThrow();
   });
-
-  it('treats empty-string goal as undefined (unselected <select>)', () => {
-    const parsed = contactSchema.parse({ ...valid, goal: '' });
-    expect(parsed.goal).toBeUndefined();
-  });
 });
