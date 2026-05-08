@@ -19,5 +19,12 @@
     "tagline": "I work on posture, recovery and strength with a method built on the person, not on the programme.",
     "cta": "Get in touch",
     "photoLabel": "Alessia · portrait"
+  },
+  "About": {
+    "heading": "About",
+    "intro": "I'm a kinesiologist with a degree in Movement Sciences. I work with people who want to move without pain again, recover after an injury, or build strength intelligently.",
+    "credentials": "Degree in Movement Sciences · registered kinesiologist · continued training in postural rehabilitation and functional strength.",
+    "method": "The first session is always an assessment: posture, mobility, habits. Then I build the programme, and update it as we work together.",
+    "photoLabel": "Alessia · in the studio"
   }
 }
