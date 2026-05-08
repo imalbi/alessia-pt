@@ -115,6 +115,43 @@ body {
   }
 }
 
+/* Privacy page typography (markdown rendered with marked) */
+.privacy-prose h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw + 0.8rem, 3rem);
+  font-weight: 700;
+  line-height: 1.05;
+  margin-top: 0;
+}
+.privacy-prose h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+.privacy-prose p,
+.privacy-prose ul {
+  margin-bottom: 1rem;
+  line-height: 1.65;
+  color: var(--ink-70);
+}
+.privacy-prose ul {
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+.privacy-prose code {
+  background: var(--paper-2);
+  padding: 0.1rem 0.35rem;
+  border-radius: 2px;
+  font-size: 0.9em;
+}
+.privacy-prose a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *,
