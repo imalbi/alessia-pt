@@ -30,5 +30,12 @@
   "Services": {
     "heading": "What I do",
     "lead": "Four ways to work together. Each starts from the same place: an assessment."
+  },
+  "Footer": {
+    "tagline": "Personal Trainer & Kinesiologist",
+    "rights": "All rights reserved.",
+    "privacy": "Privacy",
+    "vatLabel": "VAT",
+    "vat": "TBD"
   }
 }

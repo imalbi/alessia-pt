@@ -30,5 +30,12 @@
   "Services": {
     "heading": "Cosa faccio",
     "lead": "Quattro modi di lavorare insieme. Ognuno parte dalla stessa cosa: una valutazione."
+  },
+  "Footer": {
+    "tagline": "Personal Trainer & Chinesiologa",
+    "rights": "Tutti i diritti riservati.",
+    "privacy": "Privacy",
+    "vatLabel": "P.IVA",
+    "vat": "TBD"
   }
 }
