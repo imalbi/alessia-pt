@@ -43,13 +43,41 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export const metadata: Metadata = {
-  title: {
-    default: 'Alessia · Personal Trainer & Chinesiologa',
-    template: '%s · Alessia',
-  },
-  description: 'Personal training e chinesiologia. Postura, recupero, percorsi su misura.',
-};
+import {
+  SITE_NAME,
+  SITE_DESCRIPTION_IT,
+  SITE_DESCRIPTION_EN,
+  getSiteUrl,
+} from '@/i18n/metadata';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const description = locale === 'en' ? SITE_DESCRIPTION_EN : SITE_DESCRIPTION_IT;
+  const baseUrl = getSiteUrl();
+  return {
+    metadataBase: new URL(baseUrl),
+    title: { default: SITE_NAME, template: '%s · Alessia' },
+    description,
+    alternates: {
+      canonical: locale === 'it' ? '/' : `/${locale}`,
+      languages: { it: '/', en: '/en' },
+    },
+    openGraph: {
+      type: 'website',
+      locale: locale === 'en' ? 'en_GB' : 'it_IT',
+      url: baseUrl,
+      title: SITE_NAME,
+      description,
+      siteName: SITE_NAME,
+      images: [{ url: '/og', width: 1200, height: 630, alt: SITE_NAME }],
+    },
+    twitter: { card: 'summary_large_image', title: SITE_NAME, description },
+  };
+}
 
 export default async function LocaleLayout({
   children,
