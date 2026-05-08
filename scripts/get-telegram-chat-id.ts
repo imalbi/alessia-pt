@@ -42,3 +42,5 @@ for (const u of data.result) {
 console.log('Chats found:');
 for (const [id, name] of chats) console.log(`  ${id}  (${name})`);
 console.log('\nSet TELEGRAM_CHAT_ID to the desired id in your env.');
+
+export {};
