@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import { Bricolage_Grotesque, Newsreader, Caveat } from 'next/font/google';
 import { routing } from '@/i18n/routing';
 import { Providers } from '@/components/providers';
+import { Toaster } from '@/components/ui/sonner';
 import dynamic from 'next/dynamic';
 import '../globals.css';
 
@@ -74,6 +75,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <Providers>{children}</Providers>
         </NextIntlClientProvider>
+        <Toaster position="bottom-center" richColors />
         <TweaksPanel />
       </body>
     </html>

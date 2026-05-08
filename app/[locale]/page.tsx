@@ -3,6 +3,7 @@ import { Nav } from '@/components/nav';
 import { Hero } from '@/components/sections/hero';
 import { About } from '@/components/sections/about';
 import { Services } from '@/components/sections/services';
+import { Contact } from '@/components/sections/contact';
 import { Footer } from '@/components/sections/footer';
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
@@ -15,6 +16,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <Hero />
         <About />
         <Services />
+        <Contact />
       </main>
       <Footer />
     </>

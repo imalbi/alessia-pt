@@ -31,6 +31,27 @@
     "heading": "What I do",
     "lead": "Four ways to work together. Each starts from the same place: an assessment."
   },
+  "Contact": {
+    "heading": "Get in touch",
+    "lead": "Tell me briefly about your situation: I'll get back to you within 24-48 hours.",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone (optional)",
+    "goal": "Goal",
+    "goal_postura": "Posture",
+    "goal_recupero": "Recovery",
+    "goal_in_studio": "PT in studio",
+    "goal_online": "PT online",
+    "goal_altro": "Other",
+    "goalSelect": "—",
+    "message": "Message",
+    "consent": "I consent to the processing of my data so I can be contacted back.",
+    "submit": "Send",
+    "sending": "Sending…",
+    "success": "Message received. I'll reply within 24-48 hours.",
+    "error": "Something went wrong. Please try again or email {email}.",
+    "retry": "Retry"
+  },
   "Footer": {
     "tagline": "Personal Trainer & Kinesiologist",
     "rights": "All rights reserved.",

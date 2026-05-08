@@ -31,6 +31,27 @@
     "heading": "Cosa faccio",
     "lead": "Quattro modi di lavorare insieme. Ognuno parte dalla stessa cosa: una valutazione."
   },
+  "Contact": {
+    "heading": "Scrivimi",
+    "lead": "Raccontami brevemente la tua situazione: ti rispondo entro 24-48 ore.",
+    "name": "Nome",
+    "email": "Email",
+    "phone": "Telefono (opzionale)",
+    "goal": "Obiettivo",
+    "goal_postura": "Postura",
+    "goal_recupero": "Recupero",
+    "goal_in_studio": "PT in studio",
+    "goal_online": "PT online",
+    "goal_altro": "Altro",
+    "goalSelect": "—",
+    "message": "Messaggio",
+    "consent": "Acconsento al trattamento dei miei dati per essere ricontattata/o.",
+    "submit": "Invia",
+    "sending": "Invio in corso…",
+    "success": "Messaggio ricevuto. Ti rispondo entro 24-48 ore.",
+    "error": "Qualcosa è andato storto. Riprova o scrivi a {email}.",
+    "retry": "Riprova"
+  },
   "Footer": {
     "tagline": "Personal Trainer & Chinesiologa",
     "rights": "Tutti i diritti riservati.",
