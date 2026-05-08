@@ -11,7 +11,7 @@ export function About() {
     >
       <div className="grid gap-10 md:grid-cols-[1fr_1.4fr] md:gap-16">
         <div className="md:order-1">
-          <Photo ratio="3/4" tone="studio" label={t('photoLabel')} rotate={1} />
+          <Photo ratio="3/4" label={t('photoLabel')} />
         </div>
         <div className="md:order-2">
           <h2
