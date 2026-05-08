@@ -39,10 +39,7 @@ export async function POST(req: Request) {
     );
   }
 
-  const results = await Promise.allSettled([
-    sendEmail(parsed.data),
-    sendTelegram(parsed.data),
-  ]);
+  const results = await Promise.allSettled([sendEmail(parsed.data), sendTelegram(parsed.data)]);
 
   const allFailed = results.every((r) => r.status === 'rejected');
   if (allFailed) {

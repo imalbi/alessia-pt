@@ -15,7 +15,7 @@ export function About() {
         </div>
         <div className="md:order-2">
           <h2
-            className="text-[clamp(2rem,4vw+0.8rem,3.5rem)] font-bold leading-tight"
+            className="text-[clamp(2rem,4vw+0.8rem,3.5rem)] leading-tight font-bold"
             style={{ fontFamily: 'var(--font-display)' }}
           >
             {t('heading')}

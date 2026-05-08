@@ -60,14 +60,11 @@ export function Contact() {
   } as const;
 
   return (
-    <section
-      id="contact"
-      className="mx-auto max-w-screen-xl px-4 py-24 md:px-8 md:py-32 lg:px-12"
-    >
+    <section id="contact" className="mx-auto max-w-screen-xl px-4 py-24 md:px-8 md:py-32 lg:px-12">
       <div className="grid gap-10 md:grid-cols-[1fr_1.4fr] md:gap-16">
         <div>
           <h2
-            className="text-[clamp(2rem,4vw+0.8rem,3.5rem)] font-bold leading-tight"
+            className="text-[clamp(2rem,4vw+0.8rem,3.5rem)] leading-tight font-bold"
             style={{ fontFamily: 'var(--font-display)' }}
           >
             {t('heading')}

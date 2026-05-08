@@ -8,13 +8,7 @@ interface Props {
   as?: 'span' | 'div' | 'p';
 }
 
-export function Hand({
-  children,
-  rotate = -1,
-  className,
-  style,
-  as: Component = 'span',
-}: Props) {
+export function Hand({ children, rotate = -1, className, style, as: Component = 'span' }: Props) {
   return (
     <Component
       className={className}

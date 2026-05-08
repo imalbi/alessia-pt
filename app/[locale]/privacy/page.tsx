@@ -7,11 +7,7 @@ import { routing } from '@/i18n/routing';
 import { Nav } from '@/components/nav';
 import { Footer } from '@/components/sections/footer';
 
-export default async function PrivacyPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
+export default async function PrivacyPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
     notFound();
@@ -25,7 +21,7 @@ export default async function PrivacyPage({
   return (
     <>
       <Nav />
-      <main className="mx-auto max-w-3xl px-4 pb-16 pt-32 md:pb-24 md:pt-40 lg:px-8">
+      <main className="mx-auto max-w-3xl px-4 pt-32 pb-16 md:pt-40 md:pb-24 lg:px-8">
         <article
           className="privacy-prose"
           style={{ fontFamily: 'var(--font-body)', color: 'var(--ink)' }}

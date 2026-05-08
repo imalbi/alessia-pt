@@ -16,14 +16,14 @@ export function Hero() {
     reduced ? { duration: 0 } : { duration: 0.7, delay, ease: EASE };
 
   return (
-    <section className="relative mx-auto max-w-screen-xl px-4 pb-12 pt-24 md:px-8 md:pb-16 md:pt-32 lg:px-12 lg:pt-40">
+    <section className="relative mx-auto max-w-screen-xl px-4 pt-24 pb-12 md:px-8 md:pt-32 md:pb-16 lg:px-12 lg:pt-40">
       <div className="grid gap-10 md:grid-cols-[1.1fr_1fr] md:gap-16 lg:gap-20">
         <div>
           <motion.h1
             initial={{ clipPath: 'inset(100% 0 0 0)', opacity: 0 }}
             animate={{ clipPath: 'inset(0 0 0 0)', opacity: 1 }}
             transition={transition(0.15)}
-            className="text-[clamp(2.5rem,6vw+1rem,5.5rem)] font-extrabold leading-[0.95] tracking-tight"
+            className="text-[clamp(2.5rem,6vw+1rem,5.5rem)] leading-[0.95] font-extrabold tracking-tight"
             style={{ fontFamily: 'var(--font-display)', color: 'var(--ink)' }}
           >
             {t('name')}

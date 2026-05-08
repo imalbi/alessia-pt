@@ -28,9 +28,7 @@ export function Nav() {
     <nav
       className="fixed inset-x-0 top-0 z-40 transition-all duration-300"
       style={{
-        background: scrolled
-          ? 'color-mix(in oklab, var(--paper) 90%, transparent)'
-          : 'transparent',
+        background: scrolled ? 'color-mix(in oklab, var(--paper) 90%, transparent)' : 'transparent',
         backdropFilter: scrolled ? 'blur(10px)' : undefined,
         borderBottom: scrolled ? '1px solid var(--ink-15)' : '1px solid transparent',
         padding: scrolled ? '12px 16px' : '20px 16px',
@@ -79,7 +77,7 @@ export function Nav() {
             <Link
               href={pathname}
               locale={otherLocale}
-              className="text-sm uppercase tracking-wider text-[color:var(--ink-70)] transition-colors hover:text-[color:var(--ink)]"
+              className="text-sm tracking-wider text-[color:var(--ink-70)] uppercase transition-colors hover:text-[color:var(--ink)]"
             >
               {otherLocale}
             </Link>
@@ -97,7 +95,7 @@ export function Nav() {
           <Drawer.Portal>
             <Drawer.Overlay className="fixed inset-0 z-50 bg-black/40" />
             <Drawer.Content
-              className="fixed bottom-0 left-0 right-0 z-50 mt-24 flex h-[60vh] flex-col rounded-t-2xl"
+              className="fixed right-0 bottom-0 left-0 z-50 mt-24 flex h-[60vh] flex-col rounded-t-2xl"
               style={{ background: 'var(--paper)' }}
             >
               <Drawer.Title className="sr-only">{t('openMenu')}</Drawer.Title>
@@ -121,7 +119,7 @@ export function Nav() {
                   href={pathname}
                   locale={otherLocale}
                   onClick={() => setOpen(false)}
-                  className="text-base uppercase tracking-wider text-[color:var(--ink-70)]"
+                  className="text-base tracking-wider text-[color:var(--ink-70)] uppercase"
                 >
                   {otherLocale === 'en' ? 'English' : 'Italiano'}
                 </Link>

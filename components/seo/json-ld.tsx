@@ -14,9 +14,7 @@ export function JsonLd({ locale }: Props) {
         '@id': `${url}#alessia`,
         name: 'Alessia',
         jobTitle:
-          locale === 'en'
-            ? 'Personal Trainer & Kinesiologist'
-            : 'Personal Trainer & Chinesiologa',
+          locale === 'en' ? 'Personal Trainer & Kinesiologist' : 'Personal Trainer & Chinesiologa',
         url,
       },
       {

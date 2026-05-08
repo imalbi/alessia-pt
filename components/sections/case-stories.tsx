@@ -24,7 +24,7 @@ export function CaseStories() {
       <div className="mx-auto max-w-screen-xl md:px-4 lg:px-8">
         <div className="mb-12 max-w-2xl md:mb-16">
           <h2
-            className="text-[clamp(2rem,4vw+0.8rem,3.5rem)] font-bold leading-tight"
+            className="text-[clamp(2rem,4vw+0.8rem,3.5rem)] leading-tight font-bold"
             style={{ fontFamily: 'var(--font-display)' }}
           >
             {t('heading')}
@@ -61,8 +61,8 @@ export function CaseStories() {
                   className="text-sm"
                   style={{ fontFamily: 'var(--font-body)', color: 'var(--ink-70)' }}
                 >
-                  — <span style={{ color: 'var(--ink)' }}>{s.name}</span>, {s.age} ·{' '}
-                  {s.situation} · {s.duration}
+                  — <span style={{ color: 'var(--ink)' }}>{s.name}</span>, {s.age} · {s.situation} ·{' '}
+                  {s.duration}
                 </footer>
               </article>
             ))}

@@ -72,8 +72,7 @@ export function Photo({
           backgroundBlendMode: 'overlay',
           position: 'relative',
           overflow: 'hidden',
-          boxShadow:
-            '0 30px 60px -30px rgba(0,0,0,.35), inset 0 0 0 1px rgba(0,0,0,.05)',
+          boxShadow: '0 30px 60px -30px rgba(0,0,0,.35), inset 0 0 0 1px rgba(0,0,0,.05)',
           width: '100%',
         }}
       >

@@ -17,7 +17,7 @@ export function Services() {
       <div className="mx-auto max-w-screen-xl md:px-4 lg:px-8">
         <div className="mb-12 max-w-2xl md:mb-16">
           <h2
-            className="text-[clamp(2rem,4vw+0.8rem,3.5rem)] font-bold leading-tight"
+            className="text-[clamp(2rem,4vw+0.8rem,3.5rem)] leading-tight font-bold"
             style={{ fontFamily: 'var(--font-display)' }}
           >
             {t('heading')}
@@ -50,10 +50,7 @@ export function Services() {
                   <Icon size={28} strokeWidth={1.5} aria-hidden />
                 </div>
                 <div>
-                  <h3
-                    className="text-2xl font-bold"
-                    style={{ fontFamily: 'var(--font-display)' }}
-                  >
+                  <h3 className="text-2xl font-bold" style={{ fontFamily: 'var(--font-display)' }}>
                     {s.title}
                   </h3>
                   <p
