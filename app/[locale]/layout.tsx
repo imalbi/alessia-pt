@@ -4,7 +4,17 @@ import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { Bricolage_Grotesque, Newsreader, Caveat } from 'next/font/google';
 import { routing } from '@/i18n/routing';
+import { Providers } from '@/components/providers';
+import dynamic from 'next/dynamic';
 import '../globals.css';
+
+// Dev-only: dynamic import keeps the panel out of production bundles entirely.
+// Turbopack does not dead-code-eliminate `process.env.NODE_ENV === 'development' && <X />`
+// at the import level, so we gate the import expression itself.
+const TweaksPanel =
+  process.env.NODE_ENV === 'development'
+    ? dynamic(() => import('@/components/dev/tweaks-panel').then((m) => m.TweaksPanel))
+    : () => null;
 
 const bricolage = Bricolage_Grotesque({
   subsets: ['latin'],
@@ -57,11 +67,14 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      data-theme="caldo"
       className={`${bricolage.variable} ${newsreader.variable} ${caveat.variable}`}
+      suppressHydrationWarning
     >
-      <body>
-        <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+      <body suppressHydrationWarning>
+        <NextIntlClientProvider messages={messages}>
+          <Providers>{children}</Providers>
+        </NextIntlClientProvider>
+        <TweaksPanel />
       </body>
     </html>
   );
