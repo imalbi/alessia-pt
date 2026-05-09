@@ -11,7 +11,9 @@
     "contact": "Contatti",
     "openMenu": "Apri menu",
     "closeMenu": "Chiudi menu",
-    "language": "Lingua"
+    "language": "Lingua",
+    "switchToLight": "Passa al tema chiaro",
+    "switchToDark": "Passa al tema scuro"
   },
   "Hero": {
     "name": "Alessia",

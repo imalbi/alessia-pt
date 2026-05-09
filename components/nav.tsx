@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { Drawer } from 'vaul';
 import { Menu } from 'lucide-react';
 import { Link, usePathname } from '@/i18n/routing';
+import { ThemeToggle } from '@/components/theme-toggle';
 
 const ANCHORS = ['about', 'services', 'stories', 'contact'] as const;
 
@@ -82,6 +83,9 @@ export function Nav() {
               {otherLocale}
             </Link>
           </li>
+          <li>
+            <ThemeToggle />
+          </li>
         </ul>
 
         {/* Mobile drawer */}
@@ -123,6 +127,7 @@ export function Nav() {
                 >
                   {otherLocale === 'en' ? 'English' : 'Italiano'}
                 </Link>
+                <ThemeToggle withLabel className="self-start" />
               </div>
             </Drawer.Content>
           </Drawer.Portal>
