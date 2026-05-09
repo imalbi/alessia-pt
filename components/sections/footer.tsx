@@ -4,6 +4,7 @@ import { Link } from '@/i18n/routing';
 export function Footer() {
   const t = useTranslations('Footer');
   const year = new Date().getFullYear();
+  const vat = process.env.NEXT_PUBLIC_VAT_NUMBER;
 
   return (
     <footer
@@ -16,7 +17,7 @@ export function Footer() {
             Alessia
           </div>
           <div
-            className="mt-1 text-sm italic"
+            className="mt-1 text-sm"
             style={{ fontFamily: 'var(--font-body)', color: 'var(--ink-70)' }}
           >
             {t('tagline')}
@@ -26,9 +27,11 @@ export function Footer() {
           className="flex flex-col gap-2 text-sm md:items-end"
           style={{ fontFamily: 'var(--font-body)', color: 'var(--ink-70)' }}
         >
-          <div>
-            {t('vatLabel')}: {t('vat')}
-          </div>
+          {vat && (
+            <div>
+              {t('vatLabel')}: {vat}
+            </div>
+          )}
           <Link href="/privacy" className="hover:text-[color:var(--ink)]">
             {t('privacy')}
           </Link>
