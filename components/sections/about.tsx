@@ -11,7 +11,12 @@ export function About() {
     >
       <div className="grid gap-10 md:grid-cols-[1fr_1.4fr] md:gap-16">
         <div className="md:order-1">
-          <Photo ratio="3/4" label={t('photoLabel')} />
+          <Photo
+            ratio="3/4"
+            src="/photos/about-laurea.jpg"
+            alt={t('photoAlt')}
+            label={t('photoLabel')}
+          />
         </div>
         <div className="md:order-2">
           <h2
