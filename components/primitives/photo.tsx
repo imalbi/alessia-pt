@@ -32,7 +32,7 @@ export function Photo({
   priority,
 }: Props) {
   return (
-    <div className={className} style={{ position: 'relative', display: 'inline-block', ...style }}>
+    <div className={className} style={{ position: 'relative', display: 'block', width: '100%', ...style }}>
       <div
         style={{
           aspectRatio: ratio,
