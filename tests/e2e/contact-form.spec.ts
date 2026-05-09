@@ -18,10 +18,9 @@ test('contact form submit succeeds and shows success toast', async ({ page }) =>
   await page.getByLabel(/^nome$/i).fill('Marta Rossi');
   await page.getByLabel(/^email$/i).fill('marta@example.com');
   await page.getByLabel(/^messaggio$/i).fill('Vorrei lavorare sulla postura cronica.');
-  // The goal <select> defaults to "" which fails zod's z.enum(GOALS).optional()
-  // (empty string is neither a valid enum value nor undefined). Pick a real goal
-  // so the form passes client-side validation.
-  await page.getByLabel(/^obiettivo$/i).selectOption('postura');
+  // The goal field is now a Radix Select combobox: click trigger, click option.
+  await page.getByLabel(/^obiettivo$/i).click();
+  await page.getByRole('option', { name: /postura/i }).click();
   await page.getByLabel(/acconsento/i).check();
   await page.getByRole('button', { name: /^invia$/i }).click();
 

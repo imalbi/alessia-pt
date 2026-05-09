@@ -1,12 +1,19 @@
 'use client';
 
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 import { contactSchema, type ContactInput, GOALS } from '@/lib/validation/contact';
 import { Button } from '@/components/ui/button';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { Scribble } from '@/components/primitives/scribble';
 
 const goalKey = (g: string) => `goal_${g.replace('-', '_')}` as const;
@@ -17,6 +24,7 @@ export function Contact() {
 
   const {
     register,
+    control,
     handleSubmit,
     reset,
     formState: { errors },
@@ -154,20 +162,32 @@ export function Contact() {
               >
                 {t('goal')}
               </label>
-              <select
-                id="goal"
-                {...register('goal', {
-                  setValueAs: (v: string) => (v === '' ? undefined : v),
-                })}
-                style={fieldStyle}
-              >
-                <option value="">{t('goalSelect')}</option>
-                {GOALS.map((g) => (
-                  <option key={g} value={g}>
-                    {t(goalKey(g))}
-                  </option>
-                ))}
-              </select>
+              <Controller
+                name="goal"
+                control={control}
+                render={({ field }) => (
+                  <Select
+                    onValueChange={(v) => field.onChange(v === '' ? undefined : v)}
+                    value={field.value ?? ''}
+                  >
+                    <SelectTrigger
+                      id="goal"
+                      ref={field.ref}
+                      onBlur={field.onBlur}
+                      aria-invalid={!!errors.goal}
+                    >
+                      <SelectValue placeholder={t('goalSelect')} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {GOALS.map((g) => (
+                        <SelectItem key={g} value={g}>
+                          {t(goalKey(g))}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                )}
+              />
             </div>
           </div>
 
