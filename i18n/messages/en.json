@@ -30,6 +30,16 @@
     "photoLabel": "Alessia · in the studio",
     "photoAlt": "Alessia on her Movement Sciences graduation day"
   },
+  "ContactErrors": {
+    "name_too_short": "Please enter at least 2 characters.",
+    "name_too_long": "Maximum 80 characters.",
+    "email_invalid": "That email doesn't look right.",
+    "phone_invalid": "Invalid number. Use digits, spaces, +, ( ) or dash only.",
+    "message_too_short": "Write at least 10 characters so I can reply usefully.",
+    "message_too_long": "Maximum 2000 characters.",
+    "consent_required": "Please accept the privacy notice to send your message.",
+    "honeypot_filled": "Validation error."
+  },
   "Services": {
     "heading": "What I do",
     "lead": "Four ways to work together. Each starts from the same place: an assessment."

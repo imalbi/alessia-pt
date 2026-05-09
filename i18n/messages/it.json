@@ -30,6 +30,16 @@
     "photoLabel": "Alessia · in studio",
     "photoAlt": "Alessia il giorno della laurea in Scienze Motorie"
   },
+  "ContactErrors": {
+    "name_too_short": "Inserisci almeno 2 caratteri.",
+    "name_too_long": "Massimo 80 caratteri.",
+    "email_invalid": "L'email non sembra valida.",
+    "phone_invalid": "Numero non valido. Usa solo cifre, spazi, +, ( ) o trattino.",
+    "message_too_short": "Scrivi almeno 10 caratteri così posso risponderti utilmente.",
+    "message_too_long": "Massimo 2000 caratteri.",
+    "consent_required": "Per inviare il messaggio devi accettare l'informativa privacy.",
+    "honeypot_filled": "Errore di validazione."
+  },
   "Services": {
     "heading": "Cosa faccio",
     "lead": "Quattro modi di lavorare insieme. Ognuno parte dalla stessa cosa: una valutazione."
