@@ -121,7 +121,12 @@ body {
   overflow-x: hidden;
 }
 
-/* Light text on dark needs more breathing room (impeccable rule). */
+/* Light text on dark needs more breathing room (impeccable rule).
+   Bumped at the body level only — component leading-* utilities win
+   because Tailwind classes have higher specificity than this selector. */
+body {
+  line-height: 1.65;
+}
 [data-theme='dark'] body {
   line-height: 1.7;
 }

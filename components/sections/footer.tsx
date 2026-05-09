@@ -5,6 +5,7 @@ export function Footer() {
   const t = useTranslations('Footer');
   const year = new Date().getFullYear();
   const vat = process.env.NEXT_PUBLIC_VAT_NUMBER;
+  const email = process.env.NEXT_PUBLIC_CONTACT_EMAIL;
 
   return (
     <footer
@@ -27,6 +28,11 @@ export function Footer() {
           className="flex flex-col gap-2 text-sm md:items-end"
           style={{ fontFamily: 'var(--font-body)', color: 'var(--ink-70)' }}
         >
+          {email && (
+            <a href={`mailto:${email}`} className="hover:text-[color:var(--ink)]">
+              {email}
+            </a>
+          )}
           {vat && (
             <div>
               {t('vatLabel')}: {vat}

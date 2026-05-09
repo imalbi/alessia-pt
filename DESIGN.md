@@ -29,7 +29,7 @@ Tutti i token sono custom properties in `app/globals.css`. Tailwind v4 `@theme i
 | `--paper`       | `#0A0A0C`              | Sfondo principale, "nero studio" (mai `#000`)                        |
 | `--paper-2`     | `#14141A`              | Sfondo secondario, leggero shift viola, sezioni alternate            |
 | `--ink`         | `#F4F2EE`              | Testo principale, off-white tenue (mai `#fff`)                       |
-| `--ink-70`      | `rgba(244,242,238,.70)` | Testo secondario, body lungo                                         |
+| `--ink-70`      | `rgba(244,242,238,.72)` | Testo secondario, body lungo                                         |
 | `--ink-55`      | `rgba(244,242,238,.55)` | Caption, meta, label discrete                                        |
 | `--ink-30`      | `rgba(244,242,238,.20)` | Bordi soft, divisori                                                 |
 | `--ink-15`      | `rgba(244,242,238,.10)` | Bordi extra-soft, hairlines                                          |
@@ -45,7 +45,7 @@ Tutti i token sono custom properties in `app/globals.css`. Tailwind v4 `@theme i
 | `--paper`       | `#F4F2EE`            | Sfondo, off-white greige (NON cream, NON `#fff`)                       |
 | `--paper-2`     | `#EAE7E1`            | Sfondo secondario                                                      |
 | `--ink`         | `#0F0E12`            | Testo principale, nero quasi-puro con micro-shift viola (mai `#000`)   |
-| `--ink-70`      | `rgba(15,14,18,.70)` | Testo secondario                                                       |
+| `--ink-70`      | `rgba(15,14,18,.72)` | Testo secondario                                                       |
 | `--ink-55`      | `rgba(15,14,18,.55)` | Caption, meta                                                          |
 | `--ink-30`      | `rgba(15,14,18,.22)` | Bordi soft                                                             |
 | `--ink-15`      | `rgba(15,14,18,.12)` | Bordi extra-soft                                                       |
@@ -58,6 +58,7 @@ Tutti i token sono custom properties in `app/globals.css`. Tailwind v4 `@theme i
 
 - **Viola** ≤25% della superficie. Su CTA grandi (filled accent), citazioni evidenziate, focus ring. Una sola intensità per surface; non si mischiano viola light e dark sullo stesso schermo.
 - **Oro** ≤5% della superficie e **MAI testo body**. Solo: hairline separator (1-2px), focus ring outer (3px outline), underline hero detail, bordo CTA outline. Se l'oro sta riempendo qualcosa, è sbagliato.
+- **L'oro è il singolo elemento warm del visual.** PRODUCT.md prescrive una tensione voce-calda / visual-notturno: il caldo nel visual vive lì — hairline oro sopra il blocco contact, ratio caps oro nel Photo placeholder, separatore oro sotto la featured Services card. Non aggiungere altri elementi warm (no foto sepia-tinted, no accent secondario warm) — romperebbero il committment.
 - **Niente gradient text**. Mai `background-clip: text`.
 - **Mai `#000` o `#fff`**. Tutti i neri sono `--paper` (dark) o `--ink` (light), tutti i bianchi specularmente.
 - **Niente terza famiglia colore**. Solo viola + oro + grayscale ink. Aggiungere un blu/verde/rosa rompe il committment.

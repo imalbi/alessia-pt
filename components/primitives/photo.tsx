@@ -79,16 +79,34 @@ export function Photo({
 
 function PlaceholderBrief({ ratio, label }: { ratio: string; label?: string }) {
   return (
-    <div
-      aria-hidden
-      style={{
-        position: 'absolute',
-        inset: 0,
-        display: 'grid',
-        gridTemplateRows: 'auto 1fr auto',
-        padding: '14px 16px',
-      }}
-    >
+    <>
+      {/* Screen-reader fallback: the visual brief is decorative, but if this
+          ever ships in production an AT user must know an image is missing. */}
+      <span
+        style={{
+          position: 'absolute',
+          width: 1,
+          height: 1,
+          padding: 0,
+          margin: -1,
+          overflow: 'hidden',
+          clip: 'rect(0, 0, 0, 0)',
+          whiteSpace: 'nowrap',
+          border: 0,
+        }}
+      >
+        {label ? `Immagine in arrivo: ${label}` : 'Immagine in arrivo'}
+      </span>
+      <div
+        aria-hidden
+        style={{
+          position: 'absolute',
+          inset: 0,
+          display: 'grid',
+          gridTemplateRows: 'auto 1fr auto',
+          padding: '14px 16px',
+        }}
+      >
       <div
         style={{
           display: 'flex',
@@ -145,7 +163,8 @@ function PlaceholderBrief({ ratio, label }: { ratio: string; label?: string }) {
       >
         fotografia in arrivo
       </div>
-    </div>
+      </div>
+    </>
   );
 }
 
