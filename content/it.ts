@@ -9,7 +9,7 @@ export const services: Service[] = [
     id: 'in-studio',
     title: 'Personal training in studio',
     description:
-      'Sedute uno-a-uno: valutazione iniziale di postura, mobilità, abitudini di movimento, e un programma costruito sulla persona — non sul template. Indicato per chi cerca presenza, attenzione e un lavoro tecnicamente preciso, da costruire nel tempo.',
+      'Sedute uno-a-uno: valutazione iniziale di postura, mobilità, abitudini di movimento, e un programma costruito sulla persona, non sul template. Indicato per chi cerca presenza, attenzione e un lavoro tecnicamente preciso, da costruire nel tempo.',
   },
   {
     id: 'recupero',

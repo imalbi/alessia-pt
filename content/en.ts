@@ -9,7 +9,7 @@ export const services: Service[] = [
     id: 'in-studio',
     title: 'In-studio personal training',
     description:
-      'One-to-one sessions: initial assessment of posture, mobility and movement habits, and a programme built on the person — never on a template. For those seeking presence, attention, and technically precise work to build over time.',
+      'One-to-one sessions: initial assessment of posture, mobility and movement habits, and a programme built on the person, never on a template. For those seeking presence, attention, and technically precise work to build over time.',
   },
   {
     id: 'recupero',

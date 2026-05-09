@@ -7,7 +7,7 @@ function escapeMd(s: string) {
 }
 
 export function formatTelegramMessage(input: ContactInput): string {
-  const lines = ['💪 *Nuovo contatto sito*', `*${escapeMd(input.name)}* — ${input.email}`];
+  const lines = ['💪 *Nuovo contatto sito*', `*${escapeMd(input.name)}* · ${input.email}`];
   if (input.phone) lines.push(`📞 ${input.phone}`);
   if (input.goal) lines.push(`🎯 ${input.goal}`);
   lines.push('', input.message);

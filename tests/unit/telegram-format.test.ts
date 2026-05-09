@@ -14,7 +14,7 @@ describe('formatTelegramMessage', () => {
     });
     expect(result).toMatchInlineSnapshot(`
       "💪 *Nuovo contatto sito*
-      *Marta Rossi* — marta@example.com
+      *Marta Rossi* · marta@example.com
       📞 +39 333 1234567
       🎯 postura
 
@@ -30,7 +30,7 @@ describe('formatTelegramMessage', () => {
       consent: true,
       honeypot: '',
     });
-    expect(result).toContain('*John* — j@x.it');
+    expect(result).toContain('*John* · j@x.it');
     expect(result).not.toContain('📞');
     expect(result).not.toContain('🎯');
   });

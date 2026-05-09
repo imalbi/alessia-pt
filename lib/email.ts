@@ -10,7 +10,7 @@ export async function sendEmail(input: ContactInput): Promise<void> {
     throw new Error('email_env_missing');
   }
   const resend = new Resend(apiKey);
-  const subject = `Nuovo contatto — ${input.name}${input.goal ? ` (${input.goal})` : ''}`;
+  const subject = `Nuovo contatto · ${input.name}${input.goal ? ` (${input.goal})` : ''}`;
   const { error } = await resend.emails.send({
     from,
     to,
