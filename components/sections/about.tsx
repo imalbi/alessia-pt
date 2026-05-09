@@ -1,5 +1,6 @@
 import { useTranslations } from 'next-intl';
 import { Photo } from '@/components/primitives/photo';
+import { Scribble } from '@/components/primitives/scribble';
 
 export function About() {
   const t = useTranslations('About');
@@ -19,6 +20,9 @@ export function About() {
           >
             {t('heading')}
           </h2>
+          <div className="mt-3 w-32">
+            <Scribble kind="underline" />
+          </div>
           <p
             className="mt-8 max-w-prose text-lg leading-relaxed"
             style={{ fontFamily: 'var(--font-body)', color: 'var(--ink)' }}

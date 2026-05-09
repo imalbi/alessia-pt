@@ -5,6 +5,7 @@ import Autoplay from 'embla-carousel-autoplay';
 import { useLocale, useTranslations } from 'next-intl';
 import { caseStories as casesIt } from '@/content/it';
 import { caseStories as casesEn } from '@/content/en';
+import { Scribble } from '@/components/primitives/scribble';
 
 export function CaseStories() {
   const t = useTranslations('Stories');
@@ -28,6 +29,9 @@ export function CaseStories() {
           >
             {t('heading')}
           </h2>
+          <div className="mt-3 w-32">
+            <Scribble kind="underline" />
+          </div>
           <p
             className="mt-6 text-lg leading-relaxed"
             style={{ fontFamily: 'var(--font-body)', color: 'var(--ink-70)' }}

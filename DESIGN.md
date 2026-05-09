@@ -145,9 +145,8 @@ Il token `--font-body` resta semantico (un giorno potremmo divergere) ma oggi re
 
 ### Primitives (custom, sotto `components/primitives/`)
 
+- **`<Scribble kind="underline" | "underline-double" />`** — brush-mark sottolineatura. Single low-amplitude bezier con stroke-width 4 (default) e `stroke-linecap: round`, color `var(--accent)` (viola). Reads as "marker pen pass" sotto headline — non handwritten squiggle, non geometric line, ha gestualità ma è decisa. Animation draw-in 1.1s `cubic-bezier(.2,.7,.3,1)` via `stroke-dashoffset`, trigger via IntersectionObserver con `threshold: 0.4`. Una volta per elemento.
 - **`<Photo ratio caption label />`** — placeholder/foto. Quando `src` manca: art-director brief layout con ratio in caps oro top-left, crosshair sottile oro al centro, label centrale su chip `--paper-2`, footer "fotografia in arrivo". Quando arriva la foto reale: `next/image` con shadow tinted viola sottile.
-
-**Niente underline grafici.** Le headline Bricolage 800 si tengono da sole — un underline SVG sotto sarebbe una stampella tipica del pattern editorial-magazine, esplicitamente fuori register. La gerarchia è data dalla scala tipografica + asimmetria layout + paper-2 alternation, non da decorazioni sotto-headline.
 
 ### shadcn/ui (sotto `components/ui/`)
 
@@ -181,7 +180,7 @@ Il token `--font-body` resta semantico (un giorno potremmo divergere) ma oggi re
 
 **Filosofia**: due momenti coreografati, tutto il resto stabile. Mai animazione decorativa diffusa.
 
-### Hero entrance (singolo momento)
+### Momento 1 — Hero entrance
 
 Stagger sequence al mount, una volta sola:
 
@@ -189,8 +188,13 @@ Stagger sequence al mount, una volta sola:
 2. `0.15s` headline Bricolage scala display rivelata via mask top-down (`clip-path: inset(100% 0 0 0) → inset(0 0 0 0)`)
 3. `0.4s` sub-headline fade-in
 4. `0.6s` CTA primaria fade + slight `y: 8px → 0`
+5. `0.8s` underline brush-mark draw-in sotto headline
 
-Ease: **ease-out-expo** `cubic-bezier(0.16, 1, 0.3, 1)`. Durata totale ~1.0s. Niente underline draw-in: la headline si tiene da sola e l'underline grafico era già pattern fuori-register.
+Ease: **ease-out-expo** `cubic-bezier(0.16, 1, 0.3, 1)`. Durata totale ~1.2s.
+
+### Momento 2 — Underline draw-in on scroll
+
+Le sottolineature `<Scribble />` sotto le H2 di About, Services, Stories, Contact si "disegnano" alla prima entrata in viewport. Animation gestita dal componente stesso via IntersectionObserver. Una volta per elemento, no replay.
 
 ### Smooth scroll
 

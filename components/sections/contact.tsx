@@ -14,6 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { Scribble } from '@/components/primitives/scribble';
 
 const goalKey = (g: string) => `goal_${g.replace('-', '_')}` as const;
 
@@ -76,6 +77,9 @@ export function Contact() {
           >
             {t('heading')}
           </h2>
+          <div className="mt-3 w-32">
+            <Scribble kind="underline" />
+          </div>
           <p
             className="mt-6 text-lg leading-relaxed"
             style={{ fontFamily: 'var(--font-body)', color: 'var(--ink-70)' }}
