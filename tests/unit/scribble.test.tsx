@@ -20,7 +20,7 @@ describe('Scribble', () => {
 
   it('applies custom color via prop', () => {
     const { container } = render(<Scribble kind="circle" color="#ff0000" />);
-    const path = container.querySelector('path');
-    expect(path?.getAttribute('stroke')).toBe('#ff0000');
+    const stroked = container.querySelector('path, ellipse, line');
+    expect(stroked?.getAttribute('stroke')).toBe('#ff0000');
   });
 });

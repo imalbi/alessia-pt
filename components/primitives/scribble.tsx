@@ -42,7 +42,7 @@ const FROZEN_STYLE: CSSProperties = {
 
 export function Scribble({
   kind,
-  color = 'var(--gold)',
+  color = 'var(--accent)',
   className,
   style,
   triggerOnView = true,
@@ -83,21 +83,28 @@ export function Scribble({
   const drawStyle = shouldDraw ? DRAW_STYLE : FROZEN_STYLE;
   const baseStyle: CSSProperties = { width: '100%', overflow: 'visible', ...style };
 
+  // Geometric atelier hairlines (no longer hand-drawn squiggles).
+  // Underline = clean horizontal line + a short diagonal "tick" finisher
+  // — reads as a deliberate atelier mark, not a handwritten scribble.
   switch (kind) {
     case 'underline':
       return (
-        <svg ref={ref} viewBox="0 0 320 24" className={className} style={baseStyle}>
-          <path d="M4 14 C 60 4, 130 22, 200 10 S 300 18, 316 8" {...stroke} style={drawStyle} />
+        <svg ref={ref} viewBox="0 0 320 16" className={className} style={baseStyle}>
+          <path d="M2 8 L 290 8" {...stroke} style={drawStyle} />
+          <path
+            d="M290 8 L 312 2"
+            {...stroke}
+            style={{ ...drawStyle, animationDelay: '.6s' }}
+          />
         </svg>
       );
     case 'underline-double':
       return (
-        <svg ref={ref} viewBox="0 0 320 32" className={className} style={baseStyle}>
-          <path d="M4 12 C 60 4, 140 18, 316 10" {...stroke} style={drawStyle} />
+        <svg ref={ref} viewBox="0 0 320 16" className={className} style={baseStyle}>
+          <path d="M2 6 L 316 6" {...stroke} style={drawStyle} />
           <path
-            d="M8 24 C 80 18, 160 28, 312 22"
+            d="M2 12 L 240 12"
             {...stroke}
-            strokeWidth={2}
             style={{ ...drawStyle, animationDelay: '.4s' }}
           />
         </svg>
@@ -105,17 +112,24 @@ export function Scribble({
     case 'circle':
       return (
         <svg ref={ref} viewBox="0 0 220 80" className={className} style={baseStyle}>
-          <path
-            d="M30 40 C 30 12, 100 6, 180 14 C 220 22, 210 70, 130 72 C 60 76, 14 60, 18 36"
+          <ellipse
+            cx="110"
+            cy="40"
+            rx="100"
+            ry="32"
             {...stroke}
-            style={drawStyle}
+            style={{
+              ...drawStyle,
+              strokeDasharray: 420,
+              strokeDashoffset: 420,
+            }}
           />
         </svg>
       );
     case 'arrow-curve':
       return (
         <svg ref={ref} viewBox="0 0 160 120" className={className} style={baseStyle}>
-          <path d="M10 20 C 60 10, 130 40, 130 100" {...stroke} style={drawStyle} />
+          <path d="M10 20 Q 90 20, 130 100" {...stroke} style={drawStyle} />
           <path
             d="M120 88 L 130 102 L 144 92"
             {...stroke}
@@ -126,9 +140,9 @@ export function Scribble({
     case 'arrow-down':
       return (
         <svg ref={ref} viewBox="0 0 40 80" className={className} style={baseStyle}>
-          <path d="M20 4 C 14 24, 26 44, 20 70" {...stroke} style={drawStyle} />
+          <path d="M20 4 L 20 70" {...stroke} style={drawStyle} />
           <path
-            d="M10 60 L 20 72 L 30 58"
+            d="M10 60 L 20 72 L 30 60"
             {...stroke}
             style={{ ...drawStyle, animationDelay: '.5s' }}
           />
@@ -148,10 +162,9 @@ export function Scribble({
       return (
         <svg ref={ref} viewBox="0 0 320 60" className={className} style={baseStyle}>
           <path
-            d="M10 20 C 80 8, 160 32, 310 14 M 10 32 C 90 22, 200 42, 312 28 M 12 46 C 100 38, 220 52, 308 42"
+            d="M10 18 L 310 18 M 10 32 L 280 32 M 10 46 L 240 46"
             {...stroke}
-            strokeWidth={2.4}
-            style={{ ...drawStyle, strokeDasharray: 1200, strokeDashoffset: 1200 }}
+            style={{ ...drawStyle, strokeDasharray: 900, strokeDashoffset: 900 }}
           />
         </svg>
       );
