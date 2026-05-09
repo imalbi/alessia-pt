@@ -34,26 +34,36 @@ export function Services() {
           </p>
         </div>
 
-        {/* Featured offering — full-width hero card with eyebrow + long description */}
+        {/* Featured offering — oversized viola number paired with the title. */}
         {featured && (
-          <article
-            className="border-t pt-10 md:pt-12"
-            style={{ borderColor: 'var(--gold)' }}
-          >
-            <div className="grid gap-6 md:grid-cols-[auto_1fr] md:gap-12">
+          <article className="border-t pt-10 md:pt-12" style={{ borderColor: 'var(--accent)' }}>
+            <div className="grid gap-6 md:grid-cols-[auto_1fr] md:items-baseline md:gap-10">
               <div
                 style={{
                   fontFamily: 'var(--font-display)',
-                  fontSize: 11,
-                  letterSpacing: '0.18em',
-                  textTransform: 'uppercase',
-                  color: 'var(--gold)',
-                  fontWeight: 600,
+                  fontWeight: 800,
+                  fontSize: 'clamp(4rem, 10vw, 8rem)',
+                  lineHeight: 0.85,
+                  color: 'var(--accent)',
+                  letterSpacing: '-0.04em',
                 }}
               >
-                01 · {t('featuredEyebrow')}
+                01
               </div>
               <div>
+                <div
+                  style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: 11,
+                    letterSpacing: '0.18em',
+                    textTransform: 'uppercase',
+                    color: 'var(--gold)',
+                    fontWeight: 600,
+                    marginBottom: 8,
+                  }}
+                >
+                  {t('featuredEyebrow')}
+                </div>
                 <h3
                   className="text-[clamp(1.75rem,2.5vw+1rem,2.75rem)] leading-tight font-bold"
                   style={{ fontFamily: 'var(--font-display)' }}
@@ -71,7 +81,7 @@ export function Services() {
           </article>
         )}
 
-        {/* Collateral lineup — three compact cards in a tight row */}
+        {/* Collateral lineup — three compact cards with viola numerals. */}
         {rest.length > 0 && (
           <div className="mt-16 md:mt-20">
             <div
@@ -87,7 +97,7 @@ export function Services() {
             >
               {t('alsoLabel')}
             </div>
-            <ul className="grid gap-x-8 gap-y-10 md:grid-cols-3 lg:gap-x-12">
+            <ul className="grid gap-x-8 gap-y-12 md:grid-cols-3 lg:gap-x-12">
               {rest.map((s, i) => (
                 <li
                   key={s.id}
@@ -97,11 +107,12 @@ export function Services() {
                   <div
                     style={{
                       fontFamily: 'var(--font-display)',
-                      fontSize: 11,
-                      letterSpacing: '0.14em',
-                      color: 'var(--ink-55)',
-                      fontWeight: 500,
-                      marginBottom: 8,
+                      fontWeight: 700,
+                      fontSize: 'clamp(2rem, 3vw + 0.5rem, 2.75rem)',
+                      lineHeight: 1,
+                      color: 'var(--accent)',
+                      letterSpacing: '-0.03em',
+                      marginBottom: 12,
                     }}
                   >
                     {String(i + 2).padStart(2, '0')}

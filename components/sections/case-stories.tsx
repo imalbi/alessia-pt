@@ -33,41 +33,40 @@ export function CaseStories() {
           </p>
         </div>
 
-        <ul className="flex flex-col gap-12 md:gap-16">
+        <ul className="grid gap-x-8 gap-y-12 md:grid-cols-3 lg:gap-x-12">
           {items.map((s, i) => (
-            <li key={s.id}>
-              <article
-                className="grid gap-4 border-t pt-8 md:grid-cols-[auto_1fr] md:gap-12 md:pt-10"
-                style={{ borderColor: 'var(--ink-15)' }}
+            <li key={s.id} className="border-t pt-6" style={{ borderColor: 'var(--ink-15)' }}>
+              <div
+                style={{
+                  fontFamily: 'var(--font-display)',
+                  fontWeight: 700,
+                  fontSize: 'clamp(2rem, 3vw + 0.5rem, 2.75rem)',
+                  lineHeight: 1,
+                  color: 'var(--accent)',
+                  letterSpacing: '-0.03em',
+                  marginBottom: 14,
+                }}
               >
-                <div
-                  style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: 11,
-                    letterSpacing: '0.18em',
-                    textTransform: 'uppercase',
-                    color: 'var(--ink-55)',
-                    fontWeight: 600,
-                  }}
-                >
-                  {String(i + 1).padStart(2, '0')}
-                </div>
-                <div className="max-w-prose">
-                  <blockquote
-                    className="text-xl leading-relaxed md:text-2xl"
-                    style={{ fontFamily: 'var(--font-display)', fontWeight: 500, color: 'var(--ink)' }}
-                  >
-                    «{s.quote}»
-                  </blockquote>
-                  <footer
-                    className="mt-4 text-sm"
-                    style={{ fontFamily: 'var(--font-body)', color: 'var(--ink-70)' }}
-                  >
-                    <span style={{ color: 'var(--ink)' }}>{s.name}</span>, {s.age} ·{' '}
-                    {s.situation} · {s.duration}
-                  </footer>
-                </div>
-              </article>
+                {String(i + 1).padStart(2, '0')}
+              </div>
+              <blockquote
+                className="text-lg leading-relaxed"
+                style={{
+                  fontFamily: 'var(--font-display)',
+                  fontWeight: 500,
+                  color: 'var(--ink)',
+                }}
+              >
+                «{s.quote}»
+              </blockquote>
+              <footer
+                className="mt-4 text-sm"
+                style={{ fontFamily: 'var(--font-body)', color: 'var(--ink-70)' }}
+              >
+                <span style={{ color: 'var(--ink)' }}>{s.name}</span>, {s.age}
+                <br />
+                {s.situation} · {s.duration}
+              </footer>
             </li>
           ))}
         </ul>
