@@ -26,7 +26,7 @@ export function Hero() {
             className="text-[clamp(2.5rem,6vw+1rem,5.5rem)] leading-[0.95] font-extrabold tracking-tight"
             style={{ fontFamily: 'var(--font-display)', color: 'var(--ink)' }}
           >
-            {t('name')}
+            {t('proposition')}
             <br />
             <span style={{ color: 'var(--ink-70)', fontWeight: 500 }}>{t('role')}</span>
           </motion.h1>

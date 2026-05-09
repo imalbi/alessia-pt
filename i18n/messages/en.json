@@ -16,9 +16,9 @@
     "switchToDark": "Switch to dark theme"
   },
   "Hero": {
-    "name": "Alessia",
-    "role": "Personal Trainer & Kinesiologist",
-    "tagline": "I work on posture, recovery and strength with a method built on the person, not on the programme.",
+    "proposition": "Posture, recovery, strength.",
+    "role": "Personal training & kinesiology.",
+    "tagline": "I'm Alessia. I build movement programmes around the person, not the template. Initial assessment, technical work, presence over time.",
     "cta": "Get in touch",
     "photoLabel": "Alessia · portrait"
   },
@@ -58,13 +58,14 @@
     "goal_in_studio": "PT in studio",
     "goal_online": "PT online",
     "goal_altro": "Other",
-    "goalSelect": "—",
+    "goalSelect": "Select…",
     "message": "Message",
-    "consent": "I consent to the processing of my data so I can be contacted back.",
+    "consent": "I've read the <link>privacy notice</link> and consent to the processing of my data so I can be contacted back.",
     "submit": "Send",
     "sending": "Sending…",
     "success": "Message received. I'll reply within 24-48 hours.",
     "error": "Something went wrong. Please try again or email {email}.",
+    "errorNoEmail": "Something went wrong. Please try again shortly.",
     "retry": "Retry"
   },
   "Stories": {
@@ -75,7 +76,6 @@
     "tagline": "Personal Trainer & Kinesiologist",
     "rights": "All rights reserved.",
     "privacy": "Privacy",
-    "vatLabel": "VAT",
-    "vat": "TBD"
+    "vatLabel": "VAT"
   }
 }

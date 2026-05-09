@@ -16,9 +16,9 @@
     "switchToDark": "Passa al tema scuro"
   },
   "Hero": {
-    "name": "Alessia",
-    "role": "Personal Trainer & Chinesiologa",
-    "tagline": "Lavoro su postura, recupero e forza con un metodo costruito sulla persona, non sul programma.",
+    "proposition": "Postura, recupero, forza.",
+    "role": "Personal training & chinesiologia.",
+    "tagline": "Sono Alessia. Costruisco percorsi di movimento sulla persona, non sul programma. Valutazione iniziale, lavoro tecnico, presenza nel tempo.",
     "cta": "Scrivimi",
     "photoLabel": "Alessia · ritratto"
   },
@@ -58,13 +58,14 @@
     "goal_in_studio": "PT in studio",
     "goal_online": "PT online",
     "goal_altro": "Altro",
-    "goalSelect": "—",
+    "goalSelect": "Seleziona…",
     "message": "Messaggio",
-    "consent": "Acconsento al trattamento dei miei dati per essere ricontattata/o.",
+    "consent": "Ho letto l'<link>informativa privacy</link> e acconsento al trattamento dei miei dati per essere ricontattata/o.",
     "submit": "Invia",
     "sending": "Invio in corso…",
     "success": "Messaggio ricevuto. Ti rispondo entro 24-48 ore.",
     "error": "Qualcosa è andato storto. Riprova o scrivi a {email}.",
+    "errorNoEmail": "Qualcosa è andato storto. Riprova fra poco.",
     "retry": "Riprova"
   },
   "Stories": {
@@ -75,7 +76,6 @@
     "tagline": "Personal Trainer & Chinesiologa",
     "rights": "Tutti i diritti riservati.",
     "privacy": "Privacy",
-    "vatLabel": "P.IVA",
-    "vat": "TBD"
+    "vatLabel": "P.IVA"
   }
 }
