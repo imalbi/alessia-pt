@@ -15,12 +15,22 @@ interface Props {
 
 /**
  * Photo slot. With a `src`, renders next/image at the requested ratio.
- * Without one, renders an honest empty placeholder: a tinted paper rectangle
- * with the field name set in display type. Deliberately not a fake-portrait
- * gradient with washi-tape effect — that performance on emptiness was the
- * costume the brand cannot wear without real photography.
+ *
+ * Without one, renders an art-director's brief: ratio in caps top-left,
+ * a thin gold composition crosshair, the field label centered, and a
+ * "fotografia in arrivo" footer. Reads as a working spec, not a fake
+ * portrait — the placeholder is honest about being one.
  */
-export function Photo({ ratio = '4/5', src, alt = '', label, caption, className, style, priority }: Props) {
+export function Photo({
+  ratio = '4/5',
+  src,
+  alt = '',
+  label,
+  caption,
+  className,
+  style,
+  priority,
+}: Props) {
   return (
     <div className={className} style={{ position: 'relative', display: 'inline-block', ...style }}>
       <div
@@ -32,7 +42,7 @@ export function Photo({ ratio = '4/5', src, alt = '', label, caption, className,
           background: src ? undefined : 'var(--paper-2)',
           border: src ? undefined : '1px solid var(--ink-15)',
           boxShadow: src
-            ? '0 30px 60px -30px color-mix(in oklab, var(--ink) 35%, transparent)'
+            ? '0 30px 60px -30px color-mix(in oklab, var(--accent) 30%, transparent)'
             : 'none',
         }}
       >
@@ -46,31 +56,7 @@ export function Photo({ ratio = '4/5', src, alt = '', label, caption, className,
             priority={priority}
           />
         ) : (
-          <div
-            aria-hidden
-            style={{
-              position: 'absolute',
-              inset: 0,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              padding: 24,
-              textAlign: 'center',
-            }}
-          >
-            <span
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontWeight: 500,
-                color: 'var(--ink-55)',
-                fontSize: 'clamp(0.75rem, 1vw + 0.5rem, 1rem)',
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-              }}
-            >
-              {label ?? 'foto'}
-            </span>
-          </div>
+          <PlaceholderBrief ratio={ratio} label={label} />
         )}
       </div>
       {caption && (
@@ -88,5 +74,93 @@ export function Photo({ ratio = '4/5', src, alt = '', label, caption, className,
         </div>
       )}
     </div>
+  );
+}
+
+function PlaceholderBrief({ ratio, label }: { ratio: string; label?: string }) {
+  return (
+    <div
+      aria-hidden
+      style={{
+        position: 'absolute',
+        inset: 0,
+        display: 'grid',
+        gridTemplateRows: 'auto 1fr auto',
+        padding: '14px 16px',
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'baseline',
+          fontFamily: 'var(--font-display)',
+          fontSize: 11,
+          letterSpacing: '0.12em',
+          textTransform: 'uppercase',
+          color: 'var(--gold)',
+          fontWeight: 500,
+        }}
+      >
+        <span>{ratio.replace('/', ':')}</span>
+        <span style={{ color: 'var(--ink-55)' }}>//</span>
+      </div>
+
+      <div
+        style={{
+          position: 'relative',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Crosshair />
+        <span
+          style={{
+            position: 'relative',
+            fontFamily: 'var(--font-display)',
+            fontWeight: 500,
+            color: 'var(--ink-55)',
+            fontSize: 'clamp(0.75rem, 1vw + 0.5rem, 1rem)',
+            letterSpacing: '0.08em',
+            textTransform: 'uppercase',
+            textAlign: 'center',
+            background: 'var(--paper-2)',
+            padding: '4px 10px',
+          }}
+        >
+          {label ?? 'foto'}
+        </span>
+      </div>
+
+      <div
+        style={{
+          fontFamily: 'var(--font-display)',
+          fontSize: 10,
+          letterSpacing: '0.12em',
+          textTransform: 'uppercase',
+          color: 'var(--ink-55)',
+          fontWeight: 500,
+        }}
+      >
+        fotografia in arrivo
+      </div>
+    </div>
+  );
+}
+
+function Crosshair() {
+  return (
+    <svg
+      viewBox="0 0 100 100"
+      preserveAspectRatio="none"
+      width="100%"
+      height="100%"
+      style={{ position: 'absolute', inset: 0, opacity: 0.55 }}
+      aria-hidden
+    >
+      <line x1="50" y1="20" x2="50" y2="80" stroke="var(--gold)" strokeWidth="0.4" />
+      <line x1="20" y1="50" x2="80" y2="50" stroke="var(--gold)" strokeWidth="0.4" />
+    </svg>
   );
 }
