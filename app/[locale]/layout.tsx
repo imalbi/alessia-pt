@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { Bricolage_Grotesque, Newsreader, Caveat } from 'next/font/google';
+import { Bricolage_Grotesque, Caveat } from 'next/font/google';
 import { routing } from '@/i18n/routing';
 import { Providers } from '@/components/providers';
 import { Toaster } from '@/components/ui/sonner';
@@ -19,16 +19,8 @@ const TweaksPanel =
 
 const bricolage = Bricolage_Grotesque({
   subsets: ['latin'],
-  weight: ['500', '700', '800'],
+  weight: ['400', '500', '700', '800'],
   variable: '--font-bricolage',
-  display: 'swap',
-});
-
-const newsreader = Newsreader({
-  subsets: ['latin'],
-  weight: ['400', '500'],
-  style: ['normal', 'italic'],
-  variable: '--font-newsreader',
   display: 'swap',
 });
 
@@ -91,7 +83,7 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${bricolage.variable} ${newsreader.variable} ${caveat.variable}`}
+      className={`${bricolage.variable} ${caveat.variable}`}
       suppressHydrationWarning
     >
       <body suppressHydrationWarning>
