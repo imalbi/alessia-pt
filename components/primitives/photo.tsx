@@ -62,7 +62,7 @@ export function Photo({ ratio = '4/5', src, alt = '', label, caption, className,
               style={{
                 fontFamily: 'var(--font-display)',
                 fontWeight: 500,
-                color: 'var(--ink-30)',
+                color: 'var(--ink-55)',
                 fontSize: 'clamp(0.75rem, 1vw + 0.5rem, 1rem)',
                 letterSpacing: '0.08em',
                 textTransform: 'uppercase',
