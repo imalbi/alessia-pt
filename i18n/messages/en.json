@@ -42,7 +42,9 @@
   },
   "Services": {
     "heading": "What I do",
-    "lead": "Four ways to work together. Each starts from the same place: an assessment."
+    "lead": "Four ways to work together. Each starts from the same place: an assessment.",
+    "featuredEyebrow": "Featured",
+    "alsoLabel": "Also"
   },
   "Contact": {
     "heading": "Get in touch",

@@ -42,7 +42,9 @@
   },
   "Services": {
     "heading": "Cosa faccio",
-    "lead": "Quattro modi di lavorare insieme. Ognuno parte dalla stessa cosa: una valutazione."
+    "lead": "Quattro modi di lavorare insieme. Ognuno parte dalla stessa cosa: una valutazione.",
+    "featuredEyebrow": "Principale",
+    "alsoLabel": "Anche"
   },
   "Contact": {
     "heading": "Scrivimi",
