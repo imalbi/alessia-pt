@@ -1,11 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm, Controller, type FieldPath, type FieldErrors } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 import { contactSchema, type ContactInput, GOALS } from '@/lib/validation/contact';
+import { Link } from '@/i18n/routing';
 import { Button } from '@/components/ui/button';
 import {
   Select,
@@ -28,12 +29,35 @@ export function Contact() {
     control,
     handleSubmit,
     reset,
+    setFocus,
     formState: { errors },
   } = useForm<ContactInput>({
     resolver: zodResolver(contactSchema),
     mode: 'onBlur',
     defaultValues: { honeypot: '', consent: false as unknown as true },
   });
+
+  // Field display order — used to find the *first* errored field on submit fail.
+  const FIELD_ORDER: FieldPath<ContactInput>[] = [
+    'name',
+    'email',
+    'phone',
+    'goal',
+    'message',
+    'consent',
+  ];
+
+  const onInvalid = (errs: FieldErrors<ContactInput>) => {
+    const first = FIELD_ORDER.find((f) => errs[f]);
+    if (first) {
+      // Radix Select trigger does not support setFocus; fall back to DOM focus by id.
+      try {
+        setFocus(first);
+      } catch {
+        document.getElementById(first)?.focus();
+      }
+    }
+  };
 
   const onSubmit = async (data: ContactInput) => {
     setSubmitting(true);
@@ -47,9 +71,13 @@ export function Contact() {
       toast.success(t('success'));
       reset();
     } catch {
-      toast.error(t('error', { email: 'alessia@example.com' }), {
-        action: { label: t('retry'), onClick: () => onSubmit(data) },
-      });
+      const fallback = process.env.NEXT_PUBLIC_CONTACT_EMAIL;
+      toast.error(
+        fallback ? t('error', { email: fallback }) : t('errorNoEmail'),
+        {
+          action: { label: t('retry'), onClick: () => onSubmit(data) },
+        },
+      );
     } finally {
       setSubmitting(false);
     }
@@ -89,7 +117,7 @@ export function Contact() {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col gap-5">
+        <form onSubmit={handleSubmit(onSubmit, onInvalid)} noValidate className="flex flex-col gap-5">
           {/* honeypot — hidden offscreen */}
           <input
             type="text"
@@ -226,7 +254,19 @@ export function Contact() {
                 className="mt-1"
                 style={{ accentColor: 'var(--accent)' }}
               />
-              <span>{t('consent')}</span>
+              <span>
+                {t.rich('consent', {
+                  link: (chunks) => (
+                    <Link
+                      href="/privacy"
+                      className="underline underline-offset-2"
+                      style={{ color: 'var(--accent)' }}
+                    >
+                      {chunks}
+                    </Link>
+                  ),
+                })}
+              </span>
             </label>
             <FieldError id="consent-error" messageKey={errors.consent?.message} />
           </div>
