@@ -199,7 +199,7 @@ Le sottolineature `<Scribble />` sotto le H2 di About, Services, Stories, Contac
 
 ### Smooth scroll
 
-`Lenis` attivato globalmente con default config (no overshoot). Ridotto a no-op su `prefers-reduced-motion`.
+CSS native `html { scroll-behavior: smooth }` con `scroll-padding-top: 96px` per offset del dock floating. Disabilitato via `@media (prefers-reduced-motion)`. Lenis è stato rimosso: non intercettava i click anchor (i link saltavano comunque instant) e il wheel-inertia smoothing non era percepibile per giustificare il bundle weight.
 
 ### Micro-interactions
 
@@ -222,7 +222,7 @@ Le sottolineature `<Scribble />` sotto le H2 di About, Services, Stories, Contac
 `@media (prefers-reduced-motion: reduce)`:
 
 - Tutte le `transition-duration` e `animation-duration` → `0.01ms !important`
-- Lenis disattivato
+- `scroll-behavior` torna a `auto` (no smooth)
 - Hero entrance → fade istantaneo opacity 0 → 1 senza stagger
 - Hairline gold → mostrato già completo
 

@@ -107,6 +107,11 @@ body {
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+
 body {
   font-family: var(--font-body), system-ui, sans-serif;
   background: var(--paper);
@@ -191,6 +196,9 @@ body {
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
   *,
   *::before,
   *::after {

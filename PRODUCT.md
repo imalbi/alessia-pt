@@ -79,7 +79,7 @@ Esplicitamente da NON sembrare. La lane nero/viola/oro è saturata in 2026 — l
 ## Accessibility & Inclusion
 
 - **Target**: WCAG 2.2 AA (Lighthouse Accessibility 100, axe nessun _serious_ o _critical_).
-- **Reduced motion**: rispettato sempre. `prefers-reduced-motion: reduce` → durate animation a 0.01ms, no Lenis smooth scroll, hero entrance sostituita da fade istantaneo.
+- **Reduced motion**: rispettato sempre. `prefers-reduced-motion: reduce` → durate animation a 0.01ms, scroll-behavior auto (no smooth), hero entrance sostituita da fade istantaneo.
 - **Contrasti**: minimo 4.5:1 per body, 3:1 per testo grande/UI. Verifica nel design system: `var(--ink)` su `var(--paper)` deve passare, idem `var(--accent)` (viola) su `var(--paper)` per CTA. **L'oro è ad uso esclusivamente decorativo (UI components 3:1)**: linee, hairlines, focus ring, mai testo leggibile.
 - **Tastiera**: Tab order coerente (logico top-to-bottom), focus visibili (outline 2px `var(--accent)`).
 - **Form**: label associate, errori validation accessibili (`aria-describedby`, `aria-invalid`), focus su primo errore al submit fallito.
