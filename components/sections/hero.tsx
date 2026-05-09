@@ -34,7 +34,7 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={transition(0.8)}
-            className="mt-3 max-w-[18rem]"
+            className="mt-1 max-w-[18rem]"
           >
             <Scribble kind="underline" />
           </motion.div>

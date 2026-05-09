@@ -93,14 +93,14 @@ export function Scribble({
     return (
       <svg
         ref={ref}
-        viewBox="0 0 320 18"
+        viewBox="0 0 320 8"
         preserveAspectRatio="none"
         className={className}
         style={baseStyle}
         aria-hidden
       >
-        {/* Single low-amplitude bezier — slight downward sweep then settles. */}
-        <path d="M 6 8 Q 110 4, 200 9 T 314 7" {...stroke} style={drawStyle} />
+        {/* Tight viewBox so the path sits high — no internal SVG padding. */}
+        <path d="M 6 4 Q 110 1, 200 5 T 314 3" {...stroke} style={drawStyle} />
       </svg>
     );
   }
@@ -109,15 +109,15 @@ export function Scribble({
   return (
     <svg
       ref={ref}
-      viewBox="0 0 320 22"
+      viewBox="0 0 320 14"
       preserveAspectRatio="none"
       className={className}
       style={baseStyle}
       aria-hidden
     >
-      <path d="M 6 7 Q 100 3, 200 8 T 314 6" {...stroke} style={drawStyle} />
+      <path d="M 6 4 Q 100 1, 200 5 T 314 3" {...stroke} style={drawStyle} />
       <path
-        d="M 12 16 Q 80 13, 150 16 T 240 15"
+        d="M 12 11 Q 80 9, 150 11 T 240 10"
         {...stroke}
         strokeWidth={Math.max(weight - 1.5, 1.5)}
         style={{

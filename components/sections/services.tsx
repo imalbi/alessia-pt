@@ -22,7 +22,7 @@ export function Services() {
           >
             {t('heading')}
           </h2>
-          <div className="mt-3 w-40">
+          <div className="mt-1 w-40">
             <Scribble kind="underline-double" />
           </div>
           <p

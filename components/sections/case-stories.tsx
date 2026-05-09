@@ -29,7 +29,7 @@ export function CaseStories() {
           >
             {t('heading')}
           </h2>
-          <div className="mt-3 w-32">
+          <div className="mt-1 w-32">
             <Scribble kind="underline" />
           </div>
           <p

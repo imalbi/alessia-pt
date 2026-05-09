@@ -14,6 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { FieldError } from '@/components/ui/field-error';
 import { Scribble } from '@/components/primitives/scribble';
 
 const goalKey = (g: string) => `goal_${g.replace('-', '_')}` as const;
@@ -77,7 +78,7 @@ export function Contact() {
           >
             {t('heading')}
           </h2>
-          <div className="mt-3 w-32">
+          <div className="mt-1 w-32">
             <Scribble kind="underline" />
           </div>
           <p
@@ -112,13 +113,10 @@ export function Contact() {
                 id="name"
                 {...register('name')}
                 aria-invalid={!!errors.name}
+                aria-describedby={errors.name ? 'name-error' : undefined}
                 style={fieldStyle}
               />
-              {errors.name && (
-                <p className="mt-1 text-sm" style={{ color: 'var(--accent-deep)' }}>
-                  {errors.name.message}
-                </p>
-              )}
+              <FieldError id="name-error" messageKey={errors.name?.message} />
             </div>
             <div>
               <label
@@ -133,13 +131,10 @@ export function Contact() {
                 type="email"
                 {...register('email')}
                 aria-invalid={!!errors.email}
+                aria-describedby={errors.email ? 'email-error' : undefined}
                 style={fieldStyle}
               />
-              {errors.email && (
-                <p className="mt-1 text-sm" style={{ color: 'var(--accent-deep)' }}>
-                  {errors.email.message}
-                </p>
-              )}
+              <FieldError id="email-error" messageKey={errors.email?.message} />
             </div>
           </div>
 
@@ -152,7 +147,15 @@ export function Contact() {
               >
                 {t('phone')}
               </label>
-              <input id="phone" type="tel" {...register('phone')} style={fieldStyle} />
+              <input
+                id="phone"
+                type="tel"
+                {...register('phone')}
+                aria-invalid={!!errors.phone}
+                aria-describedby={errors.phone ? 'phone-error' : undefined}
+                style={fieldStyle}
+              />
+              <FieldError id="phone-error" messageKey={errors.phone?.message} />
             </div>
             <div>
               <label
@@ -204,27 +207,29 @@ export function Contact() {
               rows={6}
               {...register('message')}
               aria-invalid={!!errors.message}
+              aria-describedby={errors.message ? 'message-error' : undefined}
               style={{ ...fieldStyle, resize: 'vertical', minHeight: 140 }}
             />
-            {errors.message && (
-              <p className="mt-1 text-sm" style={{ color: 'var(--accent-deep)' }}>
-                {errors.message.message}
-              </p>
-            )}
+            <FieldError id="message-error" messageKey={errors.message?.message} />
           </div>
 
-          <label
-            className="flex items-start gap-3 text-sm leading-relaxed"
-            style={{ color: 'var(--ink-70)' }}
-          >
-            <input
-              type="checkbox"
-              {...register('consent')}
-              className="mt-1"
-              style={{ accentColor: 'var(--accent)' }}
-            />
-            <span>{t('consent')}</span>
-          </label>
+          <div>
+            <label
+              className="flex items-start gap-3 text-sm leading-relaxed"
+              style={{ color: 'var(--ink-70)' }}
+            >
+              <input
+                type="checkbox"
+                {...register('consent')}
+                aria-invalid={!!errors.consent}
+                aria-describedby={errors.consent ? 'consent-error' : undefined}
+                className="mt-1"
+                style={{ accentColor: 'var(--accent)' }}
+              />
+              <span>{t('consent')}</span>
+            </label>
+            <FieldError id="consent-error" messageKey={errors.consent?.message} />
+          </div>
 
           <div>
             <Button type="submit" size="lg" disabled={submitting}>
