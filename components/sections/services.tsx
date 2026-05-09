@@ -41,11 +41,11 @@ export function Services() {
               <div
                 style={{
                   fontFamily: 'var(--font-display)',
-                  fontWeight: 800,
-                  fontSize: 'clamp(4rem, 10vw, 8rem)',
+                  fontWeight: 600,
+                  fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
                   lineHeight: 0.85,
                   color: 'var(--accent)',
-                  letterSpacing: '-0.04em',
+                  letterSpacing: '-0.03em',
                 }}
               >
                 01
@@ -107,12 +107,12 @@ export function Services() {
                   <div
                     style={{
                       fontFamily: 'var(--font-display)',
-                      fontWeight: 700,
-                      fontSize: 'clamp(2rem, 3vw + 0.5rem, 2.75rem)',
+                      fontWeight: 500,
+                      fontSize: 'clamp(1.5rem, 2vw + 0.5rem, 2rem)',
                       lineHeight: 1,
                       color: 'var(--accent)',
-                      letterSpacing: '-0.03em',
-                      marginBottom: 12,
+                      letterSpacing: '-0.02em',
+                      marginBottom: 10,
                     }}
                   >
                     {String(i + 2).padStart(2, '0')}

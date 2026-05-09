@@ -1,19 +1,43 @@
 'use client';
 
 import { useTranslations, useLocale } from 'next-intl';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Drawer } from 'vaul';
 import { Menu } from 'lucide-react';
 import { Link, usePathname } from '@/i18n/routing';
 import { ThemeToggle } from '@/components/theme-toggle';
 
 const ANCHORS = ['about', 'services', 'stories', 'contact'] as const;
+type Anchor = (typeof ANCHORS)[number];
 
 export function Nav() {
   const t = useTranslations('Nav');
   const locale = useLocale();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState<Anchor | null>(null);
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || typeof IntersectionObserver === 'undefined') return;
+    const els = ANCHORS.map((id) => document.getElementById(id)).filter(
+      (el): el is HTMLElement => el !== null,
+    );
+    if (els.length === 0) return;
+    // Trigger when a section's top crosses ~20% from the viewport top, so the
+    // active state changes as the heading clears the floating dock.
+    const obs = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        const top = visible[0];
+        if (top) setActive(top.target.id as Anchor);
+      },
+      { rootMargin: '-20% 0px -60% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] },
+    );
+    els.forEach((el) => obs.observe(el));
+    return () => obs.disconnect();
+  }, []);
 
   const otherLocale = locale === 'it' ? 'en' : 'it';
 
@@ -57,19 +81,40 @@ export function Nav() {
           className="flex items-center"
           style={{ fontFamily: 'var(--font-body)', fontSize: 14 }}
         >
-          {ANCHORS.map((a) => (
-            <li key={a}>
-              <a
-                href={`#${a}`}
-                className="rounded-full px-3 py-1.5 transition-colors"
-                style={{ color: 'var(--ink-70)' }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--ink)')}
-                onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--ink-70)')}
-              >
-                {t(a)}
-              </a>
-            </li>
-          ))}
+          {ANCHORS.map((a) => {
+            const isActive = active === a;
+            return (
+              <li key={a}>
+                <a
+                  href={`#${a}`}
+                  aria-current={isActive ? 'true' : undefined}
+                  className="relative rounded-full px-3 py-1.5 transition-colors"
+                  style={{ color: isActive ? 'var(--ink)' : 'var(--ink-70)' }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--ink)')}
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.color = isActive ? 'var(--ink)' : 'var(--ink-70)')
+                  }
+                >
+                  {t(a)}
+                  {isActive && (
+                    <span
+                      aria-hidden
+                      style={{
+                        position: 'absolute',
+                        left: '50%',
+                        bottom: 2,
+                        transform: 'translateX(-50%)',
+                        width: 16,
+                        height: 2,
+                        background: 'var(--accent)',
+                        borderRadius: 1,
+                      }}
+                    />
+                  )}
+                </a>
+              </li>
+            );
+          })}
         </ul>
         <span
           aria-hidden
