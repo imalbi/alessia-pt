@@ -10,52 +10,41 @@
   --color-ink-15: var(--ink-15);
   --color-accent: var(--accent);
   --color-accent-deep: var(--accent-deep);
+  --color-gold: var(--gold);
+  --color-gold-deep: var(--gold-deep);
 
   --font-display: var(--font-bricolage);
   --font-body: var(--font-bricolage);
-  --font-hand: var(--font-caveat);
 }
 
-/* Default direction: caldo */
+/* Default = dark (atelier sportivo, owner-requested voice). */
 :root,
-[data-theme='caldo'] {
-  --paper: #f4ece0;
-  --paper-2: #ece1d0;
-  --ink: #1f1b17;
-  --ink-70: rgba(31, 27, 23, 0.7);
-  --ink-55: rgba(31, 27, 23, 0.55);
-  --ink-30: rgba(31, 27, 23, 0.18);
-  --ink-15: rgba(31, 27, 23, 0.12);
-  --accent: #a04522;
-  --accent-deep: #7a3416;
-  --hand: #1f1b17;
+[data-theme='dark'] {
+  --paper: #0a0a0c;
+  --paper-2: #14141a;
+  --ink: #f4f2ee;
+  --ink-70: rgba(244, 242, 238, 0.72);
+  --ink-55: rgba(244, 242, 238, 0.55);
+  --ink-30: rgba(244, 242, 238, 0.2);
+  --ink-15: rgba(244, 242, 238, 0.1);
+  --accent: #9c5bff;
+  --accent-deep: #7b3ae0;
+  --gold: #d4a958;
+  --gold-deep: #b68a3a;
 }
 
-/* Dev-only alternative directions */
-[data-theme='diretto'] {
-  --paper: #f2eee6;
-  --paper-2: #e8e2d5;
-  --ink: #0e0d0b;
-  --ink-70: rgba(14, 13, 11, 0.7);
-  --ink-55: rgba(14, 13, 11, 0.55);
-  --ink-30: rgba(14, 13, 11, 0.18);
-  --ink-15: rgba(14, 13, 11, 0.12);
-  --accent: #c0492a;
-  --accent-deep: #933418;
-  --hand: #0e0d0b;
-}
-
-[data-theme='mediterraneo'] {
-  --paper: #f6efdd;
-  --paper-2: #efe3c5;
-  --ink: #2a211a;
-  --ink-70: rgba(42, 33, 26, 0.7);
-  --ink-55: rgba(42, 33, 26, 0.55);
-  --ink-30: rgba(42, 33, 26, 0.18);
-  --ink-15: rgba(42, 33, 26, 0.12);
-  --accent: #d38a2c;
-  --accent-deep: #a6651a;
-  --hand: #2a211a;
+[data-theme='light'] {
+  --paper: #f4f2ee;
+  --paper-2: #eae7e1;
+  --ink: #0f0e12;
+  --ink-70: rgba(15, 14, 18, 0.72);
+  --ink-55: rgba(15, 14, 18, 0.55);
+  --ink-30: rgba(15, 14, 18, 0.22);
+  --ink-15: rgba(15, 14, 18, 0.12);
+  --accent: #6d2dd6;
+  --accent-deep: #4f1faf;
+  --gold: #b0823a;
+  --gold-deep: #8c6629;
 }
 
 *,
@@ -79,12 +68,18 @@ body {
   overflow-x: hidden;
 }
 
+/* Light text on dark needs more breathing room (impeccable rule). */
+[data-theme='dark'] body {
+  line-height: 1.7;
+}
+
 ::selection {
   background: var(--accent);
   color: var(--paper);
 }
 
-/* Paper grain overlay (desktop/tablet only, gated via media query) */
+/* Paper grain overlay (desktop/tablet only, gated via media query).
+   Lower opacity in dark mode so it stays a hint, not a smudge. */
 @media (min-width: 640px) {
   body::before {
     content: '';
@@ -92,9 +87,13 @@ body {
     inset: 0;
     pointer-events: none;
     z-index: 100;
-    opacity: 0.35;
+    opacity: 0.2;
     mix-blend-mode: multiply;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .07 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+  [data-theme='dark'] body::before {
+    opacity: 0.12;
+    mix-blend-mode: overlay;
   }
 }
 
@@ -102,16 +101,6 @@ body {
 @keyframes draw {
   to {
     stroke-dashoffset: 0;
-  }
-}
-
-@keyframes wiggle {
-  0%,
-  100% {
-    transform: rotate(-2deg);
-  }
-  50% {
-    transform: rotate(2deg);
   }
 }
 

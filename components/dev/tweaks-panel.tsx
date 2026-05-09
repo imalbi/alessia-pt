@@ -3,7 +3,7 @@
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 
-const THEMES = ['caldo', 'diretto', 'mediterraneo'] as const;
+const THEMES = ['light', 'dark'] as const;
 
 export function TweaksPanel() {
   const { theme, setTheme } = useTheme();
@@ -35,6 +35,7 @@ export function TweaksPanel() {
             padding: 12,
             boxShadow: '0 4px 12px rgba(0,0,0,.1)',
             minWidth: 180,
+            color: '#000',
           }}
         >
           <div
@@ -67,12 +68,13 @@ export function TweaksPanel() {
         <button
           onClick={() => setOpen(true)}
           style={{
-            background: '#1f1b17',
-            color: '#f4ece0',
+            background: '#9c5bff',
+            color: '#0a0a0c',
             border: 'none',
             padding: '8px 12px',
             cursor: 'pointer',
             fontFamily: 'inherit',
+            fontWeight: 600,
           }}
         >
           Tweaks

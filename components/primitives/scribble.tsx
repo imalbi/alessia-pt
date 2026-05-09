@@ -24,7 +24,7 @@ interface Props {
 
 const STROKE = {
   fill: 'none',
-  strokeWidth: 3,
+  strokeWidth: 1.5,
   strokeLinecap: 'round' as const,
   strokeLinejoin: 'round' as const,
 };
@@ -42,7 +42,7 @@ const FROZEN_STYLE: CSSProperties = {
 
 export function Scribble({
   kind,
-  color = 'var(--hand)',
+  color = 'var(--gold)',
   className,
   style,
   triggerOnView = true,
