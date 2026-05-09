@@ -66,6 +66,12 @@
     "success": "Messaggio ricevuto. Ti rispondo entro 24-48 ore.",
     "error": "Qualcosa è andato storto. Riprova o scrivi a {email}.",
     "errorNoEmail": "Qualcosa è andato storto. Riprova fra poco.",
+    "practicalCity": "Sede",
+    "practicalModes": "Modalità",
+    "practicalPricing": "Tariffe",
+    "practicalPricingValue": "condivise dopo il primo messaggio",
+    "practicalReply": "Tempi di risposta",
+    "practicalReplyValue": "24-48 ore",
     "retry": "Riprova"
   },
   "Stories": {

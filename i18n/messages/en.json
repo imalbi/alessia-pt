@@ -66,6 +66,12 @@
     "success": "Message received. I'll reply within 24-48 hours.",
     "error": "Something went wrong. Please try again or email {email}.",
     "errorNoEmail": "Something went wrong. Please try again shortly.",
+    "practicalCity": "Studio",
+    "practicalModes": "Modes",
+    "practicalPricing": "Rates",
+    "practicalPricingValue": "shared after the first message",
+    "practicalReply": "Reply within",
+    "practicalReplyValue": "24-48 hours",
     "retry": "Retry"
   },
   "Stories": {

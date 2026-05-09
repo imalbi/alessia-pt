@@ -24,6 +24,9 @@ export function Contact() {
   const t = useTranslations('Contact');
   const [submitting, setSubmitting] = useState(false);
 
+  const studioCity = process.env.NEXT_PUBLIC_STUDIO_CITY;
+  const modes = process.env.NEXT_PUBLIC_STUDIO_MODES; // e.g. "studio + online"
+
   const {
     register,
     control,
@@ -115,6 +118,36 @@ export function Contact() {
           >
             {t('lead')}
           </p>
+
+          <dl
+            className="mt-10 border-t pt-6 text-sm"
+            style={{
+              borderColor: 'var(--gold)',
+              fontFamily: 'var(--font-body)',
+              color: 'var(--ink-70)',
+            }}
+          >
+            {studioCity && (
+              <div className="flex justify-between gap-6 py-1.5">
+                <dt style={{ color: 'var(--ink-55)' }}>{t('practicalCity')}</dt>
+                <dd style={{ color: 'var(--ink)' }}>{studioCity}</dd>
+              </div>
+            )}
+            {modes && (
+              <div className="flex justify-between gap-6 py-1.5">
+                <dt style={{ color: 'var(--ink-55)' }}>{t('practicalModes')}</dt>
+                <dd style={{ color: 'var(--ink)' }}>{modes}</dd>
+              </div>
+            )}
+            <div className="flex justify-between gap-6 py-1.5">
+              <dt style={{ color: 'var(--ink-55)' }}>{t('practicalPricing')}</dt>
+              <dd style={{ color: 'var(--ink)' }}>{t('practicalPricingValue')}</dd>
+            </div>
+            <div className="flex justify-between gap-6 py-1.5">
+              <dt style={{ color: 'var(--ink-55)' }}>{t('practicalReply')}</dt>
+              <dd style={{ color: 'var(--ink)' }}>{t('practicalReplyValue')}</dd>
+            </div>
+          </dl>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit, onInvalid)} noValidate className="flex flex-col gap-5">
@@ -140,6 +173,7 @@ export function Contact() {
               <input
                 id="name"
                 {...register('name')}
+                autoComplete="name"
                 aria-invalid={!!errors.name}
                 aria-describedby={errors.name ? 'name-error' : undefined}
                 style={fieldStyle}
@@ -158,6 +192,8 @@ export function Contact() {
                 id="email"
                 type="email"
                 {...register('email')}
+                autoComplete="email"
+                inputMode="email"
                 aria-invalid={!!errors.email}
                 aria-describedby={errors.email ? 'email-error' : undefined}
                 style={fieldStyle}
@@ -179,6 +215,8 @@ export function Contact() {
                 id="phone"
                 type="tel"
                 {...register('phone')}
+                autoComplete="tel"
+                inputMode="tel"
                 aria-invalid={!!errors.phone}
                 aria-describedby={errors.phone ? 'phone-error' : undefined}
                 style={fieldStyle}
