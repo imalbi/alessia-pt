@@ -56,7 +56,7 @@ Tutti i token sono custom properties in `app/globals.css`. Tailwind v4 `@theme i
 
 ### Regole d'uso
 
-- **Viola** ≤25% della superficie. Su CTA grandi (filled accent), citazioni evidenziate, scribble underline hero, focus ring. Una sola intensità per surface; non si mischiano viola light e dark sullo stesso schermo.
+- **Viola** ≤25% della superficie. Su CTA grandi (filled accent), citazioni evidenziate, focus ring. Una sola intensità per surface; non si mischiano viola light e dark sullo stesso schermo.
 - **Oro** ≤5% della superficie e **MAI testo body**. Solo: hairline separator (1-2px), focus ring outer (3px outline), underline hero detail, bordo CTA outline. Se l'oro sta riempendo qualcosa, è sbagliato.
 - **Niente gradient text**. Mai `background-clip: text`.
 - **Mai `#000` o `#fff`**. Tutti i neri sono `--paper` (dark) o `--ink` (light), tutti i bianchi specularmente.
@@ -145,8 +145,9 @@ Il token `--font-body` resta semantico (un giorno potremmo divergere) ma oggi re
 
 ### Primitives (custom, sotto `components/primitives/`)
 
-- **`<Scribble kind="..." />`** — SVG marks. Originariamente "scribble handwritten"; nel registro atelier-sportivo questi diventano **hairlines geometriche oro** (stroke 1.5px, `var(--gold)`), usate **una sola volta per pagina** sotto la headline hero. Tutti gli altri usi precedenti vengono rimossi. Animazione draw-in via `stroke-dashoffset` keyframe (1.4s `cubic-bezier(.7,0,.3,1)`).
-- **`<Photo ratio caption label />`** — placeholder/foto. Quando `src` manca: rectangle `--paper-2` con bordo `--ink-15` e label in display caps. Quando arriva la foto reale: `next/image` con shadow tinted viola sottile.
+- **`<Photo ratio caption label />`** — placeholder/foto. Quando `src` manca: art-director brief layout con ratio in caps oro top-left, crosshair sottile oro al centro, label centrale su chip `--paper-2`, footer "fotografia in arrivo". Quando arriva la foto reale: `next/image` con shadow tinted viola sottile.
+
+**Niente underline grafici.** Le headline Bricolage 800 si tengono da sole — un underline SVG sotto sarebbe una stampella tipica del pattern editorial-magazine, esplicitamente fuori register. La gerarchia è data dalla scala tipografica + asimmetria layout + paper-2 alternation, non da decorazioni sotto-headline.
 
 ### shadcn/ui (sotto `components/ui/`)
 
@@ -180,7 +181,7 @@ Il token `--font-body` resta semantico (un giorno potremmo divergere) ma oggi re
 
 **Filosofia**: due momenti coreografati, tutto il resto stabile. Mai animazione decorativa diffusa.
 
-### Momento 1 — Hero entrance
+### Hero entrance (singolo momento)
 
 Stagger sequence al mount, una volta sola:
 
@@ -188,13 +189,8 @@ Stagger sequence al mount, una volta sola:
 2. `0.15s` headline Bricolage scala display rivelata via mask top-down (`clip-path: inset(100% 0 0 0) → inset(0 0 0 0)`)
 3. `0.4s` sub-headline fade-in
 4. `0.6s` CTA primaria fade + slight `y: 8px → 0`
-5. `0.8s` underline gold hairline sotto headline draw-in
 
-Ease: **ease-out-expo** `cubic-bezier(0.16, 1, 0.3, 1)`. Durata totale ~1.2s.
-
-### Momento 2 — (rimosso: scribble draw-in diffuso)
-
-Il momento 2 originale era "scribble draw-in on scroll" su 4+ scribble in pagina. Nel registro atelier-sportivo questo era chiasso. Eliminato.
+Ease: **ease-out-expo** `cubic-bezier(0.16, 1, 0.3, 1)`. Durata totale ~1.0s. Niente underline draw-in: la headline si tiene da sola e l'underline grafico era già pattern fuori-register.
 
 ### Smooth scroll
 

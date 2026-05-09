@@ -3,7 +3,6 @@
 import { motion, useReducedMotion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import { Photo } from '@/components/primitives/photo';
-import { Scribble } from '@/components/primitives/scribble';
 import { Button } from '@/components/ui/button';
 
 const EASE = [0.16, 1, 0.3, 1] as const; // ease-out-expo
@@ -30,14 +29,6 @@ export function Hero() {
             <br />
             <span style={{ color: 'var(--ink-70)', fontWeight: 500 }}>{t('role')}</span>
           </motion.h1>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={transition(0.8)}
-            className="relative mt-3 max-w-md"
-          >
-            <Scribble kind="underline" />
-          </motion.div>
           <motion.p
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}

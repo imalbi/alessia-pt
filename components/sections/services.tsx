@@ -1,7 +1,6 @@
 import { useLocale, useTranslations } from 'next-intl';
 import { services as servicesIt } from '@/content/it';
 import { services as servicesEn } from '@/content/en';
-import { Scribble } from '@/components/primitives/scribble';
 
 export function Services() {
   const t = useTranslations('Services');
@@ -22,9 +21,6 @@ export function Services() {
           >
             {t('heading')}
           </h2>
-          <div className="relative mt-2 w-40">
-            <Scribble kind="underline-double" />
-          </div>
           <p
             className="mt-6 text-lg leading-relaxed"
             style={{ fontFamily: 'var(--font-body)', color: 'var(--ink-70)' }}
