@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations, useLocale } from 'next-intl';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Drawer } from 'vaul';
 import { Menu } from 'lucide-react';
 import { Link, usePathname } from '@/i18n/routing';
@@ -13,91 +13,116 @@ export function Nav() {
   const t = useTranslations('Nav');
   const locale = useLocale();
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 80);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
 
   const otherLocale = locale === 'it' ? 'en' : 'it';
 
   return (
     <nav
-      className="fixed inset-x-0 top-0 z-40 transition-all duration-300"
-      style={{
-        background: scrolled ? 'color-mix(in oklab, var(--paper) 90%, transparent)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(10px)' : undefined,
-        borderBottom: scrolled ? '1px solid var(--ink-15)' : '1px solid transparent',
-        padding: scrolled ? '12px 16px' : '20px 16px',
-      }}
+      className="fixed inset-x-0 top-4 z-40 flex justify-center px-4 md:top-6"
+      aria-label={t('openMenu')}
     >
-      <div className="mx-auto flex max-w-screen-xl items-baseline justify-between md:px-4 lg:px-8">
-        <Link href="/" className="no-underline">
-          <span
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontWeight: 800,
-              color: 'var(--ink)',
-              fontSize: 22,
-            }}
-          >
-            Alessia
-          </span>{' '}
-          <span
-            style={{
-              fontFamily: 'var(--font-body)',
-              fontStyle: 'italic',
-              color: 'var(--ink-70)',
-              fontSize: 14,
-            }}
-          >
-            · Personal Trainer & Chinesiologa
-          </span>
+      {/* Desktop dock — floating pill, centered */}
+      <div
+        className="hidden items-center gap-1 rounded-full border px-2 py-1.5 backdrop-blur md:flex"
+        style={{
+          background: 'color-mix(in oklab, var(--paper-2) 72%, transparent)',
+          borderColor: 'var(--ink-15)',
+          boxShadow: '0 8px 24px -12px color-mix(in oklab, var(--ink) 40%, transparent)',
+        }}
+      >
+        <Link
+          href="/"
+          className="px-3 py-1.5 no-underline"
+          style={{
+            fontFamily: 'var(--font-display)',
+            fontWeight: 800,
+            color: 'var(--ink)',
+            fontSize: 16,
+            letterSpacing: '-0.01em',
+          }}
+        >
+          Alessia
         </Link>
-
-        {/* Desktop links */}
+        <span
+          aria-hidden
+          style={{
+            width: 1,
+            height: 18,
+            background: 'var(--ink-15)',
+            margin: '0 4px',
+          }}
+        />
         <ul
-          className="hidden items-center gap-8 md:flex"
-          style={{ fontFamily: 'var(--font-body)' }}
+          className="flex items-center"
+          style={{ fontFamily: 'var(--font-body)', fontSize: 14 }}
         >
           {ANCHORS.map((a) => (
             <li key={a}>
               <a
                 href={`#${a}`}
-                className="text-[color:var(--ink-70)] transition-colors hover:text-[color:var(--ink)]"
+                className="rounded-full px-3 py-1.5 transition-colors"
+                style={{ color: 'var(--ink-70)' }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--ink)')}
+                onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--ink-70)')}
               >
                 {t(a)}
               </a>
             </li>
           ))}
-          <li>
-            <Link
-              href={pathname}
-              locale={otherLocale}
-              className="text-sm tracking-wider text-[color:var(--ink-70)] uppercase transition-colors hover:text-[color:var(--ink)]"
-            >
-              {otherLocale}
-            </Link>
-          </li>
-          <li>
-            <ThemeToggle />
-          </li>
         </ul>
+        <span
+          aria-hidden
+          style={{
+            width: 1,
+            height: 18,
+            background: 'var(--ink-15)',
+            margin: '0 4px',
+          }}
+        />
+        <Link
+          href={pathname}
+          locale={otherLocale}
+          className="px-3 py-1.5 text-xs tracking-wider uppercase transition-colors"
+          style={{ color: 'var(--ink-70)', fontFamily: 'var(--font-body)' }}
+        >
+          {otherLocale}
+        </Link>
+        <ThemeToggle />
+      </div>
 
-        {/* Mobile drawer */}
+      {/* Mobile dock — compact pill with brand + hamburger */}
+      <div
+        className="flex w-full max-w-md items-center justify-between gap-2 rounded-full border px-4 py-2 backdrop-blur md:hidden"
+        style={{
+          background: 'color-mix(in oklab, var(--paper-2) 72%, transparent)',
+          borderColor: 'var(--ink-15)',
+          boxShadow: '0 8px 24px -12px color-mix(in oklab, var(--ink) 40%, transparent)',
+        }}
+      >
+        <Link
+          href="/"
+          className="no-underline"
+          style={{
+            fontFamily: 'var(--font-display)',
+            fontWeight: 800,
+            color: 'var(--ink)',
+            fontSize: 16,
+            letterSpacing: '-0.01em',
+          }}
+        >
+          Alessia
+        </Link>
         <Drawer.Root open={open} onOpenChange={setOpen}>
           <Drawer.Trigger
             aria-label={t('openMenu')}
-            className="inline-flex h-11 w-11 items-center justify-center md:hidden"
+            className="inline-flex h-9 w-9 items-center justify-center"
+            style={{ color: 'var(--ink)' }}
           >
-            <Menu size={24} aria-hidden />
+            <Menu size={22} strokeWidth={1.75} aria-hidden />
           </Drawer.Trigger>
           <Drawer.Portal>
-            <Drawer.Overlay className="fixed inset-0 z-50 bg-black/40" />
+            <Drawer.Overlay className="fixed inset-0 z-50 bg-black/50" />
             <Drawer.Content
               className="fixed right-0 bottom-0 left-0 z-50 mt-24 flex h-[60vh] flex-col rounded-t-2xl"
               style={{ background: 'var(--paper)' }}

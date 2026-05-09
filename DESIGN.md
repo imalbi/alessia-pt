@@ -10,7 +10,7 @@ Riferimento spec di prodotto/architettura: [`docs/superpowers/specs/2026-05-08-a
 
 **Mood**: atelier sportivo notturno. Nero quasi-puro come superficie dominante, viola elettrico saturato come voce, oro antico opaco come dettaglio raro. Riferimenti incrociati: Lululemon × Métier per il restraint athletic-luxury, Bottega Veneta sport per l'uso del viola committed e dell'oro come dettaglio mai dominante.
 
-**Direzione cromatica**: **dark default**, light come toggle esplicito in nav. Il dark è la voce vera del brand; il light è cortesia.
+**Direzione cromatica**: **dark default**, light come toggle esplicito in nav. Il dark è la voce vera del brand; il light è cortesia. Tre varianti aggiuntive (`dark-noir`, `dark-neon`, `light-warm`) sono accessibili dal tweaks panel dev-only — servono ad Alessia per scegliere se preferisce il default o uno shift di tono. Non sono esposte pubblicamente.
 
 **Categoria di superficie**: brand (la landing è il prodotto stesso).
 
@@ -167,12 +167,13 @@ Il token `--font-body` resta semantico (un giorno potremmo divergere) ma oggi re
 - `<Contact />` — client, form `react-hook-form` + zod
 - `<Footer />` — server
 
-### Nav
+### Nav (floating dock)
 
-- Top-left: nome "Alessia" in Bricolage 800
-- Top-right desktop: anchor links + selettore lingua + **theme toggle (sun/moon)**
-- Mobile: hamburger → bottom-sheet via Vaul, anchor links + lingua + toggle
-- Scroll behavior: nav iniziale trasparente, dopo 80px diventa `bg-paper/90 backdrop-blur` con bordo bottom hairline `--ink-15`
+- **Layout**: pill floating centrato top, `top-4 md:top-6`, mai full-width. La topbar full-width letta come "preset 2018-2024"; il dock pill è il pattern atelier 2026 (Vercel/Linear/Raycast adjacent) e regge meglio il registro.
+- **Desktop**: dock contiene logo "Alessia" (no sottotitolo — quello vive nell'hero), divider verticale hairline, anchor links inline, divider, lang switch, theme toggle.
+- **Mobile**: dock compatto con logo + hamburger. Apertura via Drawer (Vaul) bottom-sheet 60vh con anchor links scalati, lang, theme toggle.
+- **Surface**: `paper-2` con 72% opacity + backdrop-blur, border `ink-15`, soft shadow tinted ink.
+- **Niente scroll-state behavior** (era pattern bg-toggle inutile dato che il dock floating ha sempre la sua surface).
 
 ---
 
