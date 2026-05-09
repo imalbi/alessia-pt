@@ -50,7 +50,7 @@ const SelectContent = React.forwardRef<
       position={position}
       sideOffset={6}
       className={cn(
-        'relative z-50 max-h-[--radix-select-content-available-height] min-w-[--radix-select-trigger-width] overflow-hidden rounded-sm border border-[color:var(--ink-15)] bg-[color:var(--paper-2)] text-[color:var(--ink)] shadow-lg',
+        'relative z-50 max-h-[var(--radix-select-content-available-height)] w-[var(--radix-select-trigger-width)] overflow-hidden rounded-sm border border-[color:var(--ink-15)] bg-[color:var(--paper-2)] text-[color:var(--ink)] shadow-lg',
         'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
         className,
       )}
