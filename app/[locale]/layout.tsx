@@ -81,10 +81,12 @@ export default async function LocaleLayout({
     >
       <body suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
-          <Providers>{children}</Providers>
+          <Providers>
+            {children}
+            <TweaksPanel />
+          </Providers>
         </NextIntlClientProvider>
         <Toaster position="bottom-center" richColors />
-        <TweaksPanel />
         {process.env.NEXT_PUBLIC_CF_BEACON && (
           <script
             defer
