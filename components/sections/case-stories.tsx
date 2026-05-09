@@ -1,7 +1,3 @@
-'use client';
-
-import useEmblaCarousel from 'embla-carousel-react';
-import Autoplay from 'embla-carousel-autoplay';
 import { useLocale, useTranslations } from 'next-intl';
 import { caseStories as casesIt } from '@/content/it';
 import { caseStories as casesEn } from '@/content/en';
@@ -11,9 +7,6 @@ export function CaseStories() {
   const t = useTranslations('Stories');
   const locale = useLocale();
   const items = locale === 'en' ? casesEn : casesIt;
-  const [emblaRef] = useEmblaCarousel({ loop: true, align: 'start' }, [
-    Autoplay({ delay: 6000, stopOnInteraction: true }),
-  ]);
 
   return (
     <section
@@ -40,34 +33,44 @@ export function CaseStories() {
           </p>
         </div>
 
-        <div className="overflow-hidden" ref={emblaRef}>
-          <div className="flex gap-8">
-            {items.map((s) => (
+        <ul className="flex flex-col gap-12 md:gap-16">
+          {items.map((s, i) => (
+            <li key={s.id}>
               <article
-                key={s.id}
-                className="flex min-w-0 shrink-0 grow-0 basis-full flex-col gap-4 sm:basis-[80%] md:basis-[55%] lg:basis-[40%]"
+                className="grid gap-4 border-t pt-8 md:grid-cols-[auto_1fr] md:gap-12 md:pt-10"
+                style={{ borderColor: 'var(--ink-15)' }}
               >
-                <blockquote
-                  className="text-xl leading-relaxed"
+                <div
                   style={{
-                    fontFamily: 'var(--font-body)',
-                    fontStyle: 'italic',
-                    color: 'var(--ink)',
+                    fontFamily: 'var(--font-display)',
+                    fontSize: 11,
+                    letterSpacing: '0.18em',
+                    textTransform: 'uppercase',
+                    color: 'var(--ink-55)',
+                    fontWeight: 600,
                   }}
                 >
-                  «{s.quote}»
-                </blockquote>
-                <footer
-                  className="text-sm"
-                  style={{ fontFamily: 'var(--font-body)', color: 'var(--ink-70)' }}
-                >
-                  — <span style={{ color: 'var(--ink)' }}>{s.name}</span>, {s.age} · {s.situation} ·{' '}
-                  {s.duration}
-                </footer>
+                  {String(i + 1).padStart(2, '0')}
+                </div>
+                <div className="max-w-prose">
+                  <blockquote
+                    className="text-xl leading-relaxed md:text-2xl"
+                    style={{ fontFamily: 'var(--font-display)', fontWeight: 500, color: 'var(--ink)' }}
+                  >
+                    «{s.quote}»
+                  </blockquote>
+                  <footer
+                    className="mt-4 text-sm"
+                    style={{ fontFamily: 'var(--font-body)', color: 'var(--ink-70)' }}
+                  >
+                    <span style={{ color: 'var(--ink)' }}>{s.name}</span>, {s.age} ·{' '}
+                    {s.situation} · {s.duration}
+                  </footer>
+                </div>
               </article>
-            ))}
-          </div>
-        </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
