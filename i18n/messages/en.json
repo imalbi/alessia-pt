@@ -9,6 +9,7 @@
     "services": "Services",
     "stories": "Stories",
     "contact": "Contact",
+    "mainNav": "Main navigation",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "language": "Language",
@@ -20,15 +21,26 @@
     "role": "Personal training & kinesiology.",
     "tagline": "I'm Alessia. I build movement programmes around the person, not the template. Initial assessment, technical work, presence over time.",
     "cta": "Get in touch",
-    "photoLabel": "Alessia · portrait"
+    "ctaSecondary": "Email me directly",
+    "photoAlt": "Portrait of Alessia, personal trainer and kinesiologist",
+    "photoLabel": "Alessia · portrait",
+    "credentialsLabel": "Education",
+    "credTitleLabel": "Degree",
+    "credTitle": "BSc in Sport and Exercise Science, bio-health track",
+    "credThesisLabel": "Thesis",
+    "credThesis": "Rehabilitation and wellbeing in lumbosciatalgia",
+    "credRegisterLabel": "Register",
+    "credRegister": "Registered kinesiologist"
   },
   "About": {
     "heading": "About",
     "intro": "I'm a kinesiologist with a degree in Movement Sciences. I work with people who want to move without pain again, recover after an injury, or build strength intelligently.",
     "credentials": "Degree in Movement Sciences · registered kinesiologist · continued training in postural rehabilitation and functional strength.",
     "method": "The first session is always an assessment: posture, mobility, habits. Then I build the programme, and update it as we work together.",
-    "photoLabel": "Alessia · in the studio",
-    "photoAlt": "Alessia on her Movement Sciences graduation day"
+    "photoLabel": "Studio session",
+    "photoAlt": "Alessia working in the studio",
+    "credPhotoAlt": "Alessia on her graduation day in Sport and Exercise Science",
+    "credPhotoCaption": "Graduation in Sport and Exercise Science, bio-health track."
   },
   "ContactErrors": {
     "name_too_short": "Please enter at least 2 characters.",
@@ -43,8 +55,8 @@
   "Services": {
     "heading": "What I do",
     "lead": "Four ways to work together. Each starts from the same place: an assessment.",
-    "featuredEyebrow": "Featured",
-    "alsoLabel": "Also"
+    "scaleTop": "presence",
+    "scaleBottom": "flexibility"
   },
   "Contact": {
     "heading": "Get in touch",
@@ -63,6 +75,10 @@
     "consent": "I've read the <link>privacy notice</link> and consent to the processing of my data so I can be contacted back.",
     "submit": "Send",
     "sending": "Sending…",
+    "requiredLegend": "Fields marked with * are required.",
+    "requiredMark": "required",
+    "errorSummaryOne": "There is 1 field to correct.",
+    "errorSummaryMany": "There are {count} fields to correct.",
     "success": "Message received. I'll reply within 24-48 hours.",
     "error": "Something went wrong. Please try again or email {email}.",
     "errorNoEmail": "Something went wrong. Please try again shortly.",
@@ -76,12 +92,14 @@
   },
   "Stories": {
     "heading": "Stories",
-    "lead": "Three real situations, three different starting points. No body before/after: the value is in the return to normal life."
+    "lead": "Three real situations, three different starting points. No body before/after: the value is in the return to normal life.",
+    "disclosure": "Real stories, shared with consent."
   },
   "Footer": {
     "tagline": "Personal Trainer & Kinesiologist",
     "rights": "All rights reserved.",
     "privacy": "Privacy",
-    "vatLabel": "VAT"
+    "vatLabel": "VAT",
+    "instagram": "Instagram"
   }
 }

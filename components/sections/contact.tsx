@@ -16,9 +16,18 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { FieldError } from '@/components/ui/field-error';
+import { Reveal } from '@/components/primitives/reveal';
 import { Scribble } from '@/components/primitives/scribble';
 
 const goalKey = (g: string) => `goal_${g.replace('-', '_')}` as const;
+
+function RequiredMark({ label }: { label: string }) {
+  return (
+    <span aria-label={label} style={{ color: 'var(--accent)', marginLeft: 2 }}>
+      *
+    </span>
+  );
+}
 
 export function Contact() {
   const t = useTranslations('Contact');
@@ -26,6 +35,8 @@ export function Contact() {
 
   const studioCity = process.env.NEXT_PUBLIC_STUDIO_CITY;
   const modes = process.env.NEXT_PUBLIC_STUDIO_MODES; // e.g. "studio + online"
+
+  const [errorCount, setErrorCount] = useState(0);
 
   const {
     register,
@@ -51,6 +62,8 @@ export function Contact() {
   ];
 
   const onInvalid = (errs: FieldErrors<ContactInput>) => {
+    const count = FIELD_ORDER.reduce((n, f) => (errs[f] ? n + 1 : n), 0);
+    setErrorCount(count);
     const first = FIELD_ORDER.find((f) => errs[f]);
     if (first) {
       // Radix Select trigger does not support setFocus; fall back to DOM focus by id.
@@ -64,6 +77,7 @@ export function Contact() {
 
   const onSubmit = async (data: ContactInput) => {
     setSubmitting(true);
+    setErrorCount(0);
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
@@ -86,6 +100,8 @@ export function Contact() {
     }
   };
 
+  const requiredMark = t('requiredMark');
+
   // Inline-styled inputs/textareas to avoid the shadcn v3 token mismatch.
   const fieldStyle = {
     fontFamily: 'var(--font-body)',
@@ -101,7 +117,7 @@ export function Contact() {
 
   return (
     <section id="contact" className="mx-auto max-w-screen-xl px-4 py-24 md:px-8 md:py-32 lg:px-12">
-      <div className="grid gap-10 md:grid-cols-[1fr_1.4fr] md:gap-16">
+      <Reveal className="grid gap-10 md:grid-cols-[1fr_1.4fr] md:gap-16">
         <div>
           <h2
             className="text-[clamp(2rem,4vw+0.8rem,3.5rem)] leading-tight font-bold"
@@ -109,7 +125,7 @@ export function Contact() {
           >
             {t('heading')}
           </h2>
-          <div className="mt-1 w-32">
+          <div className="mt-1 w-[clamp(7rem,15vw,13rem)]">
             <Scribble kind="underline" />
           </div>
           <p
@@ -122,7 +138,7 @@ export function Contact() {
           <dl
             className="mt-10 border-t pt-6 text-sm"
             style={{
-              borderColor: 'var(--gold)',
+              borderColor: 'var(--ink-30)',
               fontFamily: 'var(--font-body)',
               color: 'var(--ink-70)',
             }}
@@ -161,6 +177,20 @@ export function Contact() {
             {...register('honeypot')}
           />
 
+          <p
+            className="text-xs"
+            style={{ color: 'var(--ink-55)', fontFamily: 'var(--font-body)' }}
+          >
+            {t('requiredLegend')}
+          </p>
+
+          {/* SR-only live summary — assistive tech announces error count
+              on invalid submit. Visible focus already lands on first field. */}
+          <div role="status" aria-live="polite" className="sr-only">
+            {errorCount === 1 && t('errorSummaryOne')}
+            {errorCount > 1 && t('errorSummaryMany', { count: errorCount })}
+          </div>
+
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
               <label
@@ -169,11 +199,14 @@ export function Contact() {
                 style={{ color: 'var(--ink-70)' }}
               >
                 {t('name')}
+                <RequiredMark label={requiredMark} />
               </label>
               <input
                 id="name"
                 {...register('name')}
                 autoComplete="name"
+                required
+                aria-required
                 aria-invalid={!!errors.name}
                 aria-describedby={errors.name ? 'name-error' : undefined}
                 style={fieldStyle}
@@ -187,6 +220,7 @@ export function Contact() {
                 style={{ color: 'var(--ink-70)' }}
               >
                 {t('email')}
+                <RequiredMark label={requiredMark} />
               </label>
               <input
                 id="email"
@@ -194,6 +228,8 @@ export function Contact() {
                 {...register('email')}
                 autoComplete="email"
                 inputMode="email"
+                required
+                aria-required
                 aria-invalid={!!errors.email}
                 aria-describedby={errors.email ? 'email-error' : undefined}
                 style={fieldStyle}
@@ -257,6 +293,7 @@ export function Contact() {
                   </Select>
                 )}
               />
+              <FieldError id="goal-error" messageKey={errors.goal?.message} />
             </div>
           </div>
 
@@ -267,11 +304,14 @@ export function Contact() {
               style={{ color: 'var(--ink-70)' }}
             >
               {t('message')}
+              <RequiredMark label={requiredMark} />
             </label>
             <textarea
               id="message"
               rows={6}
               {...register('message')}
+              required
+              aria-required
               aria-invalid={!!errors.message}
               aria-describedby={errors.message ? 'message-error' : undefined}
               style={{ ...fieldStyle, resize: 'vertical', minHeight: 140 }}
@@ -287,6 +327,8 @@ export function Contact() {
               <input
                 type="checkbox"
                 {...register('consent')}
+                required
+                aria-required
                 aria-invalid={!!errors.consent}
                 aria-describedby={errors.consent ? 'consent-error' : undefined}
                 className="mt-1"
@@ -315,7 +357,7 @@ export function Contact() {
             </Button>
           </div>
         </form>
-      </div>
+      </Reveal>
     </section>
   );
 }

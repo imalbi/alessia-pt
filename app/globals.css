@@ -162,6 +162,78 @@ body {
   }
 }
 
+@keyframes hero-mask {
+  from {
+    clip-path: inset(100% 0 0 0);
+    opacity: 0;
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+@keyframes reveal-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Scroll reveal states, driven by <Reveal>. The attribute is only ever set by
+   JS, so the resting markup (no attribute) is the visible one. */
+[data-reveal='hidden'] {
+  opacity: 0;
+  transform: translateY(12px);
+}
+[data-reveal='shown'] {
+  animation: reveal-rise 0.7s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1))
+    var(--reveal-delay, 0s) backwards;
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Hero entrance. CSS rather than JS on purpose: `animation-fill-mode: backwards`
+   means the resting state in the markup is the *visible* one, so the headline and
+   the CTA are painted by the server and never depend on hydration to be readable.
+   Timings mirror DESIGN.md's "momento 1" choreography. */
+.hero-mask {
+  animation: hero-mask 0.7s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1)) 0.15s backwards;
+}
+.hero-rise-1 {
+  animation: hero-rise 0.7s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1)) 0.4s backwards;
+}
+.hero-rise-2 {
+  animation: hero-rise 0.7s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1)) 0.6s backwards;
+}
+
+/* Nav anchor hover — gated behind hover-capable pointers so the colour
+   doesn't stick after a tap on touch devices. */
+.nav-anchor {
+  color: var(--ink-70);
+}
+.nav-anchor[data-active='true'] {
+  color: var(--ink);
+}
+@media (hover: hover) {
+  .nav-anchor:hover {
+    color: var(--ink);
+  }
+}
+
 /* Privacy page typography (markdown rendered with marked) */
 .privacy-prose h1 {
   font-family: var(--font-display);
@@ -203,6 +275,11 @@ body {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  /* Gold hairlines show complete rather than mid-draw (DESIGN.md). The services
+     rail never runs its scroll fill here, so CSS has to finish it. */
+  [data-scale-fill] {
+    transform: scaleY(1) !important;
   }
   *,
   *::before,

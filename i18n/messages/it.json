@@ -9,6 +9,7 @@
     "services": "Servizi",
     "stories": "Percorsi",
     "contact": "Contatti",
+    "mainNav": "Navigazione principale",
     "openMenu": "Apri menu",
     "closeMenu": "Chiudi menu",
     "language": "Lingua",
@@ -20,15 +21,26 @@
     "role": "Personal training & chinesiologia.",
     "tagline": "Sono Alessia. Costruisco percorsi di movimento sulla persona, non sul programma. Valutazione iniziale, lavoro tecnico, presenza nel tempo.",
     "cta": "Scrivimi",
-    "photoLabel": "Alessia · ritratto"
+    "ctaSecondary": "Scrivimi via email",
+    "photoLabel": "Alessia · ritratto",
+    "photoAlt": "Ritratto di Alessia, personal trainer e chinesiologa",
+    "credentialsLabel": "Formazione",
+    "credTitleLabel": "Titolo",
+    "credTitle": "Laurea in Scienze Motorie, indirizzo bio-sanitario",
+    "credThesisLabel": "Tesi",
+    "credThesis": "Riabilitazione e benessere nella lombosciatalgia",
+    "credRegisterLabel": "Albo",
+    "credRegister": "Iscritta all'albo dei chinesiologi"
   },
   "About": {
     "heading": "Chi sono",
     "intro": "Sono una chinesiologa con laurea in scienze motorie. Lavoro con chi vuole tornare a muoversi senza dolore, recuperare dopo un infortunio o costruire forza in modo intelligente.",
     "credentials": "Laurea in Scienze Motorie · iscritta all'albo dei chinesiologi · formazione continua in rieducazione posturale e forza funzionale.",
     "method": "Il primo incontro è sempre una valutazione: postura, mobilità, abitudini. Poi costruisco il percorso, e lo aggiorno mentre lavoriamo insieme.",
-    "photoLabel": "Alessia · in studio",
-    "photoAlt": "Alessia il giorno della laurea in Scienze Motorie"
+    "photoLabel": "Sessione in studio",
+    "photoAlt": "Alessia in studio durante una sessione",
+    "credPhotoAlt": "Alessia il giorno della discussione di laurea in Scienze Motorie",
+    "credPhotoCaption": "Discussione di laurea in Scienze Motorie, indirizzo bio-sanitario."
   },
   "ContactErrors": {
     "name_too_short": "Inserisci almeno 2 caratteri.",
@@ -43,8 +55,8 @@
   "Services": {
     "heading": "Cosa faccio",
     "lead": "Quattro modi di lavorare insieme. Ognuno parte dalla stessa cosa: una valutazione.",
-    "featuredEyebrow": "Principale",
-    "alsoLabel": "Anche"
+    "scaleTop": "presenza",
+    "scaleBottom": "flessibilità"
   },
   "Contact": {
     "heading": "Scrivimi",
@@ -60,9 +72,13 @@
     "goal_altro": "Altro",
     "goalSelect": "Seleziona…",
     "message": "Messaggio",
-    "consent": "Ho letto l'<link>informativa privacy</link> e acconsento al trattamento dei miei dati per essere ricontattata/o.",
+    "consent": "Ho letto l''<link>informativa privacy</link> e acconsento al trattamento dei miei dati per essere ricontattata/o.",
     "submit": "Invia",
     "sending": "Invio in corso…",
+    "requiredLegend": "I campi contrassegnati con * sono obbligatori.",
+    "requiredMark": "obbligatorio",
+    "errorSummaryOne": "C'è 1 campo da correggere.",
+    "errorSummaryMany": "Ci sono {count} campi da correggere.",
     "success": "Messaggio ricevuto. Ti rispondo entro 24-48 ore.",
     "error": "Qualcosa è andato storto. Riprova o scrivi a {email}.",
     "errorNoEmail": "Qualcosa è andato storto. Riprova fra poco.",
@@ -76,12 +92,14 @@
   },
   "Stories": {
     "heading": "Percorsi",
-    "lead": "Tre situazioni reali, tre punti di partenza diversi. Niente before/after del corpo: il valore è nel ritorno alla vita normale."
+    "lead": "Tre situazioni reali, tre punti di partenza diversi. Niente before/after del corpo: il valore è nel ritorno alla vita normale.",
+    "disclosure": "Storie reali, condivise con consenso."
   },
   "Footer": {
     "tagline": "Personal Trainer & Chinesiologa",
     "rights": "Tutti i diritti riservati.",
     "privacy": "Privacy",
-    "vatLabel": "P.IVA"
+    "vatLabel": "P.IVA",
+    "instagram": "Instagram"
   }
 }

@@ -6,6 +6,7 @@ export function Footer() {
   const year = new Date().getFullYear();
   const vat = process.env.NEXT_PUBLIC_VAT_NUMBER;
   const email = process.env.NEXT_PUBLIC_CONTACT_EMAIL;
+  const ig = process.env.NEXT_PUBLIC_INSTAGRAM;
 
   return (
     <footer
@@ -28,6 +29,17 @@ export function Footer() {
           className="flex flex-col gap-2 text-sm md:items-end"
           style={{ fontFamily: 'var(--font-body)', color: 'var(--ink-70)' }}
         >
+          {ig && (
+            <a
+              href={`https://instagram.com/${ig}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${t('instagram')} @${ig}`}
+              className="hover:text-[color:var(--ink)]"
+            >
+              {t('instagram')} · @{ig}
+            </a>
+          )}
           {email && (
             <a href={`mailto:${email}`} className="hover:text-[color:var(--ink)]">
               {email}

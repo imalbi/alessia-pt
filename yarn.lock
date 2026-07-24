@@ -2164,6 +2164,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@gsap/react@npm:^2.1.2":
+  version: 2.1.2
+  resolution: "@gsap/react@npm:2.1.2"
+  peerDependencies:
+    gsap: ^3.12.5
+    react: ">=17"
+  checksum: 10c0/d0285391cfd7cef8125e6ddf81a063121bdb92ddf633d76c6144d8b93e3b7f7d837ec75f1fda8fd33d7efac0ad4c1aad89647e81446e9363012ada7db9f67daf
+  languageName: node
+  linkType: hard
+
 "@hookform/resolvers@npm:^5.2.2":
   version: 5.2.2
   resolution: "@hookform/resolvers@npm:5.2.2"
@@ -5373,6 +5383,7 @@ __metadata:
   resolution: "alessia-pt@workspace:."
   dependencies:
     "@axe-core/playwright": "npm:^4.11.3"
+    "@gsap/react": "npm:^2.1.2"
     "@hookform/resolvers": "npm:^5.2.2"
     "@opennextjs/cloudflare": "npm:^1.19.8"
     "@playwright/test": "npm:^1.59.1"
@@ -5394,6 +5405,7 @@ __metadata:
     embla-carousel: "npm:^8.6.0"
     eslint: "npm:^9"
     eslint-config-next: "npm:16.2.6"
+    gsap: "npm:^3.15.0"
     jsdom: "npm:^29.1.1"
     lucide-react: "npm:^1.14.0"
     marked: "npm:^18.0.3"
@@ -7696,6 +7708,13 @@ __metadata:
   version: 4.2.11
   resolution: "graceful-fs@npm:4.2.11"
   checksum: 10c0/386d011a553e02bc594ac2ca0bd6d9e4c22d7fa8cfbfc448a6d148c59ea881b092db9dbe3547ae4b88e55f1b01f7c4a2ecc53b310c042793e63aa44cf6c257f2
+  languageName: node
+  linkType: hard
+
+"gsap@npm:^3.15.0":
+  version: 3.15.0
+  resolution: "gsap@npm:3.15.0"
+  checksum: 10c0/5d86de72cb0bd6b20502c34c329a83a7d679979731bb465164407b7a5225aa61d612beee740eea36258622897c116cd2ca35320d530b7cf68bad62522361fcf7
   languageName: node
   linkType: hard
 

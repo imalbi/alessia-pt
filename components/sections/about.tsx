@@ -1,5 +1,6 @@
 import { useTranslations } from 'next-intl';
 import { Photo } from '@/components/primitives/photo';
+import { Reveal } from '@/components/primitives/reveal';
 import { Scribble } from '@/components/primitives/scribble';
 
 export function About() {
@@ -9,15 +10,16 @@ export function About() {
       id="about"
       className="relative mx-auto max-w-screen-xl px-4 py-20 md:px-8 md:py-28 lg:px-12 lg:py-32"
     >
-      <div className="grid gap-10 md:grid-cols-[1fr_1.4fr] md:gap-16">
+      <Reveal className="grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] md:gap-16">
         <div className="md:order-1">
           <Photo
             ratio="3/4"
-            src="/photos/about-laurea.jpg"
-            alt={t('photoAlt')}
-            label={t('photoLabel')}
+            src="/photos/laurea.jpg"
+            alt={t('credPhotoAlt')}
+            caption={t('credPhotoCaption')}
           />
         </div>
+
         <div className="md:order-2">
           <h2
             className="text-[clamp(2rem,4vw+0.8rem,3.5rem)] leading-tight font-bold"
@@ -25,7 +27,7 @@ export function About() {
           >
             {t('heading')}
           </h2>
-          <div className="mt-1 w-32">
+          <div className="mt-1 w-[clamp(7rem,16vw,13rem)]">
             <Scribble kind="underline" />
           </div>
           <p
@@ -47,7 +49,7 @@ export function About() {
             {t('method')}
           </p>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

@@ -116,12 +116,12 @@ function PlaceholderBrief({ ratio, label }: { ratio: string; label?: string }) {
           fontSize: 11,
           letterSpacing: '0.12em',
           textTransform: 'uppercase',
-          color: 'var(--gold)',
+          color: 'var(--ink-55)',
           fontWeight: 500,
         }}
       >
         <span>{ratio.replace('/', ':')}</span>
-        <span style={{ color: 'var(--ink-55)' }}>//</span>
+        <span style={{ color: 'var(--ink-30)' }}>//</span>
       </div>
 
       <div
@@ -178,8 +178,8 @@ function Crosshair() {
       style={{ position: 'absolute', inset: 0, opacity: 0.55 }}
       aria-hidden
     >
-      <line x1="50" y1="20" x2="50" y2="80" stroke="var(--gold)" strokeWidth="0.4" />
-      <line x1="20" y1="50" x2="80" y2="50" stroke="var(--gold)" strokeWidth="0.4" />
+      <line x1="50" y1="20" x2="50" y2="80" stroke="var(--ink-30)" strokeWidth="0.4" />
+      <line x1="20" y1="50" x2="80" y2="50" stroke="var(--ink-30)" strokeWidth="0.4" />
     </svg>
   );
 }

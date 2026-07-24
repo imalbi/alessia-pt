@@ -15,10 +15,12 @@
     "test:e2e": "playwright test",
     "telegram:chat-id": "tsx scripts/get-telegram-chat-id.ts",
     "cf:build": "opennextjs-cloudflare build",
-    "cf:preview": "yarn cf:build && wrangler pages dev .open-next",
-    "cf:deploy": "yarn cf:build && wrangler pages deploy .open-next/assets --project-name=alessia-pt"
+    "cf:preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "cf:deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "preview:static": "bash scripts/static-preview.sh"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.2",
     "@hookform/resolvers": "^5.2.2",
     "@radix-ui/react-dropdown-menu": "^2.1.16",
     "@radix-ui/react-label": "^2.1.8",
@@ -28,6 +30,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "embla-carousel": "^8.6.0",
+    "gsap": "^3.15.0",
     "lucide-react": "^1.14.0",
     "marked": "^18.0.3",
     "motion": "^12.38.0",

@@ -17,10 +17,17 @@ interface Props {
   triggerOnView?: boolean;
 }
 
+// Longhand on purpose — when underline-double overrides animationDelay below,
+// mixing shorthand `animation` with longhand `animationDelay` produces a
+// React DOM warning about conflicting properties on rerender.
 const DRAW_STYLE: CSSProperties = {
   strokeDasharray: 380,
   strokeDashoffset: 380,
-  animation: 'draw 1.1s cubic-bezier(.2,.7,.3,1) .15s forwards',
+  animationName: 'draw',
+  animationDuration: '1.1s',
+  animationTimingFunction: 'cubic-bezier(.2,.7,.3,1)',
+  animationDelay: '.15s',
+  animationFillMode: 'forwards',
 };
 
 const FROZEN_STYLE: CSSProperties = {

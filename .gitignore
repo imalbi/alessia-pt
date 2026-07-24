@@ -48,3 +48,7 @@ next-env.d.ts
 
 # open-next (cloudflare adapter build output)
 /.open-next/
+
+# static snapshot for client previews (yarn preview:static) and its server log
+/.preview/
+/.preview.log
