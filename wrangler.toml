@@ -1,7 +1,16 @@
-name = "alessia-pt"
+# The name is the first label of the workers.dev hostname, so it is public
+# copy, not an internal id: chinesiologa.alessiaalfano.workers.dev says what
+# she does, alessia-pt.* said what the repo is called.
+name = "chinesiologa"
 main = ".open-next/worker.js"
 compatibility_date = "2026-01-01"
 compatibility_flags = ["nodejs_compat"]
+
+# Off by default it is on, and every deployed version would get its own
+# <version>-chinesiologa.*.workers.dev address serving the same pages. On a
+# site we are trying to rank locally that is duplicate content wearing a
+# different hostname, with no way to canonicalise it.
+preview_urls = false
 
 [assets]
 directory = ".open-next/assets"

@@ -49,6 +49,9 @@ next-env.d.ts
 # open-next (cloudflare adapter build output)
 /.open-next/
 
+# wrangler local state (deploy cache, dev storage)
+/.wrangler/
+
 # static snapshot for client previews (yarn preview:static) and its server log
 /.preview/
 /.preview.log
