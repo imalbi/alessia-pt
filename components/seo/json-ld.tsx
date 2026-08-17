@@ -3,6 +3,7 @@ import {
   SITE_DESCRIPTION_IT,
   SITE_DESCRIPTION_EN,
   STUDIO_LOCALITY,
+  AREA_SERVED_ALSO,
   STUDIO_REGION,
   STUDIO_COUNTRY,
   INSTAGRAM_URL,
@@ -87,8 +88,14 @@ export function JsonLd({ locale }: Props) {
           addressRegion: STUDIO_REGION,
           addressCountry: STUDIO_COUNTRY,
         },
+        /* Bussoleno is where the studio is, Susa is a town she also covers.
+           Both are cities served; only the first is the address above. Naming
+           Susa explicitly rather than leaning on "Valle di Susa" alone is what
+           makes the town match a query for it: the valley is an administrative
+           area, and a search for "personal trainer Susa" is a city search. */
         areaServed: [
           { '@type': 'City', name: STUDIO_LOCALITY },
+          { '@type': 'City', name: AREA_SERVED_ALSO },
           { '@type': 'AdministrativeArea', name: 'Valle di Susa' },
         ],
       },

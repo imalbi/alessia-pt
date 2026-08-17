@@ -1,7 +1,13 @@
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import { InstagramIcon } from '@/components/icons/instagram';
-import { SITE_NAME, INSTAGRAM_HANDLE, INSTAGRAM_URL } from '@/i18n/metadata';
+import {
+  SITE_NAME,
+  INSTAGRAM_HANDLE,
+  INSTAGRAM_URL,
+  AUTHOR_HANDLE,
+  AUTHOR_URL,
+} from '@/i18n/metadata';
 
 export function Footer() {
   const t = useTranslations('Footer');
@@ -85,6 +91,18 @@ export function Footer() {
             {t('vatLabel')}: {vat}
           </span>
         )}
+        {/* Build credit. Last in the row so it reads as a signature rather than
+            a third piece of the client's own legal line, and quieter than its
+            neighbours: it is the one thing here that is not about her. */}
+        <a
+          href={AUTHOR_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 transition-colors hover:text-[color:var(--ink)]"
+        >
+          by {AUTHOR_HANDLE}
+          <span aria-hidden>↗</span>
+        </a>
       </div>
 
       {/* Wordmark as a bled watermark rather than a logo lockup, cropped by the
