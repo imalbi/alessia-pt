@@ -44,6 +44,14 @@ export async function sendTelegram(input: ContactInput): Promise<void> {
     }),
   });
   if (!res.ok) {
-    throw new Error(`telegram_failed_${res.status}`);
+    // The status alone is not actionable: 403 covers "bot is not a member of
+    // that chat", "bot was blocked" and "user is deactivated", which need
+    // completely different fixes. Telegram puts the difference in
+    // `description`, so carry it rather than discard it.
+    const detail = await res
+      .json()
+      .then((b: { description?: string }) => b.description)
+      .catch(() => undefined);
+    throw new Error(`telegram_failed_${res.status}${detail ? `: ${detail}` : ''}`);
   }
 }

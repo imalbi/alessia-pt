@@ -41,6 +41,19 @@ export async function POST(req: Request) {
 
   const results = await Promise.allSettled([sendEmail(parsed.data), sendTelegram(parsed.data)]);
 
+  // Name every failure, including the ones we recover from. A provider that
+  // quietly stops working is the worst case here: the visitor is told the
+  // message went through, and nobody finds out until someone asks why nobody
+  // ever replied. The reason is the only thing worth logging, never the
+  // payload, which is exactly the personal data the consent covers.
+  const providers = ['email', 'telegram'] as const;
+  results.forEach((r, i) => {
+    if (r.status === 'rejected') {
+      const reason = r.reason instanceof Error ? r.reason.message : String(r.reason);
+      console.error(`contact: ${providers[i]} failed: ${reason}`);
+    }
+  });
+
   const allFailed = results.every((r) => r.status === 'rejected');
   if (allFailed) {
     return NextResponse.json({ ok: false, retryable: true }, { status: 502 });

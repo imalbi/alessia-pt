@@ -19,6 +19,8 @@ export async function sendEmail(input: ContactInput): Promise<void> {
     react: ContactEmail({ data: input }),
   });
   if (error) {
-    throw new Error(`email_failed_${error.name}`);
+    // Same reasoning as the Telegram client: the name buckets a whole class of
+    // causes, the message says which one.
+    throw new Error(`email_failed_${error.name}: ${error.message}`);
   }
 }
