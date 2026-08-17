@@ -52,7 +52,7 @@ export const INSTAGRAM_URL = `https://www.instagram.com/${INSTAGRAM_HANDLE}/`;
  * preposition, identical in both locales, so two JSON entries would only be two
  * places to forget when the handle changes.
  */
-export const AUTHOR_HANDLE = 'imAlbii';
+export const AUTHOR_HANDLE = 'imalbi';
 export const AUTHOR_URL = `https://github.com/${AUTHOR_HANDLE}`;
 
 /**
