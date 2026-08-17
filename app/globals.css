@@ -46,7 +46,13 @@
   --paper-2: #eae7e1;
   --ink: #0f0e12;
   --ink-70: rgba(15, 14, 18, 0.72);
-  --ink-55: rgba(15, 14, 18, 0.55);
+  /* 0.64, not the 0.55 the dark themes use. Ink over a light paper loses
+     contrast far faster than the same alpha of paper over dark ink: at 0.55
+     this token computed 4.0:1 on --paper-2 and axe failed every page on it,
+     28 nodes across labels, meta lines and the footer. 0.64 lands at 5.0-5.6,
+     which is where the dark themes already sit, so the five themes finally
+     read at the same weight instead of only looking like they do. */
+  --ink-55: rgba(15, 14, 18, 0.64);
   --ink-30: rgba(15, 14, 18, 0.22);
   --ink-15: rgba(15, 14, 18, 0.12);
   --accent: #6d2dd6;
@@ -94,7 +100,9 @@
   --paper-2: #ece2d0;
   --ink: #1a1218;
   --ink-70: rgba(26, 18, 24, 0.72);
-  --ink-55: rgba(26, 18, 24, 0.55);
+  /* Same correction as the light theme, and needed harder: this paper is
+     warmer and lighter, so 0.55 computed 3.8:1 here. */
+  --ink-55: rgba(26, 18, 24, 0.64);
   --ink-30: rgba(26, 18, 24, 0.22);
   --ink-15: rgba(26, 18, 24, 0.12);
   --accent: #5a2099;
