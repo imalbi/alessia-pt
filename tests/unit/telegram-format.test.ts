@@ -14,11 +14,11 @@ describe('formatTelegramMessage', () => {
     });
     expect(result).toMatchInlineSnapshot(`
       "💪 *Nuovo contatto sito*
-      *Marta Rossi* · marta@example.com
-      📞 +39 333 1234567
+      *Marta Rossi* · marta@example\\.com
+      📞 \\+39 333 1234567
       🎯 postura
 
-      Vorrei lavorare sulla postura cronica."
+      Vorrei lavorare sulla postura cronica\\."
     `);
   });
 
@@ -30,9 +30,31 @@ describe('formatTelegramMessage', () => {
       consent: true,
       honeypot: '',
     });
-    expect(result).toContain('*John* · j@x.it');
+    expect(result).toContain('*John* · j@x\\.it');
     expect(result).not.toContain('📞');
     expect(result).not.toContain('🎯');
+  });
+
+  /**
+   * The regression that mattered: escaping only the name shipped a formatter
+   * that failed on every real submission, because MarkdownV2 rejects the whole
+   * message over a single unescaped '.' and an email address always has one.
+   * A snapshot cannot catch this on its own, it only pins whatever we produce.
+   */
+  it('escapes every user-supplied field, not just the name', () => {
+    const result = formatTelegramMessage({
+      name: 'Marta',
+      email: 'marta.rossi@example.com',
+      phone: '+39 333-1234567',
+      goal: 'in-studio',
+      message: 'Ciao! Vorrei info (urgente).',
+      consent: true,
+      honeypot: '',
+    });
+    expect(result).toContain('marta\\.rossi@example\\.com');
+    expect(result).toContain('\\+39 333\\-1234567');
+    expect(result).toContain('in\\-studio');
+    expect(result).toContain('Ciao\\! Vorrei info \\(urgente\\)\\.');
   });
 
   it('escapes telegram-markdown special chars in name', () => {

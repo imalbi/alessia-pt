@@ -6,11 +6,24 @@ function escapeMd(s: string) {
   return s.replace(ESCAPE, '\\$1');
 }
 
+/**
+ * Every interpolated value is escaped, not just the name.
+ *
+ * MarkdownV2 reserves 18 characters and rejects the whole message if any of
+ * them appears unescaped: the API answers 400 "Can't parse entities". Escaping
+ * only the name passed the snapshot test and failed every real submission,
+ * because an email address always contains a dot, a phone number carries '+'
+ * and '-', and a sentence ends in '.'. The only literal markup here is the
+ * pair of asterisks around the name and the separators, which are ours.
+ */
 export function formatTelegramMessage(input: ContactInput): string {
-  const lines = ['💪 *Nuovo contatto sito*', `*${escapeMd(input.name)}* · ${input.email}`];
-  if (input.phone) lines.push(`📞 ${input.phone}`);
-  if (input.goal) lines.push(`🎯 ${input.goal}`);
-  lines.push('', input.message);
+  const lines = [
+    '💪 *Nuovo contatto sito*',
+    `*${escapeMd(input.name)}* · ${escapeMd(input.email)}`,
+  ];
+  if (input.phone) lines.push(`📞 ${escapeMd(input.phone)}`);
+  if (input.goal) lines.push(`🎯 ${escapeMd(input.goal)}`);
+  lines.push('', escapeMd(input.message));
   return lines.join('\n');
 }
 
