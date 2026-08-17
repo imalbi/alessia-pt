@@ -32,7 +32,10 @@ export function Photo({
   priority,
 }: Props) {
   return (
-    <div className={className} style={{ position: 'relative', display: 'block', width: '100%', ...style }}>
+    <div
+      className={className}
+      style={{ position: 'relative', display: 'block', width: '100%', ...style }}
+    >
       <div
         style={{
           aspectRatio: ratio,
@@ -107,62 +110,63 @@ function PlaceholderBrief({ ratio, label }: { ratio: string; label?: string }) {
           padding: '14px 16px',
         }}
       >
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'baseline',
-          fontFamily: 'var(--font-display)',
-          fontSize: 11,
-          letterSpacing: '0.12em',
-          textTransform: 'uppercase',
-          color: 'var(--ink-55)',
-          fontWeight: 500,
-        }}
-      >
-        <span>{ratio.replace('/', ':')}</span>
-        <span style={{ color: 'var(--ink-30)' }}>//</span>
-      </div>
-
-      <div
-        style={{
-          position: 'relative',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <Crosshair />
-        <span
+        <div
           style={{
-            position: 'relative',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'baseline',
             fontFamily: 'var(--font-display)',
-            fontWeight: 500,
-            color: 'var(--ink-55)',
-            fontSize: 'clamp(0.75rem, 1vw + 0.5rem, 1rem)',
-            letterSpacing: '0.08em',
+            fontSize: 11,
+            letterSpacing: '0.12em',
             textTransform: 'uppercase',
-            textAlign: 'center',
-            background: 'var(--paper-2)',
-            padding: '4px 10px',
+            color: 'var(--ink-55)',
+            fontWeight: 500,
           }}
         >
-          {label ?? 'foto'}
-        </span>
-      </div>
+          <span>{ratio.replace('/', ':')}</span>
+          {/* Braced: bare `//` in JSX children reads as a comment to the linter. */}
+          <span style={{ color: 'var(--ink-30)' }}>{'//'}</span>
+        </div>
 
-      <div
-        style={{
-          fontFamily: 'var(--font-display)',
-          fontSize: 10,
-          letterSpacing: '0.12em',
-          textTransform: 'uppercase',
-          color: 'var(--ink-55)',
-          fontWeight: 500,
-        }}
-      >
-        fotografia in arrivo
-      </div>
+        <div
+          style={{
+            position: 'relative',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Crosshair />
+          <span
+            style={{
+              position: 'relative',
+              fontFamily: 'var(--font-display)',
+              fontWeight: 500,
+              color: 'var(--ink-55)',
+              fontSize: 'clamp(0.75rem, 1vw + 0.5rem, 1rem)',
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              textAlign: 'center',
+              background: 'var(--paper-2)',
+              padding: '4px 10px',
+            }}
+          >
+            {label ?? 'foto'}
+          </span>
+        </div>
+
+        <div
+          style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 10,
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            color: 'var(--ink-55)',
+            fontWeight: 500,
+          }}
+        >
+          fotografia in arrivo
+        </div>
       </div>
     </>
   );

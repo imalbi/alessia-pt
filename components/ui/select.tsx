@@ -16,8 +16,9 @@ const SelectTrigger = React.forwardRef<
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
-      'flex w-full items-center justify-between gap-2 rounded-sm border border-[color:var(--ink-30)] bg-transparent px-3 py-[10px] text-base text-[color:var(--ink)] outline-none transition-colors',
-      'min-h-[44px] data-[placeholder]:text-[color:var(--ink-55)]',
+      // field-control carries the shared surface, radius and focus ring.
+      'field-control flex items-center justify-between gap-2 text-left outline-none',
+      'data-[placeholder]:text-[color:var(--ink-55)]',
       'focus-visible:border-[color:var(--accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--accent)]',
       'data-[state=open]:border-[color:var(--accent)]',
       'aria-[invalid=true]:border-[color:var(--accent-deep)]',
@@ -29,12 +30,7 @@ const SelectTrigger = React.forwardRef<
   >
     {children}
     <SelectPrimitive.Icon asChild>
-      <ChevronDown
-        size={18}
-        strokeWidth={1.5}
-        className="text-[color:var(--ink-55)]"
-        aria-hidden
-      />
+      <ChevronDown size={18} strokeWidth={1.5} className="text-[color:var(--ink-55)]" aria-hidden />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
 ));
@@ -50,7 +46,7 @@ const SelectContent = React.forwardRef<
       position={position}
       sideOffset={6}
       className={cn(
-        'relative z-50 max-h-[var(--radix-select-content-available-height)] w-[var(--radix-select-trigger-width)] overflow-hidden rounded-sm border border-[color:var(--ink-15)] bg-[color:var(--paper-2)] text-[color:var(--ink)] shadow-lg',
+        'relative z-50 max-h-[var(--radix-select-content-available-height)] w-[var(--radix-select-trigger-width)] overflow-hidden rounded-[var(--radius-field)] border border-[color:var(--ink-15)] bg-[color:var(--paper-2)] text-[color:var(--ink)] shadow-lg',
         'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
         className,
       )}
@@ -70,7 +66,7 @@ const SelectItem = React.forwardRef<
   <SelectPrimitive.Item
     ref={ref}
     className={cn(
-      'relative flex w-full cursor-pointer items-center gap-2 rounded-sm py-2 pr-8 pl-3 text-base outline-none select-none',
+      'relative flex w-full cursor-pointer items-center gap-2 rounded-[var(--radius-field)] py-2 pr-8 pl-3 text-base outline-none select-none',
       'focus:bg-[color:var(--paper)] focus:text-[color:var(--ink)]',
       'data-[state=checked]:text-[color:var(--accent)]',
       'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',

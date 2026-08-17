@@ -18,22 +18,68 @@ export const services: Service[] = [
     id: 'recupero',
     title: 'Kinesiology & recovery',
     description:
-      'Postural work and movement re-education. Chronic back pain, post-partum, post-sports-injury.',
+      'Postural work and movement re-education. Chronic back pain, post-partum, post-injury.',
     mode: 'one-to-one · clinical',
   },
   {
     id: 'gruppo',
     title: 'Small-group training',
-    description:
-      'Small groups of 3-6 with similar goals. The quality of individual work, shared.',
-    mode: '3-6 people',
+    description: 'Small groups of 2-4 with similar goals. The quality of individual work, shared.',
+    mode: '2-4 people',
   },
   {
     id: 'online',
     title: 'Online personal training',
     description:
-      'Remote programmes with form-check videos, weekly plans, check-ins. For those out of town or preferring flexibility.',
+      'Remote programmes with videos and weekly reports. For those out of town or preferring flexibility.',
     mode: 'remote',
+  },
+];
+
+export interface ProcessStep {
+  id: string;
+  /** Displayed numeral, kept as a string so "01" survives. */
+  num: string;
+  /** When this phase happens, shown in the mono meta line. */
+  meta: string;
+  title: string;
+  body: string;
+  /** What Alessia is doing in this phase. Drives the live card on the rail. */
+  presence: string;
+}
+
+export const processSteps: ProcessStep[] = [
+  {
+    id: 'valutazione',
+    num: '01',
+    meta: 'about an hour · in studio · online',
+    title: 'I assess you',
+    body: 'Clinical history, posture, joint mobility, how you actually move. Skinfold and bioimpedance readings too, where they help. You leave knowing what your body is like: facts, not impressions.',
+    presence: 'I listen, and I assess',
+  },
+  {
+    id: 'percorso',
+    num: '02',
+    meta: 'within a few days',
+    title: 'I write your programme',
+    body: 'Goal, frequency, progression, and the criteria we will use together to tell whether it is working. Nothing copied from someone else: yours comes out of your assessment.',
+    presence: 'I build it around you',
+  },
+  {
+    id: 'allenamento',
+    num: '03',
+    meta: 'every session',
+    title: 'I train you',
+    body: 'We work. I watch, correct, and adjust the load in real time; you learn the movement and take it with you. Moving well stays yours even on the days I am not there.',
+    presence: 'I correct you, session by session',
+  },
+  {
+    id: 'verifica',
+    num: '04',
+    meta: 'every 4-8 weeks',
+    title: 'We reassess',
+    body: 'We run the first assessment again and see what has changed. If something has not moved, I change the programme, not the person. If it has, we raise the bar together.',
+    presence: 'I keep track of you',
   },
 ];
 

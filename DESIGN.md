@@ -24,35 +24,35 @@ Tutti i token sono custom properties in `app/globals.css`. Tailwind v4 `@theme i
 
 ### Dark (default)
 
-| Token           | HEX                    | Ruolo                                                                |
-| --------------- | ---------------------- | -------------------------------------------------------------------- |
-| `--paper`       | `#0A0A0C`              | Sfondo principale, "nero studio" (mai `#000`)                        |
-| `--paper-2`     | `#14141A`              | Sfondo secondario, leggero shift viola, sezioni alternate            |
-| `--ink`         | `#F4F2EE`              | Testo principale, off-white tenue (mai `#fff`)                       |
-| `--ink-70`      | `rgba(244,242,238,.72)` | Testo secondario, body lungo                                         |
-| `--ink-55`      | `rgba(244,242,238,.55)` | Caption, meta, label discrete                                        |
-| `--ink-30`      | `rgba(244,242,238,.20)` | Bordi soft, divisori                                                 |
-| `--ink-15`      | `rgba(244,242,238,.10)` | Bordi extra-soft, hairlines                                          |
-| `--accent`      | `#9C5BFF`              | Viola elettrico — CTA, link in-text, headline accent, focus visible  |
-| `--accent-deep` | `#7B3AE0`              | Viola scuro — hover state CTA                                        |
-| `--gold`        | `#D4A958`              | Oro antico — solo hairlines, dettagli underline, separator. Mai testo |
-| `--gold-deep`   | `#B68A3A`              | Oro scuro — hover su elementi gold                                   |
+| Token           | HEX                     | Ruolo                                                                 |
+| --------------- | ----------------------- | --------------------------------------------------------------------- |
+| `--paper`       | `#0A0A0C`               | Sfondo principale, "nero studio" (mai `#000`)                         |
+| `--paper-2`     | `#14141A`               | Sfondo secondario, leggero shift viola, sezioni alternate             |
+| `--ink`         | `#F4F2EE`               | Testo principale, off-white tenue (mai `#fff`)                        |
+| `--ink-70`      | `rgba(244,242,238,.72)` | Testo secondario, body lungo                                          |
+| `--ink-55`      | `rgba(244,242,238,.55)` | Caption, meta, label discrete                                         |
+| `--ink-30`      | `rgba(244,242,238,.20)` | Bordi soft, divisori                                                  |
+| `--ink-15`      | `rgba(244,242,238,.10)` | Bordi extra-soft, hairlines                                           |
+| `--accent`      | `#9C5BFF`               | Viola elettrico — CTA, link in-text, headline accent, focus visible   |
+| `--accent-deep` | `#7B3AE0`               | Viola scuro — hover state CTA                                         |
+| `--gold`        | `#D4A958`               | Oro antico — solo hairlines, dettagli underline, separator. Mai testo |
+| `--gold-deep`   | `#B68A3A`               | Oro scuro — hover su elementi gold                                    |
 
 ### Light (toggle)
 
-| Token           | HEX                  | Ruolo                                                                  |
-| --------------- | -------------------- | ---------------------------------------------------------------------- |
-| `--paper`       | `#F4F2EE`            | Sfondo, off-white greige (NON cream, NON `#fff`)                       |
-| `--paper-2`     | `#EAE7E1`            | Sfondo secondario                                                      |
-| `--ink`         | `#0F0E12`            | Testo principale, nero quasi-puro con micro-shift viola (mai `#000`)   |
-| `--ink-70`      | `rgba(15,14,18,.72)` | Testo secondario                                                       |
-| `--ink-55`      | `rgba(15,14,18,.55)` | Caption, meta                                                          |
-| `--ink-30`      | `rgba(15,14,18,.22)` | Bordi soft                                                             |
-| `--ink-15`      | `rgba(15,14,18,.12)` | Bordi extra-soft                                                       |
-| `--accent`      | `#6D2DD6`            | Viola elettrico — CTA, link, focus                                     |
-| `--accent-deep` | `#4F1FAF`            | Viola scuro — hover/focus                                              |
-| `--gold`        | `#B0823A`            | Oro antico opaco — solo hairlines/dettagli. Mai testo body            |
-| `--gold-deep`   | `#8C6629`            | Oro scuro — hover                                                      |
+| Token           | HEX                  | Ruolo                                                                |
+| --------------- | -------------------- | -------------------------------------------------------------------- |
+| `--paper`       | `#F4F2EE`            | Sfondo, off-white greige (NON cream, NON `#fff`)                     |
+| `--paper-2`     | `#EAE7E1`            | Sfondo secondario                                                    |
+| `--ink`         | `#0F0E12`            | Testo principale, nero quasi-puro con micro-shift viola (mai `#000`) |
+| `--ink-70`      | `rgba(15,14,18,.72)` | Testo secondario                                                     |
+| `--ink-55`      | `rgba(15,14,18,.55)` | Caption, meta                                                        |
+| `--ink-30`      | `rgba(15,14,18,.22)` | Bordi soft                                                           |
+| `--ink-15`      | `rgba(15,14,18,.12)` | Bordi extra-soft                                                     |
+| `--accent`      | `#6D2DD6`            | Viola elettrico — CTA, link, focus                                   |
+| `--accent-deep` | `#4F1FAF`            | Viola scuro — hover/focus                                            |
+| `--gold`        | `#B0823A`            | Oro antico opaco — solo hairlines/dettagli. Mai testo body           |
+| `--gold-deep`   | `#8C6629`            | Oro scuro — hover                                                    |
 
 ### Regole d'uso
 
@@ -66,6 +66,7 @@ Tutti i token sono custom properties in `app/globals.css`. Tailwind v4 `@theme i
 ### Contrast check (WCAG 2.2 AA, body 4.5:1, UI 3:1)
 
 Dark:
+
 - `--ink` su `--paper` (#F4F2EE su #0A0A0C): ratio ~17:1 ✅ AAA
 - `--ink-70` su `--paper`: ~12:1 ✅
 - `--accent` su `--paper` (#9C5BFF su #0A0A0C): ~6.8:1 ✅ body OK
@@ -73,6 +74,7 @@ Dark:
 - `--gold` su `--paper` (#D4A958 su #0A0A0C): ~10:1 ✅ ma SOLO decorazione (regola di brand)
 
 Light:
+
 - `--ink` su `--paper` (#0F0E12 su #F4F2EE): ratio ~18:1 ✅ AAA
 - `--ink-70` su `--paper`: ~13:1 ✅
 - `--accent` su `--paper` (#6D2DD6 su #F4F2EE): ~5.7:1 ✅ body OK
@@ -82,27 +84,32 @@ Light:
 
 ## Typography
 
-Due famiglie via `next/font/google`, self-hosted post-build. **Single-family voice**: Bricolage porta sia display che body — l'unicità è la voce.
+Due famiglie via `next/font/google`, self-hosted post-build. Bricolage porta display e body; IBM Plex Mono porta solo le etichette. La divisione è per _ruolo del testo_, non per livello gerarchico: prosa contro tag.
 
-| Token            | Family                                            | Uso                                                        |
-| ---------------- | ------------------------------------------------- | ---------------------------------------------------------- |
-| `--font-display` | **Bricolage Grotesque** (400/500/700/800)         | H1, H2, H3, hero, display text                             |
-| `--font-body`    | **Bricolage Grotesque** (stessa famiglia, 400)    | Body, paragrafi, label form                                |
+| Token            | Family                                         | Uso                                                  |
+| ---------------- | ---------------------------------------------- | ---------------------------------------------------- |
+| `--font-display` | **Bricolage Grotesque** (400/500/600/700/800)  | H1, H2, H3, hero, display text                       |
+| `--font-body`    | **Bricolage Grotesque** (stessa famiglia, 400) | Body, paragrafi                                      |
+| `--font-mono`    | **IBM Plex Mono** (400/500)                    | Eyebrow, meta, label form, numerali di fase, caption |
 
 Il token `--font-body` resta semantico (un giorno potremmo divergere) ma oggi resolve allo stesso `--font-bricolage`.
+
+**Il mono è la voce delle etichette (redesign v2).** La regola precedente era single-family: Bricolage per tutto. In pratica rendeva label e body indistinguibili, perché nulla separava "CHI SONO" da un paragrafo se non la dimensione. IBM Plex Mono entra solo dove il testo è un _tag_ e mai dove è prosa: eyebrow di sezione, meta della timeline, label dei campi, ratio caps, disclosure. Vive in un'unica classe, `.mono-cap` in `app/globals.css` (10px, tracking .18em, uppercase), così non può sfilacciarsi in venti varianti.
+
+Se stai per usare il mono per una frase, è sbagliato: quella è prosa e va in Bricolage.
 
 **Niente Caveat / niente font handwritten.** La mano disegnata era coerente con la palette warm precedente; nel registro atelier-sportivo è troppo amichevole. I "dettagli marcati" sono ora linee oro precise (vedi `<Hairline />` sotto), non grafia umana.
 
 **Scale typographic** (mobile → desktop, fluid via `clamp()`):
 
-| Step       | Size mobile → desktop                    | Line-height | Use                |
-| ---------- | ---------------------------------------- | ----------- | ------------------ |
-| Display XL | `clamp(2.5rem, 6vw + 1rem, 5.5rem)`      | 0.95        | Hero H1            |
-| Display L  | `clamp(2rem, 4vw + 0.8rem, 3.5rem)`      | 1.05        | Section H2         |
-| Display M  | `clamp(1.5rem, 2vw + 0.7rem, 2.25rem)`   | 1.15        | Sub-section H3     |
-| Body L     | `clamp(1.125rem, 0.5vw + 1rem, 1.25rem)` | 1.6         | Lead paragraph     |
-| Body       | `1rem` (mobile ≥16px lock)               | 1.65        | Default            |
-| Caption    | `0.875rem`                               | 1.5         | Meta, footer       |
+| Step       | Size mobile → desktop                    | Line-height | Use            |
+| ---------- | ---------------------------------------- | ----------- | -------------- |
+| Display XL | `clamp(2.5rem, 6vw + 1rem, 5.5rem)`      | 0.95        | Hero H1        |
+| Display L  | `clamp(2rem, 4vw + 0.8rem, 3.5rem)`      | 1.05        | Section H2     |
+| Display M  | `clamp(1.5rem, 2vw + 0.7rem, 2.25rem)`   | 1.15        | Sub-section H3 |
+| Body L     | `clamp(1.125rem, 0.5vw + 1rem, 1.25rem)` | 1.6         | Lead paragraph |
+| Body       | `1rem` (mobile ≥16px lock)               | 1.65        | Default        |
+| Caption    | `0.875rem`                               | 1.5         | Meta, footer   |
 
 **Hierarchy contrast**: ratio ≥1.25 tra step adiacenti. Peso variation 400→500→700→800 per Bricolage rinforza la gerarchia all'interno della stessa famiglia.
 
@@ -151,7 +158,22 @@ Il token `--font-body` resta semantico (un giorno potremmo divergere) ma oggi re
 
 ### shadcn/ui (sotto `components/ui/`)
 
-- `button` — variants: `default` (viola filled), `outline` (border `--gold` 1px, hover background `--paper-2`), `ghost` (testo + underline gold at hover). Border radius `rounded-sm` (= 2px) per look spigoloso.
+- `button` — variants: `default` (viola filled), `outline` (border `--gold` 1px, hover background `--paper-2`), `ghost` (testo + underline gold at hover). Border radius: token `--radius-field` (8px).
+
+### Raggio dei controlli
+
+Un solo token, `--radius-field: 8px`, per bottoni, input, select e textarea. Vale ovunque: se un controllo ha un raggio diverso, è un errore.
+
+Il valore precedente era `rounded-sm` descritto qui come "2px, look spigoloso". Due problemi: in Tailwind v4 `rounded-sm` vale **4px** (era 2px in v3), quindi i bottoni erano a 4px mentre gli input, stilizzati inline, stavano a 2px; e lo spigolo vivo su fondo quasi nero rendeva i campi duri, in tensione con la voce calda che PRODUCT.md chiede.
+
+8px è il punto scelto: toglie la durezza senza avvicinarsi alla pill. **La pill resta riservata al dock in nav**, che è l'unico elemento completamente tondo della pagina. Se anche i controlli diventassero tondi il dock smetterebbe di essere riconoscibile, e viola più pill è la corsia app-wellness che PRODUCT.md vieta.
+
+### Superficie dei campi
+
+Input, select e textarea sono **superfici piene** (`--paper-2`) con hairline `--ink-15`, non box trasparenti con bordo. Su fondo quasi nero un rettangolo vuoto contornato legge come il wireframe di un campo; pieno legge come qualcosa in cui si scrive, e su telefono l'area toccabile si vede invece di essere dedotta.
+
+Lo stile vive in un unico posto, la classe `.field-control` in `app/globals.css`, usata sia dai primitive `components/ui/` sia dal form contatti, così non possono più divergere.
+
 - `dialog`
 - `form`, `input`, `textarea`, `label`
 - `select` (Radix-based, custom-styled)
@@ -161,12 +183,28 @@ Il token `--font-body` resta semantico (un giorno potremmo divergere) ma oggi re
 
 ### Sezioni (sotto `components/sections/`)
 
-- `<Hero />` — client, entrance choreography
-- `<About />` — server
-- `<Services />` — server
-- `<CaseStories />` — server (carousel removed)
+- `<Hero />` — server, full-bleed su foto, entrance in CSS
+- `<Marquee />` — server, fascia keyword in loop fra hero e About
+- `<About />` — server, ritratto sticky + rail credenziali
+- `<Process />` — client, la timeline in quattro fasi (vedi sotto)
+- `<Services />` — server, sticky stack in CSS pura
+- `<CaseStories />` — client, rail orizzontale drag-to-pan
 - `<Contact />` — client, form `react-hook-form` + zod
-- `<Footer />` — server
+- `<Footer />` — server, wordmark al vivo
+
+### `<Process />` — la sezione che giustifica il redesign
+
+PRODUCT.md posiziona Alessia sulla **presenza**: c'è in ogni fase, non consegna una scheda e sparisce. Quattro card in griglia lo _dichiarano_; un binario che si percorre, con il suo ritratto che scende insieme al fill e una card che continua a nominare cosa sta facendo adesso, lo _dimostra_. Il layout è l'argomento, ed è la ragione per cui questa sezione esiste.
+
+Divisione del lavoro, che va mantenuta: il fill del binario e l'avatar sono scritti in modo imperativo a ogni frame (solo `transform` e `height`); la fase attiva è state React e cambia al massimo tre volte in tutta la sezione. Non spostare la fase attiva dentro il frame loop.
+
+### Superficie scura indipendente dal tema
+
+`[data-surface='dark']` ridichiara i token dark su una sezione qualsiasi. Serve all'apertura (hero + marquee): la foto è uno still viola su quasi nero, e sotto tema light finirebbe slavata oppure con testo scuro su una lastra scura. Tenuta scura, l'apertura legge come una lastra editoriale a tutta pagina e il tema light mantiene i suoi rapporti di contrasto.
+
+### Token derivati
+
+`--paper-3` (superficie rialzata, campi form), `--ink-08` (inchiostro dei watermark) e `--accent-15` (wash di hover sulle CTA outline) sono definiti una volta sola come `color-mix` sui token base, così tutti e cinque i temi li ereditano senza cinque blocchi in più.
 
 ### Nav (floating dock)
 
@@ -211,12 +249,25 @@ CSS native `html { scroll-behavior: smooth }` con `scroll-padding-top: 96px` per
 
 ### Cosa NON facciamo
 
-- Niente parallax tilt
+- Niente parallax tilt (il parallax verticale su foto e watermark è ammesso: vedi sotto)
 - Niente lettera-per-lettera sui titoli
 - Niente bounce / spring / elastic
-- Niente animazione su `width`, `height`, `top`, `left`, `padding`, `margin` (solo `transform`, `opacity`, `clip-path`)
-- Niente continuous loop animations
-- **Niente glow viola** (è la trappola tech-bro/Twitch)
+- Niente animazione su `width`, `height`, `top`, `left`, `padding`, `margin` (solo `transform`, `opacity`, `clip-path`, e `height` sul solo fill della timeline)
+- Niente cursore custom, in nessuna forma
+- Niente magnetismo sulle CTA: sposta il bersaglio via da dove l'utente ha mirato
+- Niente reveal sul form contatti. È l'unica cosa che la pagina deve far succedere e non può passare il primo secondo a `opacity: 0` in attesa di un IntersectionObserver.
+
+### Un solo rAF
+
+Progress bar, parallax e timeline girano tutti su `subscribeToScrollFrame` (`lib/scroll-frame.ts`): un loop, un set di subscriber, si ferma da solo quando l'ultimo se ne va. Loop separati significherebbero letture di layout in competizione ogni frame e altrettante occasioni di lasciarne uno acceso allo smontaggio.
+
+### Lo stack dei servizi non sfuma
+
+Le card dei servizi sono fogli opachi che si coprono a vicenda, senza fade, senza blur e senza JavaScript. Il mock sfumava e sfocava la card uscente, ma tutte le card dello stack stanno allo stesso offset: rendere translucida quella sotto significa **vederci attraverso**, e ci si ritrova il testo di due servizi sovrapposti. L'occlusione È l'effetto; la hairline in cima è ciò che la rende leggibile.
+
+Le card hanno una `min-height` comune. Il testo dei servizi ha lunghezze diverse, e una card più corta che si ferma sopra una più lunga lascerebbe scoperta una striscia del servizio precedente.
+
+Gli easing esponenziali vanno agganciati a una soglia (l'avatar della timeline si assesta sotto il mezzo pixel): un ease che insegue soltanto non arriva mai, e continua a scrivere transform per sempre su una pagina ferma.
 
 ### Reduced motion
 
@@ -272,11 +323,23 @@ Cross-checked con AI-slop bans del manifesto impeccable + decisioni del progetto
 - ❌ Body/heading in `#000` o `#fff` puro
 - ❌ Icone flat colorate
 - ❌ Gradient di sfondo che imitano paper
-- ❌ Animazioni decorative gratuite
-- ❌ **Glow viola dietro i bottoni o sotto la headline** (Twitch-trap)
 - ❌ **Oro come riempimento** (MLM-trap)
 - ❌ **Font handwritten / calligraphic** (mistico-trap)
-- ❌ **Gradient viola → rosa o viola → oro** (acid lane / spiritual-femminile)
+- ❌ **Gradient viola → rosa** (acid lane / spiritual-femminile)
+- ❌ **Cursore custom** (`cursor: none` + dot/ring/torch). Distrugge l'affordance del puntatore per chi ha ipovisione o difficoltà motorie, e il "torch" è un glow viola di 520px agganciato al mouse. Fuori per accessibilità, non per gusto: questa resta una regola dura.
+- ❌ **Opacity di gruppo che porta il testo sotto contrasto AA.** La timeline dimmava gli step inattivi a `opacity: .32`, che si moltiplica su ogni figlio: il body arrivava a 1.64:1 e il numerale a 1.52:1, e axe fa fallire la pagina. Lo stato si esprime con colore, dot e ring; il testo a schermo resta leggibile. `--ink-55` è il pavimento (~5.2:1 su paper-2).
+
+### Divieti rilasciati nel redesign v2
+
+Questi erano nella lista e sono stati tolti con decisione esplicita. Sono annotati qui perché la ragione per cui c'erano resta valida altrove.
+
+- ✅ **Glow viola** — ammesso come _alone di stato_, non come atmosfera: ring 5px sul dot della fase attiva, ombra sotto l'avatar che scorre, `box-shadow` sul fill della timeline. Il divieto era scritto contro il glow sotto la headline e dietro le CTA (Twitch-trap), e lì vale ancora.
+- ✅ **Gradient viola → oro** — ammesso su due elementi, entrambi larghi 2px e senza testo sopra: la progress bar e il fill della timeline. Il divieto era scritto contro gradient su titoli e riempimenti di CTA, e lì vale ancora.
+- ✅ **Animazioni in loop continuo** — ammesse per marquee, `bob` dello scroll hint e `halo` dell'avatar. Obbligo che le accompagna: sotto `prefers-reduced-motion` si spengono con `animation: none`, mai con durata collassata (una durata di 0.01ms su un loop infinito lo riavvia centinaia di volte al secondo, che è peggio dell'animazione stessa). Il marquee si mette in pausa all'hover, perché una parola in movimento non è una parola leggibile.
+
+### Raggio: la pill non è più solo del dock
+
+La regola precedente riservava la pill al dock in nav. Nel redesign v2 le due CTA primarie (hero e submit del form) sono pill con hairline accent: sono lo stesso oggetto in due punti della pagina e devono somigliarsi. Campi e controlli restano a `--radius-field` (8px).
 
 ---
 

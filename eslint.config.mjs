@@ -12,6 +12,13 @@ const eslintConfig = defineConfig([
     'out/**',
     'build/**',
     'next-env.d.ts',
+    // Build output. Not covered by the defaults, and linting a bundled worker
+    // buries the real findings under twenty thousand warnings about minified
+    // code we did not write.
+    '.open-next/**',
+    '.preview/**',
+    'playwright-report/**',
+    'test-results/**',
   ]),
 ]);
 

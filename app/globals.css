@@ -15,6 +15,14 @@
 
   --font-display: var(--font-bricolage);
   --font-body: var(--font-bricolage);
+  --font-mono: var(--font-plex-mono);
+
+  /* One radius for every interactive control: buttons, inputs, select, textarea.
+     Tailwind v4's `rounded-sm` is 4px (it was 2px in v3), so relying on the
+     utility had quietly left buttons at 4px and inputs at 2px. 8px is the
+     softened value: enough to drop the wireframe feel, far enough from a pill
+     that the nav dock stays the only fully round element on the page. */
+  --radius-field: 8px;
 }
 
 /* Default = dark (atelier sportivo, owner-requested voice). */
@@ -95,6 +103,45 @@
   --gold-deep: #7a5a30;
 }
 
+/* Derived tokens. Declared once and expressed as color-mix over the base
+   tokens, so all five themes get them without five more hand-tuned blocks.
+   Custom properties resolve on the element that declares them, and every theme
+   block above also lives on <html>, so these pick up the winning theme.
+
+   --paper-3  raised surface: form fields against a paper-2 section
+   --ink-08   watermark ink: the oversized outlined type behind contact/footer
+   --accent-15 accent wash: hover fill on outline CTAs, active step halo */
+:root {
+  --paper-3: color-mix(in oklab, var(--paper-2) 88%, var(--ink));
+  --ink-08: color-mix(in oklab, transparent 94%, var(--ink));
+  --accent-15: color-mix(in oklab, var(--accent) 15%, transparent);
+}
+
+/* Opt-in dark surface, independent of the active theme.
+   The hero photograph is an intrinsically dark, purple-lit still; inverting it
+   under the light theme would mean either a washed-out image or dark text on a
+   dark plate. Instead the opening band (hero + keyword marquee) stays dark in
+   every theme and reads as a full-bleed editorial plate, which is also how the
+   light theme keeps its contrast guarantees. */
+[data-surface='dark'] {
+  --paper: #0a0a0c;
+  --paper-2: #14141a;
+  --ink: #f4f2ee;
+  --ink-70: rgba(244, 242, 238, 0.72);
+  --ink-55: rgba(244, 242, 238, 0.55);
+  --ink-30: rgba(244, 242, 238, 0.2);
+  --ink-15: rgba(244, 242, 238, 0.1);
+  --accent: #9c5bff;
+  --accent-deep: #7b3ae0;
+  --gold: #d4a958;
+  --gold-deep: #b68a3a;
+  --paper-3: color-mix(in oklab, var(--paper-2) 88%, var(--ink));
+  --ink-08: color-mix(in oklab, transparent 94%, var(--ink));
+  --accent-15: color-mix(in oklab, var(--accent) 15%, transparent);
+  background: var(--paper);
+  color: var(--ink);
+}
+
 *,
 *::before,
 *::after {
@@ -109,7 +156,45 @@ body {
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 96px;
+  /* Clears the floating dock plus its shadow. Kept in step with the sticky
+     offset of the service stack (`STICK_TOP` in services.tsx). */
+  scroll-padding-top: 120px;
+
+  /* The bar is the page's own ink on the page's own paper, so it re-tints with
+     the theme instead of staying a slab of browser chrome. Track left
+     transparent: it falls through to `--paper` and reads as margin.
+
+     Standard properties only, same pair `.drag-rail` already uses. Where they
+     are unsupported the browser draws its default bar, which is exactly
+     today's appearance, so it degrades to no worse. */
+  scrollbar-width: thin;
+  scrollbar-color: var(--ink-30) transparent;
+}
+
+/* The hero pins itself dark under every theme (`[data-surface='dark']` above),
+   but the scrollbar gutter is canvas, not content: it keeps the theme's paper,
+   so a light theme drew a pale strip down the side of a near-black plate, and
+   overscroll above the fold exposed the same pale band.
+
+   The gutter takes the canvas *background-color* and nothing else — a
+   background-image is never painted there, so a gradient keyed to `100svh`
+   cannot do this job and the switch has to be a flat colour.
+
+   `:has(#top)` scopes it to the page that opens on a hero; privacy and the
+   other routes start on paper and keep their own canvas. `data-past-hero` is
+   set by the nav's scroll listener once the hero gives up the viewport — the
+   colours stay here so the listener never has to know one.
+
+   `#0a0a0c` is the dark surface of globals.css:127 — keep the two in step. */
+html:has(#top) {
+  background-color: #0a0a0c;
+}
+/* `:has(#top)` carries the id's specificity, so the override has to repeat it
+   to win rather than read as a plain attribute selector. Attribute first:
+   written as `:has(#top)[data-past-hero]` the rule is dropped outright by the
+   stylesheet pipeline instead of failing loudly. */
+html[data-past-hero]:has(#top) {
+  background-color: var(--paper);
 }
 
 body {
@@ -220,6 +305,49 @@ body {
   animation: hero-rise 0.7s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1)) 0.6s backwards;
 }
 
+/* Form controls. Single source of truth: the shadcn primitives and the contact
+   form both use this class, so the two cannot drift apart again.
+
+   Filled surface rather than a transparent box with a 1px outline. On a near
+   black page an outlined empty rectangle reads as a wireframe of a field; a
+   filled one reads as something you type into, and the tap target is legible
+   at a glance on a phone. The hairline is kept at ink-15 for definition only.
+
+   The focus ring stays a hard 2px accent outline with no blur, per DESIGN.md:
+   a soft glow is the trap this palette is most exposed to. */
+.field-control {
+  font-family: var(--font-body);
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 14px;
+  font-size: 16px; /* >=16px so iOS does not zoom on focus */
+  color: var(--ink);
+  background: var(--paper-2);
+  border: 1px solid var(--ink-15);
+  border-radius: var(--radius-field);
+  transition:
+    border-color 0.15s cubic-bezier(0.25, 1, 0.5, 1),
+    background-color 0.15s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.field-control::placeholder {
+  color: var(--ink-55);
+}
+@media (hover: hover) {
+  .field-control:hover:not(:disabled) {
+    border-color: var(--ink-30);
+  }
+}
+.field-control:focus-visible,
+.field-control:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-color: transparent;
+}
+.field-control:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 /* Nav anchor hover — gated behind hover-capable pointers so the colour
    doesn't stick after a tap on touch devices. */
 .nav-anchor {
@@ -271,6 +399,265 @@ body {
   text-underline-offset: 3px;
 }
 
+/* ---------------------------------------------------------------------------
+   Redesign v2 — motion primitives and the mono meta voice.
+
+   Every reveal state here follows one rule: the *resting* markup is the visible
+   one. The server renders `data-rev` with no value, which matches no hidden
+   rule; the client arms it to "off" only once JS is running, then flips it to
+   "in". Without a bundle, the page is simply fully visible. An earlier revision
+   of this site serialised opacity:0 into the SSR output and blanked everything
+   below the hero until hydration, contact form included.
+--------------------------------------------------------------------------- */
+
+:root {
+  --ease-exp: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* The mono meta voice: eyebrows, field labels, ratio caps, timeline meta.
+   Tags, never prose. Prose stays Bricolage. */
+.mono-cap {
+  /* The next/font variable first, then the theme token. `--font-mono` is a
+     built-in Tailwind theme variable and the `@theme inline` mapping only
+     shadows it; naming the font's own variable up front means the label voice
+     does not depend on winning that shadowing contest. */
+  font-family: var(--font-plex-mono), var(--font-mono), ui-monospace, monospace;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+[data-rev='off'] {
+  opacity: 0;
+  transform: translateY(30px);
+}
+[data-rev='in'] {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 1s var(--ease-exp),
+    transform 1s var(--ease-exp);
+}
+
+/* Outlined-to-filled headline. The stroke is the resting state only while the
+   element is armed; unarmed markup renders as plain solid type. */
+[data-fill='off'] {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--ink-30);
+}
+[data-fill='in'] {
+  color: var(--ink);
+  -webkit-text-stroke-color: transparent;
+  transition:
+    color 1.2s var(--ease-exp) 0.12s,
+    -webkit-text-stroke-color 1.2s var(--ease-exp);
+}
+
+[data-grow='off'] {
+  transform: scaleX(0);
+  transform-origin: left;
+}
+[data-grow='in'] {
+  transform: scaleX(1);
+  transform-origin: left;
+  transition: transform 1.3s var(--ease-exp);
+}
+
+/* Hero line reveal. CSS animation rather than an observer so the headline is
+   painted by the server and never waits on hydration. `--d` staggers the lines.
+
+   The type travels, and the mask is a consequence of the travel rather than a
+   substitute for it: each line sits in its own `overflow: hidden` wrapper and
+   slides up into it. The previous version animated `clip-path` alone, so the
+   glyphs never moved and the headline read as growing out of the floor instead
+   of arriving. 110% rather than 100% because `leading-[0.82]` makes the line box
+   shorter than the glyphs it holds, and at 100% the caps stayed on screen. */
+@keyframes line-rise {
+  from {
+    transform: translateY(110%);
+  }
+  to {
+    transform: none;
+  }
+}
+.line-mask {
+  animation: line-rise 0.95s var(--ease-exp) var(--d, 0s) backwards;
+}
+
+@keyframes marq {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marq 74s linear infinite;
+}
+/* A moving word is a word you cannot read. Pausing on hover is the minimum
+   the band owes anyone who wants to actually parse it. */
+@media (hover: hover) {
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+}
+/* Set by <PushedTrack> once its frame callback is live. The keyframes stay the
+   resting state, so the band moves from the first paint and only hands the loop
+   over when there is JS to run it. */
+.marquee-track[data-pushed] {
+  animation: none;
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(7px);
+  }
+}
+.bob {
+  animation: bob 2.6s ease-in-out infinite;
+}
+
+@keyframes halo {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.22);
+    opacity: 0.12;
+  }
+}
+.halo {
+  animation: halo 2.8s ease-in-out infinite;
+}
+
+/* Timeline. The fill and the avatar are driven from a single scroll frame in
+   <Process />; only the easing of the discrete state changes lives here. */
+[data-step] {
+  transition: opacity 0.6s var(--ease-exp);
+}
+[data-step-dot] {
+  transition:
+    background 0.5s var(--ease-exp),
+    box-shadow 0.5s var(--ease-exp),
+    transform 0.5s var(--ease-exp);
+}
+[data-step-title],
+[data-step-body] {
+  transition: color 0.5s var(--ease-exp);
+}
+
+/* Horizontal drag rail (case stories). Native scroll underneath, so keyboard
+   and trackpad still work; the pointer handler only adds grab-to-pan. */
+.drag-rail {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+}
+.drag-rail::-webkit-scrollbar {
+  display: none;
+}
+.drag-rail > * > * {
+  scroll-snap-align: start;
+}
+
+/* Case stories, pinned (desktop only, set by the section once it has measured
+   the viewport). The wrapper's height is written from JS because it is the
+   rail's own overflow plus one viewport, and only the client knows either. */
+[data-pin='on'] .stories-sticky {
+  position: sticky;
+  top: 0;
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+}
+/* Native scrolling is handed over to the pin: leaving both live would let a
+   trackpad pan the rail and the page fight each other over the same gesture. */
+[data-pin='on'] .drag-rail {
+  overflow-x: hidden;
+  scroll-snap-type: none;
+}
+[data-pin='on'] .drag-rail > ul {
+  will-change: transform;
+}
+/* Wider cards, but only pinned. At the drag-rail width three of them barely
+   overflow a desktop viewport, so the pan had about 200px to travel and read as
+   a nudge rather than a move. Widened, the rail carries roughly a card and a
+   half at a time and the section has something to actually pan through. */
+[data-pin='on'] .drag-rail li {
+  width: min(52vw, 640px);
+}
+
+/* Pointer as a tool. The element only exists on a fine pointer, so these rules
+   never apply on a phone. `cursor: none` is scoped to the attribute the
+   component sets on mount, which means the system cursor is back the instant
+   the bundle fails, and it is given back outright inside the contact form,
+   where a caret and a select arrow are information. */
+/* `!important` and a universal selector, on purpose. Several controls set
+   `cursor: pointer` in an inline style, which no stylesheet rule can outrank,
+   and the drag rail writes `grabbing` from JS. Half a page of hidden cursor and
+   half a page of arrow is worse than either, so this sweeps the lot. It is
+   scoped to an attribute that only exists while the component is mounted, so
+   nothing here applies on a phone or when the bundle fails. */
+body[data-pointer-tool='on'],
+body[data-pointer-tool='on'] * {
+  cursor: none !important;
+}
+/* The exception is the fields, not the section around them. A caret and a
+   select arrow are information; the heading, the lead, the practical block and
+   the submit button are not, and switching the disc off for all of them meant
+   it vanished for a screen's worth of page, which reads as a fault rather than
+   as a decision. */
+body[data-pointer-tool='on'] input,
+body[data-pointer-tool='on'] textarea,
+body[data-pointer-tool='on'] [contenteditable] {
+  cursor: text !important;
+}
+body[data-pointer-tool='on'] select,
+body[data-pointer-tool='on'] [role='combobox'] {
+  cursor: default !important;
+}
+
+.pointer-tool {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 101;
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  border-radius: 999px;
+  background: var(--accent);
+  pointer-events: none;
+  opacity: 0;
+  display: grid;
+  place-items: center;
+  transition: opacity 0.25s var(--ease-exp);
+  will-change: transform;
+}
+.pointer-tool span {
+  color: var(--paper);
+  /* Tighter than the .mono-cap default: the label has to sit inside a disc, and
+     at 0.18em "Contattami" runs past the edge of it. */
+  letter-spacing: 0.12em;
+  opacity: 0;
+  white-space: nowrap;
+  transition: opacity 0.18s var(--ease-exp);
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -288,5 +675,26 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+  /* Looping decoration is switched off outright rather than sped up. Collapsing
+     an infinite animation to 0.01ms restarts it hundreds of times a second,
+     which is worse for a motion-sensitive visitor than the original loop. */
+  .marquee-track,
+  .bob,
+  .halo {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  /* Reveal states resolve to their finished form. Colour is only forced back on
+     the outline-to-fill headline; the other reveals carry their own colours. */
+  [data-rev],
+  [data-grow] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  [data-fill] {
+    color: var(--ink) !important;
+    -webkit-text-stroke-color: transparent !important;
   }
 }

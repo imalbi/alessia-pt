@@ -23,7 +23,16 @@ export default defineConfig({
       name: 'mobile',
       // iPhone 14 viewport/UA but rendered via chromium because installing
       // webkit on Arch/CachyOS requires apt-only system deps.
-      use: { ...devices['iPhone 14'], defaultBrowserType: 'chromium' },
+      //
+      // `isMobile` is forced off. It is part of the iPhone descriptor and is a
+      // WebKit-oriented flag; on Chromium it switches on mobile viewport
+      // emulation, and Playwright's click coordinates then stop agreeing with
+      // the compositor's hit testing. The symptom is a click on an element in
+      // one section being reported as intercepted by an element a thousand
+      // pixels away, while `document.elementFromPoint` at the same coordinates
+      // returns the correct element. The viewport and touch emulation are what
+      // these tests actually need, and both survive.
+      use: { ...devices['iPhone 14'], defaultBrowserType: 'chromium', isMobile: false },
     },
   ],
 });

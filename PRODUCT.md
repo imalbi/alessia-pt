@@ -51,7 +51,7 @@ La landing è il primo punto di contatto digitale con Alessia. Deve fare **una s
 
 ## Anti-references
 
-Esplicitamente da NON sembrare. La lane nero/viola/oro è saturata in 2026 — la maggior parte dei siti che la occupano fanno schifo e dobbiamo evitare *attivamente* le quattro trappole AI-slop:
+Esplicitamente da NON sembrare. La lane nero/viola/oro è saturata in 2026 — la maggior parte dei siti che la occupano fanno schifo e dobbiamo evitare _attivamente_ le quattro trappole AI-slop:
 
 - **Mistico/spirituale-femminile**: cristalli, frasi tipo "energia divina femminile", luna/sole/zodiaco glifo, font calligrafici, gradient viola-rosa-oro come "aura". Posizionamento sbagliato: Alessia è scienze motorie, non una shaman.
 - **Beauty MLM (Younique, MaryKay vibe)**: viola vivace + oro lucido glitter + foto donna primo piano patinata + copy tipo "diventa la versione migliore di te". Tipica trappola del lusso sintetico.

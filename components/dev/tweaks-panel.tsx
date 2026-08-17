@@ -127,9 +127,7 @@ export function TweaksPanel() {
               }}
             >
               <div style={{ fontWeight: 600 }}>System</div>
-              <div style={{ opacity: 0.55, fontSize: 11, marginTop: 2 }}>
-                segui preferenza OS
-              </div>
+              <div style={{ opacity: 0.55, fontSize: 11, marginTop: 2 }}>segui preferenza OS</div>
             </button>
           </div>
         </div>
