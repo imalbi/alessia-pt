@@ -14,7 +14,7 @@ export async function sendEmail(input: ContactInput): Promise<void> {
   const { error } = await resend.emails.send({
     from,
     to,
-    replyTo: input.email,
+    replyTo: input.email || undefined,
     subject,
     react: ContactEmail({ data: input }),
   });

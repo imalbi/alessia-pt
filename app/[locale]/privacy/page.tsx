@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 import { marked } from 'marked';
-import { readFileSync } from 'node:fs';
-import path from 'node:path';
 import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
+import { privacyMarkdown } from '@/i18n/privacy/content';
 import { Nav } from '@/components/nav';
 import { Footer } from '@/components/sections/footer';
 
@@ -12,21 +11,14 @@ import { Footer } from '@/components/sections/footer';
  * Without this the page inherited the home page's title and description, so the
  * two routes went into the index announcing themselves as the same thing.
  */
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
-  const { locale } = await params;
-  const english = locale === 'en';
+export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: english ? 'Privacy policy' : 'Informativa privacy',
-    description: english
-      ? 'How the data sent through the contact form is handled, and for how long it is kept.'
-      : 'Come vengono trattati i dati inviati dal modulo di contatto, e per quanto tempo restano.',
+    title: 'Informativa privacy',
+    description:
+      'Come vengono trattati i dati inviati dal modulo di contatto e per quanto tempo restano.',
     alternates: {
-      canonical: english ? '/en/privacy' : '/privacy',
-      languages: { it: '/privacy', en: '/en/privacy', 'x-default': '/privacy' },
+      canonical: '/privacy',
+      languages: { it: '/privacy', 'x-default': '/privacy' },
     },
   };
 }
@@ -38,9 +30,7 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
   }
   setRequestLocale(locale);
 
-  const filePath = path.join(process.cwd(), 'i18n/privacy', `${locale}.md`);
-  const md = readFileSync(filePath, 'utf-8');
-  const html = await marked.parse(md);
+  const html = await marked.parse(privacyMarkdown());
 
   return (
     <>

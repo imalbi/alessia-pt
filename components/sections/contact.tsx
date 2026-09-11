@@ -5,9 +5,16 @@ import { useForm, Controller, type FieldPath, type FieldErrors } from 'react-hoo
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
+import { AlertCircle } from 'lucide-react';
 import { contactSchema, type ContactInput, GOALS } from '@/lib/validation/contact';
 import { Link } from '@/i18n/routing';
-import { STUDIO_LOCALITY, INSTAGRAM_HANDLE, INSTAGRAM_URL } from '@/i18n/metadata';
+import {
+  STUDIO_NAME,
+  STUDIO_STREET_ADDRESS,
+  STUDIO_LOCALITY,
+  INSTAGRAM_HANDLE,
+  INSTAGRAM_URL,
+} from '@/i18n/metadata';
 import { InstagramIcon } from '@/components/icons/instagram';
 import {
   Select,
@@ -38,12 +45,18 @@ export function Contact() {
   const tp = useTranslations('Pointer');
   const [submitting, setSubmitting] = useState(false);
 
-  // The city is a constant, not an env var: it is also in the structured data
+  // The location is a constant, not an env var: it is also in the structured data
   // and in the page title, and those three have to say the same word.
-  const studioCity = STUDIO_LOCALITY;
+  const studioName = STUDIO_NAME;
+  const studioAddress = `${STUDIO_STREET_ADDRESS}, ${STUDIO_LOCALITY}`;
   const modes = process.env.NEXT_PUBLIC_STUDIO_MODES; // e.g. "studio + online"
 
   const [errorCount, setErrorCount] = useState(0);
+  // Sticks around until the next attempt: a toast is gone in four seconds and
+  // this is the message that tells someone how to reach her anyway.
+  const [sendFailed, setSendFailed] = useState(false);
+
+  const fallbackEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL;
 
   const {
     register,
@@ -61,8 +74,8 @@ export function Contact() {
   // Field display order — used to find the *first* errored field on submit fail.
   const FIELD_ORDER: FieldPath<ContactInput>[] = [
     'name',
-    'email',
     'phone',
+    'email',
     'goal',
     'message',
     'consent',
@@ -85,6 +98,7 @@ export function Contact() {
   const onSubmit = async (data: ContactInput) => {
     setSubmitting(true);
     setErrorCount(0);
+    setSendFailed(false);
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
@@ -95,10 +109,7 @@ export function Contact() {
       toast.success(t('success'));
       reset();
     } catch {
-      const fallback = process.env.NEXT_PUBLIC_CONTACT_EMAIL;
-      toast.error(fallback ? t('error', { email: fallback }) : t('errorNoEmail'), {
-        action: { label: t('retry'), onClick: () => onSubmit(data) },
-      });
+      setSendFailed(true);
     } finally {
       setSubmitting(false);
     }
@@ -176,13 +187,18 @@ export function Contact() {
             className="mt-10 grid max-w-[420px] gap-4 pt-5"
             style={{ borderTop: '1px solid var(--gold)', fontFamily: 'var(--font-body)' }}
           >
-            {studioCity && (
+            {studioName && (
               <div className="flex justify-between gap-4">
                 <dt className="mono-cap" style={{ color: 'var(--ink-55)' }}>
                   {t('practicalCity')}
                 </dt>
-                <dd className="m-0 text-[14.5px]" style={{ color: 'var(--ink-70)' }}>
-                  {studioCity}
+                <dd className="m-0 text-right text-[14.5px]" style={{ color: 'var(--ink-70)' }}>
+                  <div>{studioName}</div>
+                  {studioAddress && (
+                    <div className="text-xs" style={{ color: 'var(--ink-55)' }}>
+                      {studioAddress}
+                    </div>
+                  )}
                 </dd>
               </div>
             )}
@@ -200,8 +216,20 @@ export function Contact() {
               <dt className="mono-cap" style={{ color: 'var(--ink-55)' }}>
                 {t('practicalPricing')}
               </dt>
-              <dd className="m-0 text-[14.5px]" style={{ color: 'var(--ink-70)' }}>
-                {t('practicalPricingValue')}
+              <dd className="m-0 text-right text-[14.5px]" style={{ color: 'var(--ink-70)' }}>
+                {t.rich('practicalPricingValue', {
+                  highlight: (chunks) => (
+                    <span
+                      className="underline underline-offset-[3px] decoration-[1.5px]"
+                      style={{
+                        color: 'var(--ink)',
+                        textDecorationColor: 'var(--gold)',
+                      }}
+                    >
+                      {chunks}
+                    </span>
+                  ),
+                })}
               </dd>
             </div>
             <div className="flex justify-between gap-4">
@@ -289,30 +317,9 @@ export function Contact() {
               <FieldError id="name-error" messageKey={errors.name?.message} />
             </div>
             <div>
-              <label htmlFor="email" className={LABEL} style={{ color: 'var(--ink-55)' }}>
-                {t('email')}
-                <RequiredMark label={requiredMark} />
-              </label>
-              <input
-                id="email"
-                type="email"
-                {...register('email')}
-                autoComplete="email"
-                inputMode="email"
-                required
-                aria-required
-                aria-invalid={!!errors.email}
-                aria-describedby={errors.email ? 'email-error' : undefined}
-                className="field-control"
-              />
-              <FieldError id="email-error" messageKey={errors.email?.message} />
-            </div>
-          </div>
-
-          <div className="grid gap-5 sm:grid-cols-2">
-            <div>
               <label htmlFor="phone" className={LABEL} style={{ color: 'var(--ink-55)' }}>
                 {t('phone')}
+                <RequiredMark label={requiredMark} />
               </label>
               <input
                 id="phone"
@@ -320,11 +327,32 @@ export function Contact() {
                 {...register('phone')}
                 autoComplete="tel"
                 inputMode="tel"
+                required
+                aria-required
                 aria-invalid={!!errors.phone}
                 aria-describedby={errors.phone ? 'phone-error' : undefined}
                 className="field-control"
               />
               <FieldError id="phone-error" messageKey={errors.phone?.message} />
+            </div>
+          </div>
+
+          <div className="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label htmlFor="email" className={LABEL} style={{ color: 'var(--ink-55)' }}>
+                {t('email')}
+              </label>
+              <input
+                id="email"
+                type="email"
+                {...register('email')}
+                autoComplete="email"
+                inputMode="email"
+                aria-invalid={!!errors.email}
+                aria-describedby={errors.email ? 'email-error' : undefined}
+                className="field-control"
+              />
+              <FieldError id="email-error" messageKey={errors.email?.message} />
             </div>
             <div>
               <label htmlFor="goal" className={LABEL} style={{ color: 'var(--ink-55)' }}>
@@ -421,6 +449,42 @@ export function Contact() {
             </label>
             <FieldError id="consent-error" messageKey={errors.consent?.message} />
           </div>
+
+          {sendFailed && (
+            <p
+              role="alert"
+              className="flex items-start gap-2 rounded-xl px-4 py-3 text-[14px] leading-relaxed"
+              style={{
+                border: '1px solid var(--accent)',
+                background: 'var(--accent-15)',
+                color: 'var(--ink)',
+                fontFamily: 'var(--font-body)',
+              }}
+            >
+              <AlertCircle
+                size={16}
+                strokeWidth={2}
+                style={{ marginTop: 2, flexShrink: 0 }}
+                aria-hidden
+              />
+              <span>
+                {fallbackEmail
+                  ? t.rich('error', {
+                      email: fallbackEmail,
+                      mail: (chunks) => (
+                        <a
+                          href={`mailto:${fallbackEmail}`}
+                          className="underline underline-offset-2"
+                          style={{ color: 'var(--accent)' }}
+                        >
+                          {chunks}
+                        </a>
+                      ),
+                    })
+                  : t('errorNoEmail')}
+              </span>
+            </p>
+          )}
 
           <div>
             {/* Same object as the hero CTA: pill, accent hairline, accent wash on

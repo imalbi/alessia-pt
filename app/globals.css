@@ -50,8 +50,8 @@
      contrast far faster than the same alpha of paper over dark ink: at 0.55
      this token computed 4.0:1 on --paper-2 and axe failed every page on it,
      28 nodes across labels, meta lines and the footer. 0.64 lands at 5.0-5.6,
-     which is where the dark themes already sit, so the five themes finally
-     read at the same weight instead of only looking like they do. */
+     which is where dark already sits, so the two themes finally read at the
+     same weight instead of only looking like they do. */
   --ink-55: rgba(15, 14, 18, 0.64);
   --ink-30: rgba(15, 14, 18, 0.22);
   --ink-15: rgba(15, 14, 18, 0.12);
@@ -61,58 +61,8 @@
   --gold-deep: #8c6629;
 }
 
-/* dark-noir — viola desaturato (mauve), oro champagne. Più sobrio,
-   atelier-luxury. Per chi trova il default troppo elettrico. */
-[data-theme='dark-noir'] {
-  --paper: #0c0c10;
-  --paper-2: #16161e;
-  --ink: #ece9e3;
-  --ink-70: rgba(236, 233, 227, 0.72);
-  --ink-55: rgba(236, 233, 227, 0.55);
-  --ink-30: rgba(236, 233, 227, 0.2);
-  --ink-15: rgba(236, 233, 227, 0.1);
-  --accent: #8765d6;
-  --accent-deep: #6745b0;
-  --gold: #c8a55a;
-  --gold-deep: #a48542;
-}
-
-/* dark-neon — viola vivido, oro freddo, paper più nero. Spinge sul
-   sport-tech contemporary. */
-[data-theme='dark-neon'] {
-  --paper: #08080b;
-  --paper-2: #14141d;
-  --ink: #f6f4ee;
-  --ink-70: rgba(246, 244, 238, 0.72);
-  --ink-55: rgba(246, 244, 238, 0.55);
-  --ink-30: rgba(246, 244, 238, 0.2);
-  --ink-15: rgba(246, 244, 238, 0.1);
-  --accent: #b070ff;
-  --accent-deep: #8e4cee;
-  --gold: #e6b850;
-  --gold-deep: #c39830;
-}
-
-/* light-warm — paper avorio, plum scuro, oro antico caldo. Versione
-   "salone privato di giorno", più calda e meno clinica del default. */
-[data-theme='light-warm'] {
-  --paper: #f5ede2;
-  --paper-2: #ece2d0;
-  --ink: #1a1218;
-  --ink-70: rgba(26, 18, 24, 0.72);
-  /* Same correction as the light theme, and needed harder: this paper is
-     warmer and lighter, so 0.55 computed 3.8:1 here. */
-  --ink-55: rgba(26, 18, 24, 0.64);
-  --ink-30: rgba(26, 18, 24, 0.22);
-  --ink-15: rgba(26, 18, 24, 0.12);
-  --accent: #5a2099;
-  --accent-deep: #3e1576;
-  --gold: #9c7240;
-  --gold-deep: #7a5a30;
-}
-
 /* Derived tokens. Declared once and expressed as color-mix over the base
-   tokens, so all five themes get them without five more hand-tuned blocks.
+   tokens, so both themes get them without two more hand-tuned blocks.
    Custom properties resolve on the element that declares them, and every theme
    block above also lives on <html>, so these pick up the winning theme.
 

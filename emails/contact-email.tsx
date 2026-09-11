@@ -21,11 +21,11 @@ export default function ContactEmail({ data }: Props) {
               <strong>Nome:</strong> {data.name}
             </Text>
             <Text>
-              <strong>Email:</strong> {data.email}
+              <strong>Telefono:</strong> {data.phone}
             </Text>
-            {data.phone && (
+            {data.email && (
               <Text>
-                <strong>Telefono:</strong> {data.phone}
+                <strong>Email:</strong> {data.email}
               </Text>
             )}
             {data.goal && (

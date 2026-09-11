@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
-const PAGES = ['/', '/en', '/privacy', '/en/privacy'];
+const PAGES = ['/', '/privacy'];
 
 for (const url of PAGES) {
   test(`a11y: ${url} has no serious or critical violations`, async ({ page }) => {

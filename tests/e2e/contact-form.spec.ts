@@ -19,6 +19,7 @@ test('contact form submit succeeds and shows success toast', async ({ page }) =>
   // carrying an "obbligatorio" aria-label, so the accessible name is
   // "Nome obbligatorio" and a `$` anchor never matches.
   await page.getByLabel(/^nome/i).fill('Marta Rossi');
+  await page.getByLabel(/^telefono/i).fill('+39 333 1234567');
   await page.getByLabel(/^email/i).fill('marta@example.com');
   await page.getByLabel(/^messaggio/i).fill('Vorrei lavorare sulla postura cronica.');
   // The goal field is now a Radix Select combobox: click trigger, click option.

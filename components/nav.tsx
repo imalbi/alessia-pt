@@ -1,8 +1,8 @@
 'use client';
 
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { useEffect, useId, useRef, useState } from 'react';
-import { Link, usePathname } from '@/i18n/routing';
+import { Link } from '@/i18n/routing';
 import { ThemeToggle } from '@/components/theme-toggle';
 
 // 'stories' is out while the CaseStories section is commented out in page.tsx:
@@ -12,21 +12,9 @@ type Anchor = (typeof ANCHORS)[number];
 
 /**
  * Floating dock with an expanding panel.
- *
- * The panel opens inside the pill rather than as a bottom sheet, which is what
- * the redesign asks for and what lets one control serve every viewport: the
- * dock is the same object open or closed, so there is no separate mobile
- * navigation to keep in sync. The previous Vaul drawer only existed below `md`.
- *
- * The language switch and the theme toggle are kept. The source mock dropped
- * both, but it was a dark-only Italian static page; this site is bilingual and
- * ships four themes, and losing either would be a regression rather than a
- * design decision.
  */
 export function Nav() {
   const t = useTranslations('Nav');
-  const locale = useLocale();
-  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<Anchor | null>(null);
   const panelId = useId();
@@ -99,9 +87,6 @@ export function Nav() {
       document.removeEventListener('pointerdown', onDown);
     };
   }, [open]);
-
-  const otherLocale = locale === 'it' ? 'en' : 'it';
-
   return (
     <nav
       ref={navRef}
@@ -164,23 +149,6 @@ export function Nav() {
           </ul>
 
           <div className="flex items-center gap-2">
-            {/* Language and theme move inline on desktop. They used to live only
-                in the panel, which was the whole reason the panel had to exist
-                at a width where every link was already on screen. */}
-            <span
-              aria-hidden
-              className="mx-1 hidden h-4 w-px lg:block"
-              style={{ background: 'var(--ink-15)' }}
-            />
-            <Link
-              href={pathname}
-              locale={otherLocale}
-              aria-label={t('language')}
-              className="mono-cap hidden min-h-9 items-center rounded-full px-2.5 transition-colors hover:text-[color:var(--ink)] lg:inline-flex"
-              style={{ color: 'var(--ink-70)' }}
-            >
-              {otherLocale}
-            </Link>
             <span className="hidden lg:block">
               <ThemeToggle />
             </span>
@@ -269,18 +237,7 @@ export function Nav() {
               className="mt-3.5 flex flex-wrap items-center justify-between gap-3 pt-4"
               style={{ borderTop: '1px solid var(--ink-15)' }}
             >
-              <span className="flex items-center gap-1">
-                <Link
-                  href={pathname}
-                  locale={otherLocale}
-                  onClick={() => setOpen(false)}
-                  className="mono-cap inline-flex min-h-11 items-center rounded-full px-3 transition-colors hover:text-[color:var(--ink)]"
-                  style={{ color: 'var(--ink-70)' }}
-                >
-                  {otherLocale === 'en' ? 'English' : 'Italiano'}
-                </Link>
-                <ThemeToggle />
-              </span>
+              <ThemeToggle />
               <a
                 href="#contact"
                 onClick={() => setOpen(false)}

@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alessia Alfano · Biglietto da Visita (Dark & Light)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #111115;
+      color: #F4F2EE;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px 80px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .header-bar {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .header-bar h1 {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .header-bar p {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(244, 242, 238, 0.55);
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 18px;
+      justify-content: center;
+    }
+
+    .btn {
+      background: #1c1c24;
+      border: 1px solid rgba(244, 242, 238, 0.20);
+      color: #F4F2EE;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 8px 18px;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+      border-color: #9C5BFF;
+      background: #252530;
+      color: #fff;
+    }
+
+    .btn-primary {
+      background: #9C5BFF;
+      border-color: #9C5BFF;
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: #7B3AE0;
+      border-color: #7B3AE0;
+    }
+
+    .section-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(244, 242, 238, 0.4);
+      margin: 36px 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      max-width: 920px;
+    }
+
+    .section-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: rgba(244, 242, 238, 0.1);
+    }
+
+    /* Card Canvas Presentation */
+    .cards-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 36px;
+      justify-content: center;
+      align-items: center;
+      max-width: 920px;
+      width: 100%;
+    }
+
+    .card-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .card-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: rgba(244, 242, 238, 0.5);
+    }
+
+    /* Base 85mm x 55mm Card Container */
+    .card {
+      width: 400px;
+      height: 258.8px;
+      border-radius: 3px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 30px 32px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+    }
+
+    /* ==========================================================================
+       DARK THEME (ATELIER NOTTURNO)
+       ========================================================================== */
+    .theme-dark .card {
+      --paper: #0A0A0C;
+      --paper-2: #14141A;
+      --ink: #F4F2EE;
+      --ink-70: rgba(244, 242, 238, 0.72);
+      --ink-55: rgba(244, 242, 238, 0.55);
+      --ink-30: rgba(244, 242, 238, 0.20);
+      --ink-15: rgba(244, 242, 238, 0.10);
+      --accent: #9C5BFF;
+      --gold: #D4A958;
+
+      background: var(--paper);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(244, 242, 238, 0.08);
+      color: var(--ink);
+    }
+
+    .theme-dark .card:hover {
+      box-shadow: 0 30px 60px -20px rgba(156, 91, 255, 0.2), 0 0 0 1px rgba(156, 91, 255, 0.3);
+    }
+
+    .theme-dark .card-back {
+      background: var(--paper-2);
+      border: 1px solid var(--ink-15);
+    }
+
+    .theme-dark .front-gold-hairline {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, #D4A958 0%, rgba(212, 169, 88, 0.25) 75%, transparent 100%);
+    }
+
+    .theme-dark .qr-frame {
+      background: #0A0A0C;
+      border: 1px solid rgba(244, 242, 238, 0.25);
+    }
+
+    /* ==========================================================================
+       LIGHT THEME (CARTA COTONE GREIGE)
+       ========================================================================== */
+    .theme-light .card {
+      --paper: #F4F2EE;
+      --paper-2: #EAE7E1;
+      --ink: #0F0E12;
+      --ink-70: rgba(15, 14, 18, 0.72);
+      --ink-55: rgba(15, 14, 18, 0.55);
+      --ink-30: rgba(15, 14, 18, 0.22);
+      --ink-15: rgba(15, 14, 18, 0.12);
+      --accent: #6D2DD6;
+      --gold: #B0823A;
+
+      background: var(--paper);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(15, 14, 18, 0.1);
+      color: var(--ink);
+    }
+
+    .theme-light .card:hover {
+      box-shadow: 0 30px 60px -20px rgba(109, 45, 214, 0.18), 0 0 0 1px rgba(109, 45, 214, 0.25);
+    }
+
+    .theme-light .card-back {
+      background: var(--paper-2);
+      border: 1px solid var(--ink-15);
+    }
+
+    .theme-light .front-gold-hairline {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, #B0823A 0%, rgba(176, 130, 58, 0.25) 75%, transparent 100%);
+    }
+
+    .theme-light .qr-frame {
+      background: #FFFFFF;
+      border: 1px solid rgba(15, 14, 18, 0.18);
+    }
+
+    /* ==========================================================================
+       SHARED CARD INTERNALS
+       ========================================================================== */
+    .front-top-eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 8.5px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-55);
+    }
+
+    .front-center {
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+
+    .front-name {
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: -0.035em;
+      color: var(--ink);
+      margin-bottom: 7px;
+    }
+
+    .front-role {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9.5px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .front-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .front-degree {
+      font-size: 11px;
+      line-height: 1.35;
+      color: var(--ink-55);
+    }
+
+    .front-degree strong {
+      display: block;
+      color: var(--ink-70);
+      font-weight: 500;
+      font-size: 11.5px;
+    }
+
+    .front-location {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 8.5px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-55);
+      text-align: right;
+      line-height: 1.45;
+    }
+
+    .back-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid var(--ink-15);
+      padding-bottom: 10px;
+    }
+
+    .back-heading {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    .back-sub {
+      font-size: 11px;
+      color: var(--ink-70);
+    }
+
+    .back-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      margin-bottom: auto;
+      gap: 16px;
+    }
+
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      flex: 1;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .contact-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 8px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      width: 32px;
+      flex-shrink: 0;
+    }
+
+    .contact-val {
+      font-size: 11px;
+      color: var(--ink);
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+
+    .qr-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      flex-shrink: 0;
+    }
+
+    .qr-frame {
+      width: 68px;
+      height: 68px;
+      border-radius: 4px;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .qr-frame svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .qr-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 7.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-55);
+    }
+
+    .back-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 10px;
+      border-top: 1px solid var(--ink-15);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-55);
+    }
+
+    /* PRINT STYLES */
+    @media print {
+      body {
+        background: none !important;
+        padding: 0 !important;
+        display: block !important;
+      }
+
+      .header-bar, .actions, .card-label, .section-title {
+        display: none !important;
+      }
+
+      .cards-grid {
+        display: block !important;
+      }
+
+      .card-wrapper {
+        margin-bottom: 20mm !important;
+        page-break-inside: avoid !important;
+      }
+
+      .card {
+        width: 85mm !important;
+        height: 55mm !important;
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
+        padding: 6mm 7mm !important;
+        page-break-inside: avoid !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .front-name {
+        font-size: 16pt !important;
+      }
+      .front-role {
+        font-size: 7pt !important;
+      }
+      .front-degree {
+        font-size: 7pt !important;
+      }
+      .contact-val {
+        font-size: 7pt !important;
+      }
+      .qr-frame {
+        width: 17mm !important;
+        height: 17mm !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header-bar">
+    <h1>Biglietto da Visita · Alessia Alfano</h1>
+    <p>Formato Standard Europeo 85 × 55 mm · Dark & Light Edition</p>
+    <div class="actions">
+      <button class="btn btn-primary" onclick="window.print()">Stampa / Salva PDF</button>
+    </div>
+  </div>
+
+  <!-- SECTION 1: DARK EDITION -->
+  <div class="section-title">01 · Dark Edition (Atelier Notturno)</div>
+  <div class="cards-grid theme-dark">
+    <!-- FRONT -->
+    <div class="card-wrapper">
+      <div class="card-label">Fronte · Dark</div>
+      <div class="card card-front">
+        <div class="front-top-eyebrow">Palestra & Valutazione</div>
+        
+        <div class="front-center">
+          <div class="front-name">Alessia Alfano</div>
+          <div class="front-role">Chinesiologa · Personal Trainer</div>
+          <div class="front-gold-hairline"></div>
+        </div>
+
+        <div class="front-bottom">
+          <div class="front-degree">
+            <strong>Scienze Motorie</strong>
+            Indirizzo Biosanitario
+          </div>
+          <div class="front-location">
+            Valle di Susa<br>Susa (TO)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BACK -->
+    <div class="card-wrapper">
+      <div class="card-label">Retro · Dark</div>
+      <div class="card card-back">
+        <div class="back-header">
+          <div class="back-heading">Valutazione & Percorsi</div>
+          <div class="back-sub">Élite Fitness Club · Su appuntamento</div>
+        </div>
+
+        <div class="back-content">
+          <div class="contact-list">
+            <div class="contact-row">
+              <span class="contact-tag">TEL</span>
+              <span class="contact-val">+39 3xx xxx xxxx</span>
+            </div>
+            <div class="contact-row">
+              <span class="contact-tag">IG</span>
+              <span class="contact-val">@alessiaalfano.chinesiologa</span>
+            </div>
+            <div class="contact-row">
+              <span class="contact-tag">SEDE</span>
+              <span class="contact-val">Élite Fitness Club (Susa) · Online</span>
+            </div>
+          </div>
+
+          <div class="qr-container">
+            <div class="qr-frame">
+              <svg viewBox="0 0 35 35" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+                <path fill="transparent" d="M0 0h35v35H0z"/>
+                <path stroke="#F4F2EE" stroke-width="1" d="M1 1.5h7m1 0h2m1 0h1m2 0h5m3 0h2m2 0h7M1 2.5h1m5 0h1m2 0h4m3 0h2m1 0h2m1 0h1m3 0h1m5 0h1M1 3.5h1m1 0h3m1 0h1m2 0h2m1 0h2m1 0h2m2 0h3m1 0h2m1 0h1m1 0h3m1 0h1M1 4.5h1m1 0h3m1 0h1m1 0h2m4 0h2m1 0h4m2 0h1m2 0h1m1 0h3m1 0h1M1 5.5h1m1 0h3m1 0h1m1 0h1m3 0h1m1 0h1m3 0h3m1 0h2m2 0h1m1 0h3m1 0h1M1 6.5h1m5 0h1m1 0h6m2 0h1m1 0h2m1 0h1m2 0h1m1 0h1m5 0h1M1 7.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M9 8.5h1m3 0h1m2 0h4m2 0h1m1 0h2M1 9.5h1m3 0h1m1 0h7m4 0h1m1 0h4m1 0h6m2 0h1M2 10.5h1m1 0h1m7 0h6m1 0h1m1 0h1m2 0h1m1 0h1m3 0h3M1 11.5h1m2 0h1m2 0h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m2 0h1m2 0h1m2 0h1m2 0h1m1 0h1M5 12.5h2m1 0h1m1 0h1m1 0h2m1 0h5m2 0h2m1 0h3m5 0h1M2 13.5h1m1 0h4m2 0h2m1 0h3m3 0h3m2 0h2m1 0h1m1 0h2M1 14.5h2m1 0h2m2 0h2m3 0h1m3 0h2m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1M1 15.5h3m3 0h1m1 0h1m2 0h1m2 0h1m1 0h4m1 0h3m1 0h3m2 0h2M1 16.5h2m2 0h1m4 0h1m1 0h2m1 0h1m2 0h1m1 0h3m2 0h6M2 17.5h2m1 0h1m1 0h3m1 0h1m1 0h4m1 0h1m2 0h5m1 0h1m1 0h1m2 0h1M2 18.5h1m1 0h1m3 0h3m1 0h1m2 0h5m2 0h1m1 0h1m1 0h1m3 0h3M1 19.5h3m1 0h3m5 0h1m1 0h2m2 0h1m1 0h1m2 0h3m1 0h1m1 0h1m1 0h1M3 20.5h1m1 0h2m1 0h3m1 0h2m1 0h3m2 0h2m1 0h2m1 0h1m1 0h1m3 0h1M3 21.5h1m3 0h1m1 0h4m1 0h4m2 0h1m2 0h3m1 0h4m1 0h2M1 22.5h2m1 0h3m2 0h3m2 0h1m4 0h4m1 0h2m2 0h1m1 0h1m1 0h1M3 23.5h6m1 0h1m2 0h2m1 0h1m1 0h2m1 0h1m2 0h2m4 0h3M3 24.5h1m2 0h1m1 0h2m1 0h1m1 0h2m1 0h4m2 0h1m3 0h2m5 0h1M1 25.5h5m1 0h1m2 0h1m2 0h1m1 0h1m2 0h1m1 0h4m1 0h6M9 26.5h1m1 0h2m1 0h1m1 0h2m7 0h1m3 0h1m1 0h2M1 27.5h7m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m2 0h3m1 0h1m1 0h1m1 0h2m1 0h1M1 28.5h1m5 0h1m2 0h1m6 0h6m2 0h1m3 0h1m3 0h1M1 29.5h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h3m3 0h1m1 0h1m3 0h6m2 0h1M1 30.5h1m1 0h3m1 0h1m2 0h6m1 0h1m2 0h1m1 0h2m1 0h1m1 0h6M1 31.5h1m1 0h3m1 0h1m2 0h1m2 0h1m1 0h1m1 0h1m2 0h1m1 0h1m1 0h2m1 0h3m1 0h1M1 32.5h1m5 0h1m6 0h1m3 0h6m1 0h1M1 33.5h7m1 0h1m1 0h3m1 0h4m2 0h6m6 0h1"/>
+              </svg>
+            </div>
+            <div class="qr-label">Sito Web</div>
+          </div>
+        </div>
+
+        <div class="back-footer">
+          <span>Postura · Recupero · Forza</span>
+          <span>Susa & Online</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: LIGHT EDITION -->
+  <div class="section-title">02 · Light Edition (Carta Cotone Greige)</div>
+  <div class="cards-grid theme-light">
+    <!-- FRONT -->
+    <div class="card-wrapper">
+      <div class="card-label">Fronte · Light</div>
+      <div class="card card-front">
+        <div class="front-top-eyebrow">Palestra & Valutazione</div>
+        
+        <div class="front-center">
+          <div class="front-name">Alessia Alfano</div>
+          <div class="front-role">Chinesiologa · Personal Trainer</div>
+          <div class="front-gold-hairline"></div>
+        </div>
+
+        <div class="front-bottom">
+          <div class="front-degree">
+            <strong>Scienze Motorie</strong>
+            Indirizzo Biosanitario
+          </div>
+          <div class="front-location">
+            Valle di Susa<br>Susa (TO)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BACK -->
+    <div class="card-wrapper">
+      <div class="card-label">Retro · Light</div>
+      <div class="card card-back">
+        <div class="back-header">
+          <div class="back-heading">Valutazione & Percorsi</div>
+          <div class="back-sub">Élite Fitness Club · Su appuntamento</div>
+        </div>
+
+        <div class="back-content">
+          <div class="contact-list">
+            <div class="contact-row">
+              <span class="contact-tag">TEL</span>
+              <span class="contact-val">+39 3xx xxx xxxx</span>
+            </div>
+            <div class="contact-row">
+              <span class="contact-tag">IG</span>
+              <span class="contact-val">@alessiaalfano.chinesiologa</span>
+            </div>
+            <div class="contact-row">
+              <span class="contact-tag">SEDE</span>
+              <span class="contact-val">Élite Fitness Club (Susa) · Online</span>
+            </div>
+          </div>
+
+          <div class="qr-container">
+            <div class="qr-frame">
+              <svg viewBox="0 0 35 35" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+                <path fill="transparent" d="M0 0h35v35H0z"/>
+                <path stroke="#0F0E12" stroke-width="1" d="M1 1.5h7m1 0h2m1 0h1m2 0h5m3 0h2m2 0h7M1 2.5h1m5 0h1m2 0h4m3 0h2m1 0h2m1 0h1m3 0h1m5 0h1M1 3.5h1m1 0h3m1 0h1m2 0h2m1 0h2m1 0h2m2 0h3m1 0h2m1 0h1m1 0h3m1 0h1M1 4.5h1m1 0h3m1 0h1m1 0h2m4 0h2m1 0h4m2 0h1m2 0h1m1 0h3m1 0h1M1 5.5h1m1 0h3m1 0h1m1 0h1m3 0h1m1 0h1m3 0h3m1 0h2m2 0h1m1 0h3m1 0h1M1 6.5h1m5 0h1m1 0h6m2 0h1m1 0h2m1 0h1m2 0h1m1 0h1m5 0h1M1 7.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M9 8.5h1m3 0h1m2 0h4m2 0h1m1 0h2M1 9.5h1m3 0h1m1 0h7m4 0h1m1 0h4m1 0h6m2 0h1M2 10.5h1m1 0h1m7 0h6m1 0h1m1 0h1m2 0h1m1 0h1m3 0h3M1 11.5h1m2 0h1m2 0h1m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m2 0h1m2 0h1m2 0h1m2 0h1m1 0h1M5 12.5h2m1 0h1m1 0h1m1 0h2m1 0h5m2 0h2m1 0h3m5 0h1M2 13.5h1m1 0h4m2 0h2m1 0h3m3 0h3m2 0h2m1 0h1m1 0h2M1 14.5h2m1 0h2m2 0h2m3 0h1m3 0h2m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1M1 15.5h3m3 0h1m1 0h1m2 0h1m2 0h1m1 0h4m1 0h3m1 0h3m2 0h2M1 16.5h2m2 0h1m4 0h1m1 0h2m1 0h1m2 0h1m1 0h3m2 0h6M2 17.5h2m1 0h1m1 0h3m1 0h1m1 0h4m1 0h1m2 0h5m1 0h1m1 0h1m2 0h1M2 18.5h1m1 0h1m3 0h3m1 0h1m2 0h5m2 0h1m1 0h1m1 0h1m3 0h3M1 19.5h3m1 0h3m5 0h1m1 0h2m2 0h1m1 0h1m2 0h3m1 0h1m1 0h1m1 0h1M3 20.5h1m1 0h2m1 0h3m1 0h2m1 0h3m2 0h2m1 0h2m1 0h1m1 0h1m3 0h1M3 21.5h1m3 0h1m1 0h4m1 0h4m2 0h1m2 0h3m1 0h4m1 0h2M1 22.5h2m1 0h3m2 0h3m2 0h1m4 0h4m1 0h2m2 0h1m1 0h1m1 0h1M3 23.5h6m1 0h1m2 0h2m1 0h1m1 0h2m1 0h1m2 0h2m4 0h3M3 24.5h1m2 0h1m1 0h2m1 0h1m1 0h2m1 0h4m2 0h1m3 0h2m5 0h1M1 25.5h5m1 0h1m2 0h1m2 0h1m1 0h1m2 0h1m1 0h4m1 0h6M9 26.5h1m1 0h2m1 0h1m1 0h2m7 0h1m3 0h1m1 0h2M1 27.5h7m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m2 0h3m1 0h1m1 0h1m1 0h2m1 0h1M1 28.5h1m5 0h1m2 0h1m6 0h6m2 0h1m3 0h1m3 0h1M1 29.5h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h3m3 0h1m1 0h1m3 0h6m2 0h1M1 30.5h1m1 0h3m1 0h1m2 0h6m1 0h1m2 0h1m1 0h2m1 0h1m1 0h6M1 31.5h1m1 0h3m1 0h1m2 0h1m2 0h1m1 0h1m1 0h1m2 0h1m1 0h1m1 0h2m1 0h3m1 0h1M1 32.5h1m5 0h1m6 0h1m3 0h6m1 0h1M1 33.5h7m1 0h1m1 0h3m1 0h4m2 0h6m6 0h1"/>
+              </svg>
+            </div>
+            <div class="qr-label">Sito Web</div>
+          </div>
+        </div>
+
+        <div class="back-footer">
+          <span>Postura · Recupero · Forza</span>
+          <span>Susa & Online</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

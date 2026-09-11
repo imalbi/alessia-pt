@@ -3,7 +3,7 @@ import { contactSchema } from '@/lib/validation/contact';
 
 const valid = {
   name: 'Marta Rossi',
-  email: 'marta@example.com',
+  phone: '+39 333 1234567',
   message: 'Vorrei lavorare sulla postura.',
   consent: true,
   honeypot: '',
@@ -14,8 +14,16 @@ describe('contactSchema', () => {
     expect(() => contactSchema.parse(valid)).not.toThrow();
   });
 
-  it('accepts optional phone in IT format', () => {
-    expect(() => contactSchema.parse({ ...valid, phone: '+39 333 1234567' })).not.toThrow();
+  it('accepts optional email', () => {
+    expect(() => contactSchema.parse({ ...valid, email: 'marta@example.com' })).not.toThrow();
+  });
+
+  it('rejects empty phone', () => {
+    expect(() => contactSchema.parse({ ...valid, phone: '' })).toThrow();
+  });
+
+  it('rejects invalid phone', () => {
+    expect(() => contactSchema.parse({ ...valid, phone: '123' })).toThrow();
   });
 
   it('rejects empty name', () => {

@@ -12,6 +12,7 @@ vi.mock('@/lib/telegram', () => ({
 
 const validBody = {
   name: 'Marta',
+  phone: '+39 333 1234567',
   email: 'marta@example.com',
   message: 'Vorrei lavorare sulla postura cronica.',
   consent: true,

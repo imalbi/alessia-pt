@@ -5,10 +5,13 @@ export type Goal = (typeof GOALS)[number];
 
 export const contactSchema = z.object({
   name: z.string().min(2, 'name_too_short').max(80, 'name_too_long'),
-  email: z.string().email('email_invalid'),
   phone: z
     .string()
-    .regex(/^[+0-9\s\-()]{6,20}$/, 'phone_invalid')
+    .min(1, 'phone_required')
+    .regex(/^[+0-9\s\-()]{6,20}$/, 'phone_invalid'),
+  email: z
+    .string()
+    .email('email_invalid')
     .optional()
     .or(z.literal('')),
   goal: z.enum(GOALS).optional(),

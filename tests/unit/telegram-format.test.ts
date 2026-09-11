@@ -22,16 +22,17 @@ describe('formatTelegramMessage', () => {
     `);
   });
 
-  it('omits phone and goal when missing', () => {
+  it('omits email and goal when missing', () => {
     const result = formatTelegramMessage({
       name: 'John',
-      email: 'j@x.it',
+      phone: '+39 333 1234567',
       message: 'Ciao volevo informazioni.',
       consent: true,
       honeypot: '',
     });
-    expect(result).toContain('*John* · j@x\\.it');
-    expect(result).not.toContain('📞');
+    expect(result).toContain('*John*');
+    expect(result).not.toContain('·');
+    expect(result).toContain('📞 \\+39 333 1234567');
     expect(result).not.toContain('🎯');
   });
 
@@ -61,6 +62,7 @@ describe('formatTelegramMessage', () => {
     const result = formatTelegramMessage({
       name: 'A_B*C',
       email: 'x@y.it',
+      phone: '+39 333 1234567',
       message: 'Test message body.',
       consent: true,
       honeypot: '',

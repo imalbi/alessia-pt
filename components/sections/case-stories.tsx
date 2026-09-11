@@ -1,9 +1,8 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { useLocale, useTranslations } from 'next-intl';
-import { caseStories as casesIt } from '@/content/it';
-import { caseStories as casesEn } from '@/content/en';
+import { useTranslations } from 'next-intl';
+import { caseStories } from '@/content/it';
 import { subscribeToScrollFrame } from '@/lib/scroll-frame';
 import { useMediaQuery } from '@/lib/use-media-query';
 import { useReducedMotion } from '@/lib/use-reduced-motion';
@@ -51,8 +50,7 @@ function initials(name: string): string {
 export function CaseStories() {
   const t = useTranslations('Stories');
   const tp = useTranslations('Pointer');
-  const locale = useLocale();
-  const items = locale === 'en' ? casesEn : casesIt;
+  const items = caseStories;
 
   const railRef = useRef<HTMLDivElement>(null);
   const pinRef = useRef<HTMLDivElement>(null);

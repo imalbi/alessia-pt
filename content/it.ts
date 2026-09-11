@@ -9,10 +9,10 @@ export interface Service {
 export const services: Service[] = [
   {
     id: 'in-studio',
-    title: 'Personal training in studio',
+    title: 'Personal training in palestra',
     description:
       'Sedute uno-a-uno: valutazione iniziale di postura, mobilità, abitudini di movimento e un programma costruito sulla persona, non sul template. Indicato per chi cerca presenza, attenzione e un lavoro tecnicamente preciso da costruire nel tempo.',
-    mode: 'uno-a-uno · in studio',
+    mode: 'uno-a-uno · in palestra',
   },
   {
     id: 'recupero',
@@ -53,7 +53,7 @@ export const processSteps: ProcessStep[] = [
   {
     id: 'valutazione',
     num: '01',
-    meta: 'circa un’ora · in studio · online',
+    meta: 'circa un’ora · in palestra · online',
     title: 'Ti valuto',
     body: 'Storia clinica, postura, mobilità articolare, come ti muovi davvero. Se serve anche plicometria e bioimpedenza. Esci sapendo com’è il tuo corpo: fatti, non impressioni.',
     presence: 'Ti ascolto e ti valuto',

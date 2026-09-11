@@ -40,9 +40,15 @@ export function Marquee() {
       style={{
         fontFamily: 'var(--font-display)',
         letterSpacing: '-0.02em',
-        /* Large bold type, so 3:1 is the bar rather than 4.5:1. The mock used
-           ink at 20% alpha, which lands near 1.7:1 and is unreadable. */
-        color: 'color-mix(in oklab, var(--ink) 40%, transparent)',
+        /* 4.5:1 on --paper-2, which is the bar here whatever the comment used
+           to claim. The exemption for large text needs 24px at this weight, or
+           18.66px at 700, and `font-semibold` is 600: the clamp floor lands on
+           22.4px on a phone, so the band was short on both counts and axe
+           failed the page at 3.55:1. 50% alpha computes 4.86:1, far enough
+           above the line to survive rounding, and still recessive enough that
+           the words stay a texture rather than a heading. The mock's 20% was
+           near 1.7:1 and simply unreadable. */
+        color: 'color-mix(in oklab, var(--ink) 50%, transparent)',
       }}
     >
       {words.map((word) => (

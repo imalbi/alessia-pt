@@ -10,7 +10,7 @@ Riferimento spec di prodotto/architettura: [`docs/superpowers/specs/2026-05-08-a
 
 **Mood**: atelier sportivo notturno. Nero quasi-puro come superficie dominante, viola elettrico saturato come voce, oro antico opaco come dettaglio raro. Riferimenti incrociati: Lululemon × Métier per il restraint athletic-luxury, Bottega Veneta sport per l'uso del viola committed e dell'oro come dettaglio mai dominante.
 
-**Direzione cromatica**: **dark default**, light come toggle esplicito in nav. Il dark è la voce vera del brand; il light è cortesia. Tre varianti aggiuntive (`dark-noir`, `dark-neon`, `light-warm`) sono accessibili dal tweaks panel dev-only — servono ad Alessia per scegliere se preferisce il default o uno shift di tono. Non sono esposte pubblicamente.
+**Direzione cromatica**: **dark default**, light come toggle esplicito in nav. Il dark è la voce vera del brand; il light è cortesia. Due temi in tutto: le varianti di tono provate in review (`dark-noir`, `dark-neon`, `light-warm`) sono state rimosse una volta scelto il default.
 
 **Categoria di superficie**: brand (la landing è il prodotto stesso).
 
@@ -204,7 +204,7 @@ Divisione del lavoro, che va mantenuta: il fill del binario e l'avatar sono scri
 
 ### Token derivati
 
-`--paper-3` (superficie rialzata, campi form), `--ink-08` (inchiostro dei watermark) e `--accent-15` (wash di hover sulle CTA outline) sono definiti una volta sola come `color-mix` sui token base, così tutti e cinque i temi li ereditano senza cinque blocchi in più.
+`--paper-3` (superficie rialzata, campi form), `--ink-08` (inchiostro dei watermark) e `--accent-15` (wash di hover sulle CTA outline) sono definiti una volta sola come `color-mix` sui token base, così entrambi i temi li ereditano senza due blocchi in più.
 
 ### Nav (floating dock)
 

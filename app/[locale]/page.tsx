@@ -22,7 +22,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   setRequestLocale(locale);
   return (
     <>
-      <JsonLd locale={locale} />
+      <JsonLd />
       <ScrollProgress />
       <RevealScope />
       <PointerTool />

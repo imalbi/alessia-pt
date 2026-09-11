@@ -17,10 +17,10 @@ function escapeMd(s: string) {
  * pair of asterisks around the name and the separators, which are ours.
  */
 export function formatTelegramMessage(input: ContactInput): string {
-  const lines = [
-    '💪 *Nuovo contatto sito*',
-    `*${escapeMd(input.name)}* · ${escapeMd(input.email)}`,
-  ];
+  const header = input.email
+    ? `*${escapeMd(input.name)}* · ${escapeMd(input.email)}`
+    : `*${escapeMd(input.name)}*`;
+  const lines = ['💪 *Nuovo contatto sito*', header];
   if (input.phone) lines.push(`📞 ${escapeMd(input.phone)}`);
   if (input.goal) lines.push(`🎯 ${escapeMd(input.goal)}`);
   lines.push('', escapeMd(input.message));

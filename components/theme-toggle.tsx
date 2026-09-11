@@ -45,6 +45,9 @@ export function ThemeToggle({ withLabel = false, className }: Props) {
       style={{
         display: 'inline-flex',
         alignItems: 'center',
+        // The icon is 20px inside a 44px tap target: without this it sits
+        // 4px left of the button's centre, off-axis from the pill's other items.
+        justifyContent: 'center',
         gap: 8,
         minHeight: 44,
         minWidth: 44,

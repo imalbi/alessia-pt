@@ -1,5 +1,6 @@
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
+import { ArrowUpRight } from 'lucide-react';
 import { InstagramIcon } from '@/components/icons/instagram';
 import {
   SITE_NAME,
@@ -101,7 +102,9 @@ export function Footer() {
           className="inline-flex items-center gap-1 transition-colors hover:text-[color:var(--ink)]"
         >
           by {AUTHOR_HANDLE}
-          <span aria-hidden>↗</span>
+          {/* Was a literal ↗ (U+2197): Unicode classes it as an emoji character,
+              and iOS can serve it as a colour glyph next to 12px grey text. */}
+          <ArrowUpRight size={13} strokeWidth={1.75} aria-hidden />
         </a>
       </div>
 

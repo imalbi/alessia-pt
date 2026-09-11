@@ -2,9 +2,8 @@
 
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
-import { useLocale, useTranslations } from 'next-intl';
-import { processSteps as stepsIt } from '@/content/it';
-import { processSteps as stepsEn } from '@/content/en';
+import { useTranslations } from 'next-intl';
+import { processSteps } from '@/content/it';
 import { subscribeToScrollFrame } from '@/lib/scroll-frame';
 import { useReducedMotion } from '@/lib/use-reduced-motion';
 
@@ -28,8 +27,7 @@ const GUTTER = 'clamp(44px, 5vw, 72px)';
  */
 export function Process() {
   const t = useTranslations('Process');
-  const locale = useLocale();
-  const steps = locale === 'en' ? stepsEn : stepsIt;
+  const steps = processSteps;
 
   const railRef = useRef<HTMLDivElement>(null);
   const fillRef = useRef<HTMLDivElement>(null);

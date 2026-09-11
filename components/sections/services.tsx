@@ -1,9 +1,8 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { useLocale, useTranslations } from 'next-intl';
-import { services as servicesIt } from '@/content/it';
-import { services as servicesEn } from '@/content/en';
+import { useTranslations } from 'next-intl';
+import { services } from '@/content/it';
 import { prefersReducedMotion, subscribeToScrollFrame } from '@/lib/scroll-frame';
 
 /** Pin offset of the first card, matched to `scroll-padding-top` in globals.css. */
@@ -42,8 +41,7 @@ const DEPTH_SCALE = 0.03;
  */
 export function Services() {
   const t = useTranslations('Services');
-  const locale = useLocale();
-  const items = locale === 'en' ? servicesEn : servicesIt;
+  const items = services;
 
   const wrapRef = useRef<HTMLDivElement>(null);
   /** Sticky elements: measured for scroll position, never transformed. */
@@ -89,7 +87,7 @@ export function Services() {
     document.fonts?.ready.then(equalise).catch(() => {});
 
     return () => observer.disconnect();
-  }, [items.length, locale]);
+  }, [items.length]);
 
   // Depth. Skipped under reduced motion, where the deck simply sits flat.
   useEffect(() => {
