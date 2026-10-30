@@ -22,11 +22,6 @@ The site copy is in Italian because the audience is Italian. The product and des
 
 **Accessibility as a test, not a claim.** The e2e suite runs axe against the home and privacy pages and fails on serious or critical violations. Form errors set `aria-invalid` and `aria-describedby`, and focus moves to the first invalid field.
 
-**Two deployment pitfalls on Workers**, both found by comparing the live site with a local build:
-
-- `/_next/image` only resizes when the Worker has an Images binding. Without it the original file is served: a 128 px avatar weighed 144 KB. The binding is declared in `wrangler.toml`.
-- wrangler's `keep_names` wraps inner functions in `__name()`. next-themes serialises its pre-paint script with `toString()`, so the helper was missing in the browser and the script threw. It is switched off in `wrangler.toml`.
-
 **Design documents.** [PRODUCT.md](PRODUCT.md) states who the visitor is and what counts as success. [DESIGN.md](DESIGN.md) records the system: tokens, type, motion rules and the things the site deliberately does not do.
 
 ## Getting started
