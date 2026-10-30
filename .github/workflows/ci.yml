@@ -37,7 +37,7 @@ jobs:
         run: yarn test
 
       - name: Install Playwright browsers
-        run: yarn dlx playwright install --with-deps chromium
+        run: yarn playwright install --with-deps chromium
 
       - name: E2E tests
         run: yarn test:e2e --project=chromium
