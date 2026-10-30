@@ -220,7 +220,7 @@ export function Contact() {
                 {t.rich('practicalPricingValue', {
                   highlight: (chunks) => (
                     <span
-                      className="underline underline-offset-[3px] decoration-[1.5px]"
+                      className="underline decoration-[1.5px] underline-offset-[3px]"
                       style={{
                         color: 'var(--ink)',
                         textDecorationColor: 'var(--gold)',

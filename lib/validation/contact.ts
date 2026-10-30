@@ -9,11 +9,7 @@ export const contactSchema = z.object({
     .string()
     .min(1, 'phone_required')
     .regex(/^[+0-9\s\-()]{6,20}$/, 'phone_invalid'),
-  email: z
-    .string()
-    .email('email_invalid')
-    .optional()
-    .or(z.literal('')),
+  email: z.string().email('email_invalid').optional().or(z.literal('')),
   goal: z.enum(GOALS).optional(),
   message: z.string().min(10, 'message_too_short').max(2000, 'message_too_long'),
   consent: z.literal(true, { error: () => 'consent_required' }),

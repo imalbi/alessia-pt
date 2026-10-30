@@ -36,12 +36,7 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-import {
-  SITE_NAME,
-  SITE_TITLE_IT,
-  SITE_DESCRIPTION_IT,
-  getSiteUrl,
-} from '@/i18n/metadata';
+import { SITE_NAME, SITE_TITLE_IT, SITE_DESCRIPTION_IT, getSiteUrl } from '@/i18n/metadata';
 
 export async function generateMetadata(): Promise<Metadata> {
   const title = SITE_TITLE_IT;

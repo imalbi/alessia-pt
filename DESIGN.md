@@ -2,8 +2,6 @@
 
 Documento visivo per la landing di Alessia · Personal Trainer & Chinesiologa. Definisce il sistema di design — colori, tipografia, spaziatura, componenti, motion — coerente con `PRODUCT.md`.
 
-Riferimento spec di prodotto/architettura: [`docs/superpowers/specs/2026-05-08-alessia-pt-landing-design.md`](docs/superpowers/specs/2026-05-08-alessia-pt-landing-design.md).
-
 ---
 
 ## Visual Theme
@@ -253,7 +251,7 @@ CSS native `html { scroll-behavior: smooth }` con `scroll-padding-top: 96px` per
 - Niente lettera-per-lettera sui titoli
 - Niente bounce / spring / elastic
 - Niente animazione su `width`, `height`, `top`, `left`, `padding`, `margin` (solo `transform`, `opacity`, `clip-path`, e `height` sul solo fill della timeline)
-- Niente cursore custom, in nessuna forma
+- Niente cursore custom, salvo il disco di `PointerTool` con le sue condizioni (vedi "Divieti rilasciati nel redesign v2")
 - Niente magnetismo sulle CTA: sposta il bersaglio via da dove l'utente ha mirato
 - Niente reveal sul form contatti. È l'unica cosa che la pagina deve far succedere e non può passare il primo secondo a `opacity: 0` in attesa di un IntersectionObserver.
 
@@ -326,7 +324,7 @@ Cross-checked con AI-slop bans del manifesto impeccable + decisioni del progetto
 - ❌ **Oro come riempimento** (MLM-trap)
 - ❌ **Font handwritten / calligraphic** (mistico-trap)
 - ❌ **Gradient viola → rosa** (acid lane / spiritual-femminile)
-- ❌ **Cursore custom** (`cursor: none` + dot/ring/torch). Distrugge l'affordance del puntatore per chi ha ipovisione o difficoltà motorie, e il "torch" è un glow viola di 520px agganciato al mouse. Fuori per accessibilità, non per gusto: questa resta una regola dura.
+- ❌ **Cursore custom senza le condizioni di `PointerTool`** (`cursor: none` globale, dot, ring o torch). Distrugge l'affordance del puntatore per chi ha ipovisione o difficoltà motorie, e il "torch" è un glow viola di 520px agganciato al mouse. Fuori per accessibilità, non per gusto: l'unica eccezione è il disco descritto in "Divieti rilasciati nel redesign v2".
 - ❌ **Opacity di gruppo che porta il testo sotto contrasto AA.** La timeline dimmava gli step inattivi a `opacity: .32`, che si moltiplica su ogni figlio: il body arrivava a 1.64:1 e il numerale a 1.52:1, e axe fa fallire la pagina. Lo stato si esprime con colore, dot e ring; il testo a schermo resta leggibile. `--ink-55` è il pavimento (~5.2:1 su paper-2).
 
 ### Divieti rilasciati nel redesign v2
@@ -336,6 +334,7 @@ Questi erano nella lista e sono stati tolti con decisione esplicita. Sono annota
 - ✅ **Glow viola** — ammesso come _alone di stato_, non come atmosfera: ring 5px sul dot della fase attiva, ombra sotto l'avatar che scorre, `box-shadow` sul fill della timeline. Il divieto era scritto contro il glow sotto la headline e dietro le CTA (Twitch-trap), e lì vale ancora.
 - ✅ **Gradient viola → oro** — ammesso su due elementi, entrambi larghi 2px e senza testo sopra: la progress bar e il fill della timeline. Il divieto era scritto contro gradient su titoli e riempimenti di CTA, e lì vale ancora.
 - ✅ **Animazioni in loop continuo** — ammesse per marquee, `bob` dello scroll hint e `halo` dell'avatar. Obbligo che le accompagna: sotto `prefers-reduced-motion` si spengono con `animation: none`, mai con durata collassata (una durata di 0.01ms su un loop infinito lo riavvia centinaia di volte al secondo, che è peggio dell'animazione stessa). Il marquee si mette in pausa all'hover, perché una parola in movimento non è una parola leggibile.
+- ✅ **Cursore custom**: ammesso solo come `PointerTool` (`components/primitives/pointer-tool.tsx`), tenuto per scelta nel redesign v2. Un disco viola di 12px che segue il puntatore, si allarga a 34px su ciò che si clicca e si apre in una pillola con etichetta su ciò che porta `data-cursor`. Il divieto era scritto contro un cursore che sparisce per chi ha ipovisione o difficoltà motorie, e le condizioni lo tengono vivo: il componente non esiste su puntatori non precisi (touch) né con `prefers-reduced-motion`, restituisce il cursore di sistema sopra i campi del form (caret e freccia del select sono informazione), e `cursor: none` è legato a `body[data-pointer-tool='on']`, attributo che il componente imposta al mount e toglie allo smontaggio: se il bundle non carica, il cursore di sistema c'è. Resta vietato il "torch", cioè un glow viola di 520px agganciato al mouse.
 
 ### Raggio: la pill non è più solo del dock
 

@@ -58,3 +58,7 @@ next-env.d.ts
 
 # client raw assets/materials
 /docs/materiale/
+
+# agent planning notes and the local link to the skills folder, kept on disk only
+/docs/superpowers/
+/.agents/
