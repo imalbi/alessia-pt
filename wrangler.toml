@@ -6,6 +6,12 @@ main = ".open-next/worker.js"
 compatibility_date = "2026-01-01"
 compatibility_flags = ["nodejs_compat"]
 
+# next-themes ships its pre-paint theme script by calling toString() on a
+# function. With keep_names on, wrangler wraps inner functions in __name(), a
+# helper that does not exist in the browser, so the inline script throws and a
+# visitor who chose the light theme sees a flash of dark.
+keep_names = false
+
 # Off by default it is on, and every deployed version would get its own
 # <version>-chinesiologa.*.workers.dev address serving the same pages. On a
 # site we are trying to rank locally that is duplicate content wearing a
@@ -15,3 +21,9 @@ preview_urls = false
 [assets]
 directory = ".open-next/assets"
 binding = "ASSETS"
+
+# Without this binding the /_next/image route skips resizing and serves the
+# original file: on the live site a 128px avatar weighed 144 KB and the about
+# photo 255 KB instead of the 5 KB and 53 KB the local build produces.
+[images]
+binding = "IMAGES"
